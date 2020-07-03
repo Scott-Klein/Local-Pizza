@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+html {
+    background-color: #F2ECEB;
+}
+
+body {
+    margin: 0px;
+    max-width: 1480px;
+    margin: auto;
+}
+
+h1 {
+    font-family: 'Fredoka One';
+    font-size: 70px;
+    color:white;
+    margin: 0px;
+    margin-top: 45px;
+}
+
+footer {
+    margin-top: 59px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header {
+    margin-top: 30px;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-family: 'Fredoka One', cursive;
+    text-decoration: none;
+    font-size: 29px;
+    background-color: #6565F6;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.link {
+    font-size: 24px;
+    font-family: Poppins;
+    color: #212126;
+}
+
+.account-buttons {
+    display: inline;
+}
+
+#sign-up {
+    background-color: #BC4E4E;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    color: white;
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 18px;
+    margin-right: 5px;
+}
+
+#sign-in {
+    background-color: #B441A1;
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    color: white;
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+#phone-number {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.fas.fa-phone-alt {
+    margin-right: 24px;
+    font-size: 36px;
+}
+
+
+footer > hr {
+    color: #B441A1;
+}
+
+.footer-center {
+    max-width: 318px;
+    font-family: Poppins;
+    color: #4D4D51;
+    margin: auto;
+    margin-top: 36px;
+}
+
+
+
+.container {
+    margin-top: 64px;
+}
+
+.footer-block {
+    display: inline-block;
+    margin: auto;
+}
+
+#footer-privacy {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+
+    #footer-privacy > a:first-child {
+        margin-right: 60px;
+    }
+
+#copyright-statement {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+
+#sides-box {
+    background-color: #BC4E4E;
+}
+
+#drinks-box {
+    background-color: #B441A1;
+}
+
+#desserts-box {
+    background-color: #FFDC6A;
+}
+
+.home-box {
+    height: 450px;
+    width: 472px;
+    border-radius: 15px;
+}
+
+.home-box-row {
+    margin-top: 59px;
+}
+
+
+#pizza-box {
+    width: 100%;
+    background-color: #7CD6A6;
+    background-image:url(../images/pizza.png);
+}
+
+#pizza-box-content {
+    width: 50%;
+    float: right;
+}
+
+.box-heading {
+    margin-top: 38px;
+}
+
+#pizza-box-content > p {
+    width: 630px;
+    height: 136px;
+    font-family: Poppins;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+    margin: 0px;
+    margin-top: 27px;
+    margin-bottom: 45px;
+
+}
+
+.large-button {
+    font-family: Poppins;
+    font-size: 30px;
+    font-weight: 700;
+    color: white;
+    padding: 15px 30px 15px 30px;
+    border-radius: 10px;
+}
+
+.btn-blue {
+    background-color: #6565F6;
+}
+
