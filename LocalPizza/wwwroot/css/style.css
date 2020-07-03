@@ -16,7 +16,7 @@ body {
 h1 {
     font-family: 'Fredoka One';
     font-size: 70px;
-    color:white;
+    color: white;
     margin: 0px;
     margin-top: 45px;
 }
@@ -123,10 +123,9 @@ footer > hr {
     margin-top: 15px;
 }
 
-
-    #footer-privacy > a:first-child {
-        margin-right: 60px;
-    }
+#footer-privacy > a:first-child {
+    margin-right: 60px;
+}
 
 #copyright-statement {
     font-size: 15px;
@@ -134,17 +133,10 @@ footer > hr {
 }
 
 
-#sides-box {
-    background-color: #BC4E4E;
-}
 
-#drinks-box {
-    background-color: #B441A1;
-}
 
-#desserts-box {
-    background-color: #FFDC6A;
-}
+
+
 
 .home-box {
     height: 450px;
@@ -160,12 +152,26 @@ footer > hr {
 #pizza-box {
     width: 100%;
     background-color: #7CD6A6;
-    background-image:url(../images/pizza.png);
+    background-image: url(../images/pizza.png);
 }
 
 #pizza-box-content {
     width: 50%;
     float: right;
+}
+
+#sides-box {
+    background-color: #BC4E4E;
+    background-image: url(../images/wedges.png);
+}
+
+#drinks-box {
+    background-color: #B441A1;
+    background-image: url(../images/pepsi.png);
+}
+#desserts-box {
+    background-color: #FFDC6A;
+    background-image: url(../images/dessert.png);
 }
 
 .box-heading {
@@ -182,7 +188,6 @@ footer > hr {
     margin: 0px;
     margin-top: 27px;
     margin-bottom: 45px;
-
 }
 
 .large-button {
@@ -197,4 +202,3 @@ footer > hr {
 .btn-blue {
     background-color: #6565F6;
 }
-
