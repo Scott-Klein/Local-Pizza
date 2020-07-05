@@ -9,20 +9,27 @@ html {
 
 body {
     margin: 0px;
+    width: 77.084%;
     max-width: 1480px;
     margin: auto;
 }
 
 h1 {
     font-family: 'Fredoka One';
-    font-size: 70px;
+    font-size: 3.646vw;
     color: white;
     margin: 0px;
-    margin-top: 45px;
+    margin-top: 2.343825vw;
+}
+
+.btn-sml {
+    padding: 0.521vw 1.042vw 0.521vw 1.042vw;
+    border-radius: 0.521vw;
+    font-size: 0.938vw;
 }
 
 footer {
-    margin-top: 59px;
+    margin-top: 3.073015vw;
 }
 
 a {
@@ -31,7 +38,7 @@ a {
 }
 
 header {
-    margin-top: 30px;
+    margin-top: 1.56255vw;
 }
 
 .flex-container {
@@ -43,17 +50,16 @@ header {
 .brand {
     font-family: 'Fredoka One', cursive;
     text-decoration: none;
-    font-size: 29px;
+    font-size: 1.51vw;
     background-color: #6565F6;
-    padding: 10px 20px 10px 20px;
-    border-radius: 10px;
+    padding: 0.521vw 1.042vw 0.521vw 1.042vw;
     color: white;
     text-decoration: none;
     display: inline-block;
 }
 
 .link {
-    font-size: 24px;
+    font-size: 1.25vw;
     font-family: Poppins;
     color: #212126;
 }
@@ -64,47 +70,41 @@ header {
 
 #sign-up {
     background-color: #BC4E4E;
-    padding: 10px 20px 10px 20px;
-    border-radius: 10px;
     color: white;
     font-family: Poppins;
     font-weight: 700;
-    font-size: 18px;
-    margin-right: 5px;
+    margin-right: 0.2605vw;
 }
 
 .menu-btn {
     background-color: #6565F6;
     font-family: Poppins;
-    font-size: 18px;
+    font-size: 0.93753vw;
     font-weight: 700;
-    padding: 10px 20px 10px 20px;
-    margin-left: 83px;
+    padding: 0.521vw 1.042vw 0.521vw 1.042vw;
+    margin-left: 4.323055vw;
     position: relative;
     display: inline-block;
     color: white;
-    border-radius: 10px;
-    margin-top: 210px;
+    border-radius: 0.52085vw;
+    margin-top: 10.93785vw;
 }
 
 #sign-in {
     background-color: #B441A1;
-    padding: 10px 20px 10px 20px;
-    border-radius: 10px;
     color: white;
     font-family: Poppins;
     font-weight: 700;
-    font-size: 18px;
 }
 
 #phone-number {
-    font-size: 24px;
+    font-size: 1.25004vw;
     font-weight: 700;
 }
 
 .fas.fa-phone-alt {
-    margin-right: 24px;
-    font-size: 36px;
+    margin-right: 1.25004vw;
+    font-size: 1.87506vw;
 }
 
 footer > hr {
@@ -112,15 +112,15 @@ footer > hr {
 }
 
 .footer-center {
-    max-width: 318px;
+    max-width: 16.56303vw;
     font-family: Poppins;
     color: #4D4D51;
     margin: auto;
-    margin-top: 36px;
+    margin-top: 1.87506vw;
 }
 
 .container {
-    margin-top: 64px;
+    margin-top: 3.33344vw;
 }
 
 .footer-block {
@@ -128,41 +128,41 @@ footer > hr {
     margin: auto;
 }
 
-#sides-box > h1:nth-child(1){
-    margin-left: 93px;
+#sides-box > h1:nth-child(1) {
+    margin-left: 4.843905vw;
 }
 
 #drinks-box > h1:nth-child(1) {
-    margin-left: 198px;
+    margin-left: 10.31283vw;
 }
 
 #desserts-box > h1:nth-child(1) {
-    margin-left: 115px;
+    margin-left: 5.989775vw;
 }
 
 #footer-privacy {
-    font-size: 18px;
+    font-size: 0.93753vw;
     font-weight: 700;
-    margin-top: 15px;
+    margin-top: 0.781275vw;
 }
 
-#footer-privacy > a:first-child {
-    margin-right: 60px;
-}
+    #footer-privacy > a:first-child {
+        margin-right: 3.1251vw;
+    }
 
 #copyright-statement {
-    font-size: 15px;
+    font-size: 0.781275vw;
     font-weight: 300;
 }
 
 .home-box {
-    height: 450px;
-    width: 472px;
-    border-radius: 15px;
+    height: 20.834vw;
+    width: 24.58412vw;
+    border-radius: 0.7815vw;
 }
 
 .home-box-row {
-    margin-top: 59px;
+    margin-top: 3.073015vw;
 }
 
 #pizza-box {
@@ -191,30 +191,153 @@ footer > hr {
 }
 
 .box-heading {
-    margin-top: 38px;
+    margin-top: 1.97923vw;
 }
 
 #pizza-box-content > p {
-    width: 630px;
-    height: 136px;
+    width: 32.81355vw;
+    height: 7.08356vw;
     font-family: Poppins;
-    font-size: 24px;
+    font-size: 1.25004vw;
     font-weight: 700;
     color: white;
     margin: 0px;
-    margin-top: 27px;
-    margin-bottom: 45px;
+    margin-top: 1.406295vw;
+    margin-bottom: 0.77vw;
 }
 
 .large-button {
     font-family: Poppins;
-    font-size: 30px;
+    font-size: 1.56255vw;
     font-weight: 700;
     color: white;
-    padding: 15px 30px 15px 30px;
-    border-radius: 10px;
+    padding: 0.781275vw 1.56255vw 0.781275vw 1.56255vw;
+    border-radius: 0.52085vw;
 }
 
 .btn-blue {
     background-color: #6565F6;
+}
+
+@media only screen and (max-width: 1920px) {
+    #pizza-box, #sides-box, #drinks-box, #desserts-box {
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    h1 {
+        font-size: 70px;
+        margin: 0px;
+        margin-top: 45px;
+    }
+
+    footer {
+        margin-top: 59px;
+    }
+
+    header {
+        margin-top: 30px;
+    }
+
+    .btn-sml {
+        padding: 10px 20px 10px 20px;
+        border-radius: 10px;
+        font-size: 18px;
+    }
+    
+    .brand {
+        font-size: 29px;
+        padding: 10px 20px 10px 20px;
+    }
+
+    .link {
+        font-size: 24px;
+    }
+
+    #sign-up {
+        font-size: 18px;
+        margin-right: 5px;
+    }
+
+    .home-box {
+        height: 400px;
+        width: 472px;
+        border-radius: 15px;
+    }
+
+    .container {
+        margin-top: 64px;
+    }
+
+    .menu-btn {
+        font-size: 18px;
+        margin-left: 83px;
+        border-radius: 10px;
+        margin-top: 210px;
+    }
+
+    #phone-number {
+        font-size: 24px;
+    }
+
+    .fas.fa-phone-alt {
+        margin-right: 24px;
+        font-size: 36px;
+    }
+
+    .footer-center {
+        max-width: 318px;
+        margin-top: 36px;
+    }
+
+
+    #sides-box > h1:nth-child(1) {
+        margin-left: 93px;
+    }
+
+    #drinks-box > h1:nth-child(1) {
+        margin-left: 198px;
+    }
+
+    #desserts-box > h1:nth-child(1) {
+        margin-left: 115px;
+    }
+
+    #footer-privacy {
+        font-size: 18px;
+        margin-top: 15px;
+    }
+
+    #footer-privacy > a:first-child {
+        margin-right: 60px;
+    }
+
+    #copyright-statement {
+        font-size: 15px;
+    }
+
+    .home-box-row {
+        margin-top: 59px;
+    }
+
+    .box-heading {
+        margin-top: 38px;
+    }
+
+    #pizza-box-content > p {
+        width: 630px;
+        height: 136px;
+        font-size: 24px;
+        margin: 0px;
+        margin-top: 27px;
+        margin-bottom: 13px;
+    }
+
+    .large-button {
+        font-size: 30px;
+        padding: 15px 30px 15px 30px;
+        border-radius: 10px;
+    }
 }
