@@ -73,6 +73,10 @@ header {
     margin-right: 5px;
 }
 
+.menu-btn {
+    background-color
+}
+
 #sign-in {
     background-color: #B441A1;
     padding: 10px 20px 10px 20px;
@@ -93,7 +97,6 @@ header {
     font-size: 36px;
 }
 
-
 footer > hr {
     color: #B441A1;
 }
@@ -106,8 +109,6 @@ footer > hr {
     margin-top: 36px;
 }
 
-
-
 .container {
     margin-top: 64px;
 }
@@ -115,6 +116,18 @@ footer > hr {
 .footer-block {
     display: inline-block;
     margin: auto;
+}
+
+#sides-box > h1:nth-child(1){
+    margin-left: 93px;
+}
+
+#drinks-box > h1:nth-child(1) {
+    margin-left: 198px;
+}
+
+#desserts-box > h1:nth-child(1) {
+    margin-left: 115px;
 }
 
 #footer-privacy {
@@ -132,12 +145,6 @@ footer > hr {
     font-weight: 300;
 }
 
-
-
-
-
-
-
 .home-box {
     height: 450px;
     width: 472px;
@@ -147,7 +154,6 @@ footer > hr {
 .home-box-row {
     margin-top: 59px;
 }
-
 
 #pizza-box {
     width: 100%;
