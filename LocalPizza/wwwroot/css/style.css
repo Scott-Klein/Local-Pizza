@@ -74,7 +74,17 @@ header {
 }
 
 .menu-btn {
-    background-color
+    background-color: #6565F6;
+    font-family: Poppins;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 10px 20px 10px 20px;
+    margin-left: 83px;
+    position: relative;
+    display: inline-block;
+    color: white;
+    border-radius: 10px;
+    margin-top: 210px;
 }
 
 #sign-in {
