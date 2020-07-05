@@ -14,6 +14,7 @@ body {
     margin: auto;
 }
 
+
 h1 {
     font-family: 'Fredoka One';
     font-size: 3.646vw;
@@ -139,6 +140,18 @@ footer > hr {
 #desserts-box > h1:nth-child(1) {
     margin-left: 5.989775vw;
 }
+
+@media only screen and (max-width: 900px) {
+    #desserts-box, #drinks-box, #sides-box {
+        width: 100%;
+    }
+
+    div.flex-container:nth-child(2)
+    {
+        display: block;
+    }
+}
+
 
 #footer-privacy {
     font-size: 0.93753vw;
