@@ -460,9 +460,9 @@ footer > hr {
         margin-top: 15px;
     }
 
-        #footer-privacy > a:first-child {
-            margin-right: 31vw;
-        }
+    #footer-privacy > a:first-child {
+        margin-right: 31vw;
+    }
 
     #copyright-statement {
         font-size: 2vw;
