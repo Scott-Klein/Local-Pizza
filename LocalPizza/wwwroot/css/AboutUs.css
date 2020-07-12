@@ -3,5 +3,15 @@
 }
 
 img {
-    max-width: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+#banner {
+    height: 44vw;
+    border-bottom-right-radius: 13vw;
+}
+
+.card-portrait {
+    height: 40vw;
 }

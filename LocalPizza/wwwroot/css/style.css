@@ -24,12 +24,18 @@ footer {
     margin-top: 59px;
 }
 
+body {
+    margin: 0px;
+}
+
 footer > hr {
     color: #B441A1;
 }
 
 header {
+    margin: auto;
     margin-top: 30px;
+    width: 90%;
 }
 
 .flex-container {
@@ -273,6 +279,7 @@ div.flex-container:nth-child(2) {
 
     header {
         margin-top: 1.56255vw;
+        width: 100%;
     }
 
     .brand {
@@ -310,7 +317,6 @@ div.flex-container:nth-child(2) {
         margin-right: 1.25004vw;
         font-size: 1.87506vw;
     }
-
 
 
     .footer-center {
