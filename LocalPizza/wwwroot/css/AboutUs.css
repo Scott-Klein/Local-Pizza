@@ -4,6 +4,7 @@
 
 img {
     width: 100%;
+    max-height: 100%;
     object-fit: cover;
 }
 
@@ -13,5 +14,5 @@ img {
 }
 
 .card-portrait {
-    height: 40vw;
+    height: 20vw;
 }
