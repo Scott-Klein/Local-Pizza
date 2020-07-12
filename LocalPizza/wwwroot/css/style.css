@@ -1,0 +1,598 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+
+html {
+    background-color: #F2ECEB;
+}
+
+body {
+    margin: 0px;
+    width: 77.084%;
+    max-width: 1480px;
+    margin: auto;
+}
+
+
+h1 {
+    font-family: 'Fredoka One';
+    font-size: 3.646vw;
+    color: white;
+    margin: 0px;
+    margin-top: 2.343825vw;
+}
+
+.btn-sml {
+    padding: 0.521vw 1.042vw 0.521vw 1.042vw;
+    border-radius: 0.521vw;
+    font-size: 0.938vw;
+}
+
+footer {
+    margin-top: 3.073015vw;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header {
+    margin-top: 1.56255vw;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    font-family: 'Fredoka One', cursive;
+    text-decoration: none;
+    font-size: 1.51vw;
+    background-color: #6565F6;
+    padding: 0.521vw 1.042vw 0.521vw 1.042vw;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.link {
+    font-size: 1.25vw;
+    font-family: Poppins;
+    color: #212126;
+}
+
+.account-buttons {
+    display: inline;
+}
+
+#sign-up {
+    background-color: #BC4E4E;
+    color: white;
+    font-family: Poppins;
+    font-weight: 700;
+    margin-right: 0.2605vw;
+}
+
+.menu-btn {
+    background-color: #6565F6;
+    font-family: Poppins;
+    font-size: 0.93753vw;
+    font-weight: 700;
+    padding: 0.521vw 1.042vw 0.521vw 1.042vw;
+    margin-left: 4.323055vw;
+    position: relative;
+    display: inline-block;
+    color: white;
+    border-radius: 0.52085vw;
+    margin-top: 10.93785vw;
+}
+
+#sign-in {
+    background-color: #B441A1;
+    color: white;
+    font-family: Poppins;
+    font-weight: 700;
+}
+
+#phone-number {
+    font-size: 1.25004vw;
+    font-weight: 700;
+}
+
+.fas.fa-phone-alt {
+    margin-right: 1.25004vw;
+    font-size: 1.87506vw;
+}
+
+footer > hr {
+    color: #B441A1;
+}
+
+.footer-center {
+    max-width: 16.56303vw;
+    font-family: Poppins;
+    color: #4D4D51;
+    margin: auto;
+    margin-top: 1.87506vw;
+}
+
+.container {
+    margin-top: 3.33344vw;
+}
+
+.footer-block {
+    display: inline-block;
+    margin: auto;
+}
+
+#sides-box > h1:nth-child(1) {
+    margin-left: 4.843905vw;
+}
+
+#drinks-box > h1:nth-child(1) {
+    margin-left: 10.31283vw;
+}
+
+#desserts-box > h1:nth-child(1) {
+    margin-left: 5.989775vw;
+}
+
+
+
+
+#footer-privacy {
+    font-size: 0.93753vw;
+    font-weight: 700;
+    margin-top: 0.781275vw;
+}
+
+    #footer-privacy > a:first-child {
+        margin-right: 3.1251vw;
+    }
+
+#copyright-statement {
+    font-size: 0.781275vw;
+    font-weight: 300;
+}
+
+.home-box {
+    height: 20.834vw;
+    width: 24.58412vw;
+    border-radius: 0.7815vw;
+}
+
+.home-box-row {
+    margin-top: 3.073015vw;
+}
+
+#pizza-box {
+    width: 100%;
+    background-color: #7CD6A6;
+    background-image: url(../images/pizza.png);
+}
+
+#pizza-box-content {
+    width: 50%;
+    float: right;
+}
+
+#sides-box {
+    background-color: #BC4E4E;
+    background-image: url(../images/wedges.png);
+}
+
+#drinks-box {
+    background-color: #B441A1;
+    background-image: url(../images/pepsi.png);
+}
+#desserts-box {
+    background-color: #FFDC6A;
+    background-image: url(../images/dessert.png);
+}
+
+.box-heading {
+    margin-top: 1.97923vw;
+}
+
+#pizza-box-content > p {
+    width: 32.81355vw;
+    height: 7.08356vw;
+    font-family: Poppins;
+    font-size: 1.25004vw;
+    font-weight: 700;
+    color: white;
+    margin: 0px;
+    margin-top: 1.406295vw;
+    margin-bottom: 0.77vw;
+}
+
+.large-button {
+    font-family: Poppins;
+    font-size: 1.56255vw;
+    font-weight: 700;
+    color: white;
+    padding: 0.781275vw 1.56255vw 0.781275vw 1.56255vw;
+    border-radius: 0.52085vw;
+}
+
+.btn-blue {
+    background-color: #6565F6;
+}
+
+@media only screen and (max-width: 900px) {
+    #desserts-box, #drinks-box, #sides-box {
+        width: 100%;
+    }
+
+
+    .home-box {
+        box-shadow: 4px 1px 15px #0005;
+    }
+    div.flex-container:nth-child(2) {
+        display: block;
+    }
+
+    .link {
+        font-size: 2.0vw;
+    }
+
+    body {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 10vw;
+        margin: 0px;
+    }
+
+    footer {
+        margin-top: 59px;
+    }
+
+    header {
+        margin-top: 30px;
+    }
+
+    .btn-sml, .large-button, .menu-btn {
+        padding: 0.5vw 1vw 0.5vw 1vw;
+        border-radius: 1vw;
+        font-size: 2.6vw;
+        margin-top: 0px;
+    }
+
+    .menu-btn {
+        margin-top: 1vw;
+    }
+
+    #sides-box > a:nth-child(2), #desserts-box > a:nth-child(2) {
+        margin-left: 10vw;
+    }
+
+    #drinks-box > a:nth-child(2) {
+        margin-left: 44vw;
+    }
+    .brand {
+        font-size: 2vw;
+        padding: 0.5vw 1vw 0.5vw 1vw;
+    }
+
+    #sign-up {
+        margin-right: 5px;
+    }
+
+    .container {
+        margin-top: 4vw;
+    }
+
+    #phone-number {
+        font-size: 4vw;
+    }
+
+    .fas.fa-phone-alt {
+        margin-right: 24px;
+        font-size: 5vw;
+    }
+
+    .footer-center {
+        max-width: 318px;
+        margin-top: 36px;
+    }
+
+    #sides-box {
+        background-position-x: -20vw;
+        background-size: 300vw 300vw;
+    }
+
+    #sides-box > h1:nth-child(1), #desserts-box > h1:nth-child(1) {
+        margin-left: 10vw;
+    }
+
+    #drinks-box > h1:nth-child(1) {
+        margin-left: 44vw;
+    }
+
+    #footer-privacy {
+        font-size: 2.2vw;
+        margin-top: 15px;
+    }
+
+    #footer-privacy > a:first-child {
+        margin-right: 60px;
+    }
+
+    #copyright-statement {
+        font-size: 2vw;
+    }
+
+    #pizza-box-content > p {
+        display: none;
+        width: 630px;
+        height: 136px;
+        font-size: 1vw;
+        margin: 0px;
+        margin-top: 27px;
+        margin-bottom: 13px;
+    }
+}
+
+
+
+@media only screen and (max-width: 1920px) {
+    #pizza-box, #sides-box, #drinks-box, #desserts-box {
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    #desserts-box, #drinks-box, #sides-box {
+        width: 100%;
+    }
+
+
+    .home-box {
+        box-shadow: 4px 1px 15px #0005;
+    }
+
+    div.flex-container:nth-child(2) {
+        display: block;
+    }
+
+    .link {
+        font-size: 2.0vw;
+    }
+
+    body {
+        width: 90%;
+    }
+
+    h1 {
+        font-size: 10vw;
+        margin: 0px;
+    }
+
+    footer {
+        margin-top: 59px;
+    }
+
+    header {
+        margin-top: 30px;
+    }
+
+    .btn-sml, .large-button, .menu-btn {
+        padding: 0.5vw 1vw 0.5vw 1vw;
+        border-radius: 1vw;
+        font-size: 2.6vw;
+        margin-top: 0px;
+    }
+
+    .menu-btn {
+        margin-top: 1vw;
+    }
+
+    #sides-box > a:nth-child(2), #desserts-box > a:nth-child(2) {
+        margin-left: 10vw;
+    }
+
+    #drinks-box > a:nth-child(2) {
+        margin-left: 44vw;
+    }
+
+    .brand {
+        font-size: 2vw;
+        padding: 0.5vw 1vw 0.5vw 1vw;
+    }
+
+    #sign-up {
+        margin-right: 5px;
+    }
+
+    .container {
+        margin-top: 4vw;
+    }
+
+    #phone-number {
+        font-size: 4vw;
+    }
+
+    .fas.fa-phone-alt {
+        margin-right: 24px;
+        font-size: 5vw;
+    }
+
+    .footer-center {
+        max-width: 65vw;
+        margin-top: 36px;
+    }
+
+    #sides-box {
+        background-position-x: 28vw;
+        background-position-y: -25vw;
+        background-size: 70%;
+    }
+
+    #drinks-box {
+        background-position-x: 10vw;
+        background-position-y: -13vw;
+        background-size: 50%;
+    }
+
+    #desserts-box  {
+        background-position-x: 0vw;
+        background-position-y: -9vw;
+        background-size: 100%;
+    }
+
+        #sides-box > h1:nth-child(1), #desserts-box > h1:nth-child(1) {
+            margin-left: 10vw;
+        }
+
+    #drinks-box > h1:nth-child(1) {
+        margin-left: 44vw;
+    }
+
+    #footer-privacy {
+        font-size: 2.2vw;
+        margin-top: 15px;
+    }
+
+    #footer-privacy > a:first-child {
+        margin-right: 31vw;
+    }
+
+    #copyright-statement {
+        font-size: 2vw;
+    }
+
+    #pizza-box-content > p {
+        display: none;
+        width: 630px;
+        height: 136px;
+        font-size: 1vw;
+        margin: 0px;
+        margin-top: 27px;
+        margin-bottom: 13px;
+    }
+}
+
+
+
+@media screen and (min-width: 1920px) {
+    h1 {
+        font-size: 70px;
+        margin: 0px;
+        margin-top: 45px;
+    }
+
+    footer {
+        margin-top: 59px;
+    }
+
+    header {
+        margin-top: 30px;
+    }
+
+    .btn-sml {
+        padding: 10px 20px 10px 20px;
+        border-radius: 10px;
+        font-size: 18px;
+    }
+    
+    .brand {
+        font-size: 29px;
+        padding: 10px 20px 10px 20px;
+    }
+
+    .link {
+        font-size: 24px;
+    }
+
+    #sign-up {
+        font-size: 18px;
+        margin-right: 5px;
+    }
+
+    .home-box {
+        height: 400px;
+        width: 472px;
+        border-radius: 15px;
+    }
+
+    .container {
+        margin-top: 64px;
+    }
+
+    .menu-btn {
+        font-size: 18px;
+        margin-left: 83px;
+        border-radius: 10px;
+        margin-top: 210px;
+    }
+
+    #phone-number {
+        font-size: 24px;
+    }
+
+    .fas.fa-phone-alt {
+        margin-right: 24px;
+        font-size: 36px;
+    }
+
+    .footer-center {
+        max-width: 318px;
+        margin-top: 36px;
+    }
+
+
+    #sides-box > h1:nth-child(1) {
+        margin-left: 93px;
+    }
+
+    #drinks-box > h1:nth-child(1) {
+        margin-left: 198px;
+    }
+
+    #desserts-box > h1:nth-child(1) {
+        margin-left: 115px;
+    }
+
+    #footer-privacy {
+        font-size: 18px;
+        margin-top: 15px;
+    }
+
+    #footer-privacy > a:first-child {
+        margin-right: 60px;
+    }
+
+    #copyright-statement {
+        font-size: 15px;
+    }
+
+    .home-box-row {
+        margin-top: 59px;
+    }
+
+    .box-heading {
+        margin-top: 38px;
+    }
+
+    #pizza-box-content > p {
+        width: 630px;
+        height: 136px;
+        font-size: 24px;
+        margin: 0px;
+        margin-top: 27px;
+        margin-bottom: 13px;
+    }
+
+    .large-button {
+        font-size: 30px;
+        padding: 15px 30px 15px 30px;
+        border-radius: 10px;
+    }
+}

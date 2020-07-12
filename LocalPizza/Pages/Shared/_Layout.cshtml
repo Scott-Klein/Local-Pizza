@@ -1,51 +1,57 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - LocalPizza</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/style.css" />
+    <script src="https://kit.fontawesome.com/90cbb1cc30.js" crossorigin="anonymous"></script>
+    <title>Order Local Pizza Online</title>
 </head>
+
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">LocalPizza</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <partial name="_LoginPartial" />
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
+        <nav>
+            <div class="flex-container">
+                <a class="brand btn-sml" href="#">Local Pizza Shop</a>
+                <a class="link" href="#">Order Online</a>
+                <a class="link" href="#">Store Details</a>
+                <a class="link" href="#">About Us</a>
+
+                <div class="account-buttons">
+                    <a id="sign-up" class="btn-sml">Sign up</a>
+                    <a id="sign-in" class="btn-sml">Sign in</a>
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - LocalPizza - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <footer>
+        <hr>
+        <div class="footer-center">
+            <div class="flex-container">
+                <div class="footer-block">
+                    <i class="fas fa-phone-alt"></i> <span id="phone-number">(02) 4646 4646</span>
+                </div>
+            </div>
+
+            <div id="footer-privacy" class="footer-block">
+                <a href="#">Privacy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+
+            <div class="flex-container">
+                <div class="footer-block">
+                    <p id="copyright-statement">Copyright Local Pizza 2020</p>
+                </div>
+            </div>
         </div>
     </footer>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
-    @RenderSection("Scripts", required: false)
 </body>
+
 </html>
