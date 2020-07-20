@@ -394,7 +394,15 @@ div.flex-container:nth-child(2) {
         padding: 0.781275vw 1.56255vw 0.781275vw 1.56255vw;
         border-radius: 0.52085vw;
     }
+
+
     @media screen and (min-width: 1920px) {
+        #desserts-box, #sides-box, #drinks-box
+        {
+            width: 472px;
+        }
+
+
         h1 {
             font-size: 70px;
             margin: 0px;
