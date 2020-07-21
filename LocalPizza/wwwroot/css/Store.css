@@ -1,0 +1,133 @@
+﻿html {
+    background-color: #428C65;
+}
+
+h2, p, h3, h4 {
+    color: white;
+    font-family: Poppins;
+    margin: 0;
+}
+
+h2 {
+    font-size: 7.2vw;
+    text-align: center;
+}
+
+#banner {
+    height: 40vw;
+    border-bottom-right-radius: 13vw;
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+#footer-privacy, .footer-block {
+    color: white;
+}
+
+#map 
+{
+    width: 100%;
+}
+
+#content {
+    width: 95%;
+    margin: auto;
+}
+
+p {
+    font-size: 3.7vw;
+    line-height: 65px;
+    font-weight: 300;
+}
+
+#hours {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#days> p {
+    text-align:right;
+}
+
+#days 
+{
+    padding-right: 3vw;
+}
+
+#hours > div:nth-child(2) {
+    padding-left: 3vw;
+}
+
+footer > hr {
+    color: white;
+}
+
+@media only screen and (min-width: 901px)
+{
+    html {
+        background-color: #f2eceb;
+    }
+
+    h2, p {
+        color: #212126;
+    }
+
+    #banner {
+        height: 23vw;
+        margin-top: 3.3vw;
+    }
+
+    h2 {
+        font-size: 1.7vw;
+    }
+
+    #content 
+    {
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    p {
+        font-size: 0.73vw;
+        line-height: 1.8vw;
+    }
+
+    #text {
+        padding: 0.2vw 0.8vw 0.2vw 0.8vw;
+
+    }
+
+    #footer-privacy, .footer-block {
+        color: #212126;
+    }
+
+    .container {
+        margin-top: 1vw;
+    }
+
+    @media only screen and (min-width: 1920px)
+    {
+        #banner {
+            height: 442px;
+            margin-top: 64px;
+        }
+
+        h2 {
+            font-size: 32px;
+        }
+
+        p {
+            font-size:14px;
+            line-height: 34px;
+        }
+
+        #text {
+            padding: 8px 16px 8px 16px;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+    }
+}

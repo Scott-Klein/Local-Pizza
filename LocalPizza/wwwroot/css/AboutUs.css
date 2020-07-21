@@ -102,7 +102,7 @@ footer {
     }
 
     h2 {
-        font-size: 1.7vw;
+        font-size: 1.51vw;
     }
     
     h3, h4 {
@@ -201,5 +201,9 @@ footer {
 
     div.card-portrait > img:nth-child(1) {
         margin-right: 32px;
+    }
+
+    footer-block {
+        color: #212126;
     }
 }

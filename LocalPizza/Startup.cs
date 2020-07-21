@@ -32,7 +32,7 @@ namespace LocalPizza
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddRazorPages();
+            services.AddRazorPages().AddRazorRuntimeCompilation(); //disable runtime compilation on production.
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
