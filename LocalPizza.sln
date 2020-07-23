@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalPizza", "LocalPizza\LocalPizza.csproj", "{60A7A6E4-7805-4ABD-805C-F0C182368900}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalPizza.Core", "LocalPizza.Core\LocalPizza.Core.csproj", "{DC7A2ABE-AB5F-4659-8059-0BF94D2F7B76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalPizza.Core", "LocalPizza.Core\LocalPizza.Core.csproj", "{DC7A2ABE-AB5F-4659-8059-0BF94D2F7B76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalPizza.Data", "LocalPizza.Data\LocalPizza.Data.csproj", "{C507BDE7-5D8F-4694-AD91-033A286C2936}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalPizza.Data", "LocalPizza.Data\LocalPizza.Data.csproj", "{C507BDE7-5D8F-4694-AD91-033A286C2936}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

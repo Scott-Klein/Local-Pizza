@@ -19,164 +19,255 @@ namespace LocalPizza.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("LocalPizza.Core.Entities.Item", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
-                    b.Property<int>("ItemId")
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Description")
+                    b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MenuTypeId")
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Price")
-                        .HasColumnType("float");
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
 
-                    b.HasKey("ItemId");
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
 
-                    b.HasIndex("MenuTypeId");
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
 
-                    b.ToTable("Items");
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
 
-                    b.HasData(
-                        new
-                        {
-                            ItemId = 1,
-                            Description = "Huge pie cut into 8 extra-large slices. Authentic, soft & foldable New York-style dough, topped with Marinara pizza sauce & lots of stretchy mozzarella",
-                            MenuTypeId = 1,
-                            Name = "The Big Cheese",
-                            Price = 15.1
-                        },
-                        new
-                        {
-                            ItemId = 2,
-                            Description = "Huge pie cut into 8 extra-large slices. Authentic, soft & foldable New York-style dough, topped with Marinara pizza sauce & lots of crispy American pepperoni with hints of fennel & chilli",
-                            MenuTypeId = 1,
-                            Name = "The Big Pepperoni",
-                            Price = 17.5
-                        },
-                        new
-                        {
-                            ItemId = 3,
-                            Description = "Succulent chicken, crispy rasher bacon, spinach and red onion, topped with a creamy ranch sauce and served on a pizza sauce base with zesty garlic sauce",
-                            MenuTypeId = 1,
-                            Name = "Garlic Chicken & Bacon Ranch",
-                            Price = 12.5
-                        },
-                        new
-                        {
-                            ItemId = 4,
-                            Description = "The perfect combination of succulent chicken pieces, crispy rasher bacon & slices of red onion on a BBQ sauce base",
-                            MenuTypeId = 1,
-                            Name = "Bbq Chicken & Rasher Bacon",
-                            Price = 12.6
-                        },
-                        new
-                        {
-                            ItemId = 5,
-                            Description = "Juicy prawns, paired with fresh baby spinach & diced tomato on a crème fraiche & zesty garlic sauce base, topped with oregano",
-                            MenuTypeId = 1,
-                            Name = "Garlic Prawn",
-                            Price = 12.699999999999999
-                        },
-                        new
-                        {
-                            ItemId = 6,
-                            Description = "Dipping Sauce",
-                            MenuTypeId = 2,
-                            Name = "Ranch Dipping Sauce",
-                            Price = 0.5
-                        },
-                        new
-                        {
-                            ItemId = 7,
-                            Description = "Oven baked chips dusted with chicken salt",
-                            MenuTypeId = 2,
-                            Name = "Oven Baked Chips",
-                            Price = 5.5
-                        },
-                        new
-                        {
-                            ItemId = 8,
-                            Description = "Freshly oven baked herb & garlic bread, topped with stretchy mozzarella",
-                            MenuTypeId = 2,
-                            Name = "Cheesy Garlic Bread",
-                            Price = 8.9000000000000004
-                        },
-                        new
-                        {
-                            ItemId = 9,
-                            Description = "A classic vanilla sundae drizzled with salted caramel sauce",
-                            MenuTypeId = 3,
-                            Name = "Salted Caramel Sundae",
-                            Price = 2.9500000000000002
-                        },
-                        new
-                        {
-                            ItemId = 10,
-                            Description = "A classic vanilla sundae drizzled with decadent chocolate sauce",
-                            MenuTypeId = 3,
-                            Name = "2 Choc Sundaes",
-                            Price = 5.0999999999999996
-                        },
-                        new
-                        {
-                            ItemId = 11,
-                            Description = "1.25L",
-                            MenuTypeId = 4,
-                            Name = "Pepsi",
-                            Price = 4.9000000000000004
-                        });
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("LocalPizza.Core.Entities.MenuType", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.Property<int>("MenuTypeId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("ClaimType")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("MenuTypeId");
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.ToTable("MenuTypes");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasData(
-                        new
-                        {
-                            MenuTypeId = 1,
-                            Name = "Pizza"
-                        },
-                        new
-                        {
-                            MenuTypeId = 2,
-                            Name = "Side"
-                        },
-                        new
-                        {
-                            MenuTypeId = 3,
-                            Name = "Dessert"
-                        },
-                        new
-                        {
-                            MenuTypeId = 4,
-                            Name = "Drink"
-                        });
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
                 });
 
-            modelBuilder.Entity("LocalPizza.Core.Entities.Item", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("LocalPizza.Core.Entities.MenuType", "MenuType")
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(128)")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
-                        .HasForeignKey("MenuTypeId");
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
