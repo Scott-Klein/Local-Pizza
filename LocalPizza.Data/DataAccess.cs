@@ -1,20 +1,23 @@
 ﻿using LocalPizza.Core.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace LocalPizza.Data
 {
     public interface DataAccess
     {
         IItem InsertItem(IItem item);
+
         IItem UpdateItem(IItem item);
+
         IItem GetItem(int id);
+
         bool DeleteItem(int id);
+
         IEnumerable<IItem> GetAllItems();
+
         IEnumerable<IMenuCategory> GetMenus();
     }
-
 
     public class DataBaseAccess : DataAccess
     {

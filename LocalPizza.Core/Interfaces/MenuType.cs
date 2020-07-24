@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace LocalPizza.Core.Interfaces
+﻿namespace LocalPizza.Core.Interfaces
 {
     public enum MenuType
     {

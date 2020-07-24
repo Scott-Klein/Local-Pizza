@@ -30,7 +30,7 @@ namespace LocalPizza
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<LocalPizzaContext>();
 
-
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,6 +49,7 @@ namespace LocalPizza
             }
 
             app.UseHttpsRedirection();
+            app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -59,6 +60,7 @@ namespace LocalPizza
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                endpoints.MapControllers();
             });
         }
     }

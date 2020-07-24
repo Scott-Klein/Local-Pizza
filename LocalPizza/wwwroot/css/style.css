@@ -147,7 +147,6 @@ div.flex-container:nth-child(2) {
     font-weight: 700;
 }
 
-
 .fas.fa-phone-alt {
     margin-right: 24px;
     font-size: 5vw;
@@ -164,10 +163,9 @@ div.flex-container:nth-child(2) {
     border-radius: 0.7815vw;
 }
 
-
-    #sides-box > h1:nth-child(1), #desserts-box > h1:nth-child(1) {
-        margin-left: 10vw;
-    }
+#sides-box > h1:nth-child(1), #desserts-box > h1:nth-child(1) {
+    margin-left: 10vw;
+}
 
 #drinks-box > h1:nth-child(1) {
     margin-left: 44vw;
@@ -235,12 +233,11 @@ div.flex-container:nth-child(2) {
     float: right;
 }
 
-
-
 @media only screen and (max-width: 1920px) {
     #pizza-box {
         background-size: cover;
     }
+
     #pizza-box, #sides-box, #drinks-box, #desserts-box {
         background-repeat: no-repeat;
     }
@@ -259,17 +256,18 @@ div.flex-container:nth-child(2) {
         margin: 0px;
         margin-top: 2.343825vw;
     }
+
     #sides-box > a:nth-child(2), #desserts-box > a:nth-child(2), #drinks-box > a:nth-child(2) {
         margin-left: 4.323055vw;
     }
+
     .btn-sml {
         padding: 0.521vw 1.042vw 0.521vw 1.042vw;
         border-radius: 0.521vw;
         font-size: 0.938vw;
     }
 
-    div.flex-container:nth-child(2) 
-    {
+    div.flex-container:nth-child(2) {
         display: flex;
     }
 
@@ -318,7 +316,6 @@ div.flex-container:nth-child(2) {
         font-size: 1.87506vw;
     }
 
-
     .footer-center {
         max-width: 16.56303vw;
         margin-top: 1.87506vw;
@@ -327,8 +324,6 @@ div.flex-container:nth-child(2) {
     .container {
         margin-top: 3.33344vw;
     }
-
-
 
     #sides-box > h1:nth-child(1) {
         margin-left: 4.843905vw;
@@ -363,17 +358,8 @@ div.flex-container:nth-child(2) {
 
     .home-box {
         height: 20.834vw;
-        
         border-radius: 0.7815vw;
     }
-
-
-
-
-
-
-
-
 
     .box-heading {
         margin-top: 1.97923vw;
@@ -395,13 +381,10 @@ div.flex-container:nth-child(2) {
         border-radius: 0.52085vw;
     }
 
-
     @media screen and (min-width: 1920px) {
-        #desserts-box, #sides-box, #drinks-box
-        {
+        #desserts-box, #sides-box, #drinks-box {
             width: 472px;
         }
-
 
         h1 {
             font-size: 70px;
@@ -517,4 +500,3 @@ div.flex-container:nth-child(2) {
         }
     }
 }
-

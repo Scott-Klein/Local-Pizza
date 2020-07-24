@@ -1,12 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using LocalPizza.Core.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using LocalPizza.Core.Menu;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using LocalPizza.Core.Interfaces;
-using LocalPizza.Core.Menu;
+using Microsoft.EntityFrameworkCore;
 
 namespace LocalPizza.Data
 {
@@ -18,7 +12,6 @@ namespace LocalPizza.Data
 
         public LocalPizzaContext(DbContextOptions options) : base(options)
         {
-            
         }
     }
 }
