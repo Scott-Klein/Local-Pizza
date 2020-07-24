@@ -9,6 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalPizza.Core", "LocalPiz
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalPizza.Data", "LocalPizza.Data\LocalPizza.Data.csproj", "{C507BDE7-5D8F-4694-AD91-033A286C2936}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1.Server", "BlazorApp1\Server\BlazorApp1.Server.csproj", "{631C5E85-8E49-475F-BA12-BA54C3D20144}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1.Client", "BlazorApp1\Client\BlazorApp1.Client.csproj", "{6485DEAD-16C1-466C-9FF8-9162CC292107}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp1.Shared", "BlazorApp1\Shared\BlazorApp1.Shared.csproj", "{500D4FCC-214D-44C2-B4A0-684820F38B5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +33,18 @@ Global
 		{C507BDE7-5D8F-4694-AD91-033A286C2936}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C507BDE7-5D8F-4694-AD91-033A286C2936}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C507BDE7-5D8F-4694-AD91-033A286C2936}.Release|Any CPU.Build.0 = Release|Any CPU
+		{631C5E85-8E49-475F-BA12-BA54C3D20144}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{631C5E85-8E49-475F-BA12-BA54C3D20144}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{631C5E85-8E49-475F-BA12-BA54C3D20144}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{631C5E85-8E49-475F-BA12-BA54C3D20144}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6485DEAD-16C1-466C-9FF8-9162CC292107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6485DEAD-16C1-466C-9FF8-9162CC292107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6485DEAD-16C1-466C-9FF8-9162CC292107}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6485DEAD-16C1-466C-9FF8-9162CC292107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{500D4FCC-214D-44C2-B4A0-684820F38B5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{500D4FCC-214D-44C2-B4A0-684820F38B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{500D4FCC-214D-44C2-B4A0-684820F38B5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{500D4FCC-214D-44C2-B4A0-684820F38B5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
