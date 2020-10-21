@@ -4,5 +4,49 @@
     ViewData["Title"] = "StoreDetails";
 }
 
-<h2>StoreDetails</h2>
+@section Style {
+    <link rel="stylesheet" href="~/css/Store.css" />
+}
 
+@section Banner {
+    <img id="banner" src="~/images/store.jpg" />
+}
+
+<h2>Store Details</h2>
+<div id="content">
+    <div>
+        <img id="map" src="~/images/Map.png" />
+    </div>
+
+    <div id="text">
+        <p>
+            Address : 123 Real Street <br />
+            Realtown, Realstate 1234.
+            <br />
+            <br />
+            Lorem Ipsum Dolor Sit Amet, Consetetur Sadipscin
+            Elitr, Sed Diam Nonumy Eirmod Tempor Invidu Gfd
+        </p>
+        <h2>Opening Hours</h2>
+        <div id="hours">
+            <div id="days">
+                <p>Monday:</p>
+                <p>Tuesday:</p>
+                <p>Wednesday:</p>
+                <p>Thursday:</p>
+                <p>Friday:</p>
+                <p>Saturday:</p>
+                <p>Sunday:</p>
+            </div>
+            <div>
+                <p>10am - 11pm</p>
+                <p>10am - 11pm</p>
+                <p>9am - 12pm</p>
+                <p>9am - 12pm</p>
+                <p>9am - 12pm</p>
+                <p>9am - 12pm</p>
+                <p>9am - 12pm</p>
+            </div>
+        </div>
+    </div>
+</div>
