@@ -9,9 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalPizza.Core", "LocalPiz
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalPizza.Data", "LocalPizza.Data\LocalPizza.Data.csproj", "{C507BDE7-5D8F-4694-AD91-033A286C2936}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalPizza.Admin.Client", "LocalPizza.Admin\Client\LocalPizza.Admin.Client.csproj", "{828B93B7-4DA3-4DF2-8CE2-9571E58850F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalPizza.Admin.Client", "LocalPizza.Admin\Client\LocalPizza.Admin.Client.csproj", "{828B93B7-4DA3-4DF2-8CE2-9571E58850F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalPizza.Admin.Shared", "LocalPizza.Admin\Shared\LocalPizza.Admin.Shared.csproj", "{81CA5305-D7C6-4558-AA1D-9433AD065D90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LocalPizza.Admin.Shared", "LocalPizza.Admin\Shared\LocalPizza.Admin.Shared.csproj", "{81CA5305-D7C6-4558-AA1D-9433AD065D90}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
