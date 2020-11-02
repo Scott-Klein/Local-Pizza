@@ -7,9 +7,9 @@ namespace LocalPizza.Pages
 {
     public class MenuModel : PageModel
     {
-        private readonly DataAccess dataAccess;
+        private readonly IDataAccess dataAccess;
 
-        public MenuModel(DataAccess dataAccess)
+        public MenuModel(IDataAccess dataAccess)
         {
             this.dataAccess = dataAccess;
         }

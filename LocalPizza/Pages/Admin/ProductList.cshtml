@@ -1,0 +1,51 @@
+﻿@page 
+@model LocalPizza.Pages.Admin.ProductListModel
+@{
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+<h1>Product Editor</h1>
+<div class="table">
+    <h2>Products</h2>
+    <table>
+        <tr id="tableHeader">
+            <th>Image</th>
+            <th>Product Name</th>
+            <th>Product Range</th>
+            <th>Price</th>
+            <th>Sold</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+        <tr class="tableContent">
+            <td>PlaceHolder</td>
+            <td>BBQ MeatLovers</td>
+            <td>Premium</td>
+            <td>$21.95</td>
+            <td>324</td>
+            <td><i class="fas fa-edit"></i></td>
+            <td><i class="fas fa-trash-alt"></i></td>
+        </tr>
+        <tr class="tableContent">
+            <td>PlaceHolder</td>
+            <td>BBQ MeatLovers</td>
+            <td>Premium</td>
+            <td>$21.95</td>
+            <td>324</td>
+            <td><i class="fas fa-edit"></i></td>
+            <td><i class="fas fa-trash-alt"></i></td>
+        </tr>
+        <tr class="tableContent">
+            <td>PlaceHolder</td>
+            <td>BBQ MeatLovers</td>
+            <td>Premium</td>
+            <td>$21.95</td>
+            <td>324</td>
+            <td><i class="fas fa-edit"></i></td>
+            <td><i class="fas fa-trash-alt"></i></td>
+        </tr>
+    </table>
+</div>
+<div class="large-button">
+    <a asp-page="AddProduct">Add Product</a>
+</div>

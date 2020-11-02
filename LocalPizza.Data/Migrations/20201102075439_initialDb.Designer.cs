@@ -4,14 +4,16 @@ using LocalPizza.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocalPizza.Data.Migrations
 {
     [DbContext(typeof(LocalPizzaContext))]
-    partial class LocalPizzaContextModelSnapshot : ModelSnapshot
+    [Migration("20201102075439_initialDb")]
+    partial class initialDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,9 +39,6 @@ namespace LocalPizza.Data.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("Range")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

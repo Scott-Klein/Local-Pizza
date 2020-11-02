@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/Admin.css" />
+    <script src="https://kit.fontawesome.com/90cbb1cc30.js" crossorigin="anonymous"></script>
+</head>
+<body class="grid-container">
+<div id="navigation">
+    <div>
+        <h1>Local Pizza</h1>
+    </div>
+    <nav>
+        <ul>
+            <li class="navigationBtn">
+                <i class="fas fa-home"></i><a asp-page="Home">Home</a>
+            </li>
+            <li class="navigationBtn">
+                <i class="fas fa-list"></i><a asp-page="ProductList">Product List</a>
+            </li>
+            <li class="navigationBtn">
+                <i class="fas fa-receipt"></i><a asp-page="Orders">Orders</a>
+            </li>
+            <li class="navigationBtn">
+                <i class="fas fa-cogs"></i><a asp-page="Settings">Settings</a>
+            </li>
+            <li class="navigationBtn">
+                <i class="fas fa-portrait"></i><a asp-page="customers">Customers</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+    <div id="content">
+            @RenderBody()
+    </div>
+</body>
+</html>

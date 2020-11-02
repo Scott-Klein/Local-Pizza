@@ -8,5 +8,6 @@ namespace LocalPizza.Core.Menu
         public decimal Price { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public ProductRange Range { get; set; }
     }
 }

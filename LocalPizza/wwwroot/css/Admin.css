@@ -1,0 +1,204 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+#navigation {
+    background-color: #444480;
+    position: sticky;
+    max-width: 351px;
+}
+
+
+#navigation>div:nth-child(1) {
+    position: sticky;
+    top: 21px;
+}
+
+.navigationBtn {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+}
+
+.navigationBtn:hover {
+    background-color: #59FF6F;
+    font-weight: 700;
+}
+
+.navigationBtn>li,
+.navigationBtn>a {
+    display: inline;
+
+}
+
+.fas {
+    font-size: 23px;
+    text-align: center;
+}
+
+#navigation>div>h1 {
+    text-align: center;
+    font-family: Poppins;
+    color: white;
+    font-size: 30px;
+    font-weight: 400;
+    font-size: 30px;
+}
+
+li>i {
+    opacity: 0.5;
+    margin-right: 11px;
+}
+
+nav>ul {
+    padding: 0px;
+}
+
+nav>ul>li {
+    background-color: #57578D;
+    color: white;
+    padding-left: 55px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+li>a {
+    font-family: Poppins;
+    color: white;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+nav {
+    position: sticky;
+    top: 81px;
+}
+
+#content {
+    background-color: #fff;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 351px 4fr;
+}
+
+body {}
+
+#content {
+    display: block;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0px;
+}
+
+h1 {
+    font-family: Poppins;
+    font-size: 30px;
+    font-weight: 700;
+    margin-left: 63px;
+}
+
+#content {
+    margin-top: 95px;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.table {
+    background-color: #444480;
+    display: inline-block;
+    margin-left: 30px;
+    padding: 38px;
+    border-collapse: collapse;
+}
+#tableHeader {
+
+}
+
+#tableHeader > th {
+    text-align: left;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#tableHeader>th:nth-child(1) {
+    padding-left: 15px;
+    padding-right:79px;
+}
+
+#tableHeader>th:nth-child(2) {
+    padding-right: 105px;
+}
+
+#tableHeader>th:nth-child(3) {
+    padding-right: 125px;
+}
+
+#tableHeader>th:nth-child(4) {
+    padding-right: 148px;
+}
+
+#tableHeader>th:nth-child(5) {
+    padding-right: 137px;
+}
+
+#tableHeader>th:nth-child(6) {
+    padding-right: 34px;
+}
+
+#tableHeader>th:nth-child(7) {
+    padding-right: 15px;
+}
+
+.table>h2 {
+    margin: 0px;
+    margin-bottom: 8px;
+    margin-left: 20px;
+    font-family: Poppins;
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.table>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1) {
+    background-color: #57578D;
+    font-family: Poppins;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.table>table:nth-child(2)>tbody:nth-child(1)>tr:nth-child(1)>th {
+    margin: 0px;
+}
+tr.tableContent:nth-child(2)
+{
+    margin-top: 8px;
+}
+.tableContent {
+    font-family: Poppins;
+    color: white;
+    font-size: 18px;
+    height: 64px;
+}
+.large-button {
+    margin-top:39px;
+    margin-left: 30px;
+}
+.large-button>a {
+    background-color: #444480;
+    font-family: Poppins;
+    color: white;
+    font-size: 27px;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 9px;
+}

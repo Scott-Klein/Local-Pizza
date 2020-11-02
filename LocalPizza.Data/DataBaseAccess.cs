@@ -1,39 +1,38 @@
 ﻿using LocalPizza.Core.Interfaces;
+using LocalPizza.Core.Menu;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LocalPizza.Data
 {
-    public interface DataAccess
+    public class DataBaseAccess : IDataAccess
     {
-        IItem InsertItem(IItem item);
+        public List<Item> Items { get; set; }
+        public List<ItemGroup> ItemGroups { get; set; }
+        public List<MenuCategory> MenuCategories { get; set; }
 
-        IItem UpdateItem(IItem item);
 
-        IItem GetItem(int id);
+        public DataBaseAccess()
+        {
+            Items = new List<Item>();
+        }
 
-        bool DeleteItem(int id);
-
-        IEnumerable<IItem> GetAllItems();
-
-        IEnumerable<IMenuCategory> GetMenus();
-    }
-
-    public class DataBaseAccess : DataAccess
-    {
         public bool DeleteItem(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<IItem> GetAllItems()
+        public IEnumerable<Item> GetAllItems()
         {
-            throw new NotImplementedException();
+            return from i in Items
+                   orderby i.Name
+                   select i;
         }
 
-        public IItem GetItem(int id)
+        public Item GetItem(int id)
         {
-            throw new NotImplementedException();
+            return Items.SingleOrDefault(i => i.Id == id);
         }
 
         public IEnumerable<IMenuCategory> GetMenus()
