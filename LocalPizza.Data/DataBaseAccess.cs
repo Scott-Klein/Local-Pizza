@@ -12,10 +12,12 @@ namespace LocalPizza.Data
         public List<ItemGroup> ItemGroups { get; set; }
         public List<MenuCategory> MenuCategories { get; set; }
 
+        //private readonly LocalPizzaContext db;
 
-        public DataBaseAccess()
+        public DataBaseAccess(LocalPizzaContext db)
         {
             Items = new List<Item>();
+            //this.db = db;
         }
 
         public bool DeleteItem(int id)
@@ -40,9 +42,11 @@ namespace LocalPizza.Data
             throw new NotImplementedException();
         }
 
-        public IItem InsertItem(IItem item)
+        public Item InsertItem(Item item)
         {
-            throw new NotImplementedException();
+            //db.Add(item);
+            //db.SaveChanges();
+            return item;
         }
 
         public IItem UpdateItem(IItem item)

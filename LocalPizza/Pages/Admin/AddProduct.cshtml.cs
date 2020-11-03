@@ -16,7 +16,9 @@ namespace LocalPizza.Pages.Admin
         private readonly IDataAccess dataAccess;
         private readonly IHtmlHelper htmlHelper;
 
+        [BindProperty]
         public Item Item { get; set; }
+
         public IEnumerable<SelectListItem> Range { get; set; }
 
         public AddProductModel(IDataAccess injectedDataService, IHtmlHelper htmlHelper)
@@ -29,6 +31,12 @@ namespace LocalPizza.Pages.Admin
         {
             this.Item = new Item();
             this.Range = htmlHelper.GetEnumSelectList<ProductRange>();
+        }
+
+        public IActionResult OnPost()
+        {
+            Item = dataAccess.InsertItem(Item);
+            return Page();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace LocalPizza.Data
 {
     public interface IDataAccess
     {
-        IItem InsertItem(IItem item);
+        Item InsertItem(Item item);
 
         IItem UpdateItem(IItem item);
 

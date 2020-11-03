@@ -21,14 +21,15 @@ namespace LocalPizza
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<IDataAccess, DataBaseAccess>();
 
             services.AddDbContextPool<LocalPizzaContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("ProdDb"));
             });
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<LocalPizzaContext>();
+            services.AddSingleton<IDataAccess, DataBaseAccess>();
+
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<LocalPizzaContext>();
 
             services.AddRazorPages();
         }
