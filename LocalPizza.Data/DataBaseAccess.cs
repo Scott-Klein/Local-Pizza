@@ -12,29 +12,37 @@ namespace LocalPizza.Data
         public List<ItemGroup> ItemGroups { get; set; }
         public List<MenuCategory> MenuCategories { get; set; }
 
-        //private readonly LocalPizzaContext db;
+        private readonly LocalPizzaContext db;
 
         public DataBaseAccess(LocalPizzaContext db)
         {
-            Items = new List<Item>();
-            //this.db = db;
+            this.db = db;
         }
 
         public bool DeleteItem(int id)
         {
-            throw new NotImplementedException();
+            var toDelete = db.Items.SingleOrDefault(i => i.Id == id);
+            db.Items.Remove(toDelete);
+            if (db.SaveChanges() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public IEnumerable<Item> GetAllItems()
         {
-            return from i in Items
+            return from i in db.Items
                    orderby i.Name
                    select i;
         }
 
         public Item GetItem(int id)
         {
-            return Items.SingleOrDefault(i => i.Id == id);
+            return db.Items.SingleOrDefault(i => i.Id == id);
         }
 
         public IEnumerable<IMenuCategory> GetMenus()
@@ -44,14 +52,16 @@ namespace LocalPizza.Data
 
         public Item InsertItem(Item item)
         {
-            //db.Add(item);
-            //db.SaveChanges();
+            db.Add(item);
+            db.SaveChanges();
             return item;
         }
 
-        public IItem UpdateItem(IItem item)
+        public Item UpdateItem(Item item)
         {
-            throw new NotImplementedException();
+            db.Update(item);
+            db.SaveChanges();
+            return item;
         }
     }
 }

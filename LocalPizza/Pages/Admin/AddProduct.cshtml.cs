@@ -36,7 +36,7 @@ namespace LocalPizza.Pages.Admin
         public IActionResult OnPost()
         {
             Item = dataAccess.InsertItem(Item);
-            return Page();
+            return RedirectToPage("ProductList");
         }
     }
 }

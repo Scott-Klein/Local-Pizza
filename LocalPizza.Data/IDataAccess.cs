@@ -8,7 +8,7 @@ namespace LocalPizza.Data
     {
         Item InsertItem(Item item);
 
-        IItem UpdateItem(IItem item);
+        Item UpdateItem(Item item);
 
         Item GetItem(int id);
 

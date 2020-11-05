@@ -26,9 +26,8 @@ namespace LocalPizza
             {
                 options.UseSqlServer(Configuration.GetConnectionString("ProdDb"));
             });
-
-            services.AddSingleton<IDataAccess, DataBaseAccess>();
-
+            
+            services.AddScoped<IDataAccess, DataBaseAccess>();
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<LocalPizzaContext>();
 
             services.AddRazorPages();
@@ -50,7 +49,6 @@ namespace LocalPizza
             }
 
             app.UseHttpsRedirection();
-            app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 
             app.UseRouting();

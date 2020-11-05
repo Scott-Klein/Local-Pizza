@@ -189,6 +189,7 @@ tr.tableContent:nth-child(2)
     font-size: 18px;
     height: 64px;
 }
+
 .large-button {
     margin-top:39px;
     margin-left: 30px;
@@ -201,4 +202,24 @@ tr.tableContent:nth-child(2)
     text-decoration: none;
     padding: 12px;
     border-radius: 9px;
+}
+
+.Product-Image {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+}
+
+tr.tableContent>td:nth-child(6)>a,
+tr.tableContent>td:nth-child(7)>a
+{
+    color: white;
+
+}
+
+#editPage {
+    background-color: #57578D;
+    width: 504px;
+    height: 1000px;
+    margin-left: 60px;
 }
