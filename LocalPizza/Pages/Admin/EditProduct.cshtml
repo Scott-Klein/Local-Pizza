@@ -24,19 +24,16 @@
 
         <button type="submit">Save</button>
     </form>
-
+    <p>@Model.Item.Id</p>
     <div id="editPage">
+        <edit-form :itemid="@Model.Item.Id"></edit-form>
     </div>
 
-
+    <!--Vue.js main and components-->
     <script src="~/js/editProduct/main.js"></script>
+    <script src="~/js/editProduct/EditForm.js"></script>
 
     <script>
         const mountedApp = app.mount('#editPage');
-        const item = {
-            Name: '@Model.Item.Name',
-            Price: '@Model.Item.Price',
-            Description: '@Model.Item.Description'
-        }
     </script>
 </div>

@@ -1,4 +1,6 @@
-﻿namespace LocalPizza.Core.Interfaces
+﻿using System.Collections.Generic;
+
+namespace LocalPizza.Core.Interfaces
 {
     public interface IItem
     {

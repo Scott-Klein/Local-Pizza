@@ -6,6 +6,7 @@
         PremiumPizza,
         Drink,
         Dessert,
-        Side
+        Side,
+        Topping
     }
 }
