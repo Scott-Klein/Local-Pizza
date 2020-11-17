@@ -4,26 +4,6 @@
     Layout = "~/Pages/Shared/_AdminLayout.cshtml";
 }
 <div>
-    <form method="post" enctype="multipart/form-data">
-        <input type="hidden" asp-for="Item.Id" />
-
-        <label asp-for="Item.Name"></label>
-        <input asp-for="Item.Name"/>
-
-        <label asp-for="Item.Price"></label>
-        <input asp-for="Item.Price"/>
-
-        <label asp-for="Item.Range"></label>
-        <select asp-for="Item.Range" asp-items="Model.Range"></select>
-
-        <label asp-for="Item.Description"></label>
-        <input asp-for="Item.Description"/>
-
-        <label asp-for="Image"></label>
-        <input asp-for="Image" />
-
-        <button type="submit">Save</button>
-    </form>
     <p>@Model.Item.Id</p>
     <div id="editPage">
         <edit-form :itemid="@Model.Item.Id"></edit-form>

@@ -11,5 +11,7 @@ namespace LocalPizza.Core.Menu
         public string Name { get; set; }
 
         public decimal Price { get; set; }
+
+        public List<Item> Items { get; set; }
     }
 }

@@ -25,6 +25,7 @@ namespace LocalPizza.API
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Topping>>> GetToppings()
         {
+            var toppings = _context.Toppings;
             return await _context.Toppings.ToListAsync();
         }
 

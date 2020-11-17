@@ -4,35 +4,22 @@ using LocalPizza.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LocalPizza.Data.Migrations
 {
     [DbContext(typeof(LocalPizzaContext))]
-    partial class LocalPizzaContextModelSnapshot : ModelSnapshot
+    [Migration("20201117023022_UpdateDotNetFivePointOh")]
+    partial class UpdateDotNetFivePointOh
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
-
-            modelBuilder.Entity("ItemTopping", b =>
-                {
-                    b.Property<int>("ItemsId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ToppingsListId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ItemsId", "ToppingsListId");
-
-                    b.HasIndex("ToppingsListId");
-
-                    b.ToTable("ItemTopping");
-                });
 
             modelBuilder.Entity("LocalPizza.Core.Menu.Item", b =>
                 {
@@ -108,6 +95,9 @@ namespace LocalPizza.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int?>("ItemId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -116,22 +106,9 @@ namespace LocalPizza.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ItemId");
+
                     b.ToTable("Toppings");
-                });
-
-            modelBuilder.Entity("ItemTopping", b =>
-                {
-                    b.HasOne("LocalPizza.Core.Menu.Item", null)
-                        .WithMany()
-                        .HasForeignKey("ItemsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LocalPizza.Core.Menu.Topping", null)
-                        .WithMany()
-                        .HasForeignKey("ToppingsListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("LocalPizza.Core.Menu.Item", b =>
@@ -146,6 +123,18 @@ namespace LocalPizza.Data.Migrations
                     b.HasOne("LocalPizza.Core.Menu.MenuCategory", null)
                         .WithMany("ItemGroups")
                         .HasForeignKey("MenuCategoryId");
+                });
+
+            modelBuilder.Entity("LocalPizza.Core.Menu.Topping", b =>
+                {
+                    b.HasOne("LocalPizza.Core.Menu.Item", null)
+                        .WithMany("ToppingsList")
+                        .HasForeignKey("ItemId");
+                });
+
+            modelBuilder.Entity("LocalPizza.Core.Menu.Item", b =>
+                {
+                    b.Navigation("ToppingsList");
                 });
 
             modelBuilder.Entity("LocalPizza.Core.Menu.ItemGroup", b =>

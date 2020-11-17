@@ -80,7 +80,16 @@ namespace LocalPizza.API
         [HttpPost]
         public async Task<ActionResult<Item>> PostItem(Item item)
         {
-            _context.Items.Add(item);
+            var exists = await _context.Items.FindAsync(item.Id);
+
+            if (exists is null)
+            {
+                _context.Items.Add(item);
+            }
+            else
+            {
+                _context.Entry(item).State = EntityState.Modified;
+            }
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetItem", new { id = item.Id }, item);

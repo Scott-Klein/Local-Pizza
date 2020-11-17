@@ -11,5 +11,7 @@ namespace LocalPizza.Core.Menu
         public string Description { get; set; }
         public ProductRange Range { get; set; }
         public string ProductPicture { get; set; }
+
+        public List<Topping> ToppingsList { get; set; }
     }
 }

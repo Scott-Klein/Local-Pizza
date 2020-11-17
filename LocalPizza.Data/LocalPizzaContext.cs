@@ -16,10 +16,5 @@ namespace LocalPizza.Data
         public LocalPizzaContext(DbContextOptions<LocalPizzaContext> options) : base(options)
         {
         }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<PizzaTopping>().HasKey(pt => new { pt.ItemId, pt.ToppingId });
-        }
     }
 }
