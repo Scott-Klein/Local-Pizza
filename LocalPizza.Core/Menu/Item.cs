@@ -1,10 +1,13 @@
-﻿using LocalPizza.Core.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace LocalPizza.Core.Menu
 {
-    public class Item : IItem
+    public class Item
     {
+        public Item()
+        {
+            this.ToppingsList = new List<Topping>();
+        }
         public int Id { get; set; }
         public decimal Price { get; set; }
         public string Name { get; set; }

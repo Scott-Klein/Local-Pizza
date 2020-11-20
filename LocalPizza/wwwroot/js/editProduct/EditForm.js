@@ -32,12 +32,11 @@ app.component('edit-form', {
 
             <label>Toppings</label>
             <br>
-            <button type="button" class="toppingButton" v-for="(topping, index) in selectedToppings" @mouseover="updateTopping(index)" v-on:click="removeFromPizza(topping)"> {{ this.selectedToppings.get(topping[0]).name }} <span class="cross">X</span></button>
+            <button type="button" class="toppingButton" v-for="(topping, index) in selectedToppings" v-on:click="removeFromPizza(topping)"> {{ this.selectedToppings.get(topping[0]).name }} <span class="cross">X</span></button>
             <br>
-            <br>FUCK
             <div class="toppingsList">
                 <ul>
-                    <li v-for="(topping, index) in availableToppings"> <button type="button" @mouseover="updateTopping(index)" v-on:click="addToPizza(topping)">{{ this.availableToppings.get(topping[0]).name }}</button> </li>
+                    <li v-for="(topping, index) in availableToppings"> <button type="button" v-on:click="addToPizza(topping)">{{ this.availableToppings.get(topping[0]).name }}</button> </li>
                 </ul>
             </div>
             <input type="submit" value="Save">
@@ -49,31 +48,38 @@ app.component('edit-form', {
             this.selectedToppings.set(topping[0], topping[1]);
             this.availableToppings.delete(topping[0]);
         },
-        updateTopping(index) {
-            this.selectedIndex = index;
-        },
         removeFromPizza(topping) {
             console.log("removing " + topping[0] + " " + topping[1].name)
             this.availableToppings.set(topping[0], topping[1]);
 
             this.selectedToppings.delete(topping[0]);
-
         },
+        ConvertToArray(inMap) {
+            let array = new Array();
+            let it = inMap[Symbol.iterator]();
+            for (const element of it)
+            {
+                array.push(inMap.get(element[0]).id);
+            }
+
+            return array;
+         },
         SubmitForm() {
             //If it isn't a topping, we will handle adding a regular item to the database.
             if (this.range != 5) // 5 is the enum assigned to toppings
             {
                 //Stand-in
                 console.log("Adding item to database!");
-                console.log("Why is this running?")
 
                 let item = {
                     Id: this.itemid,
                     Price: this.price,
                     Name: this.name,
                     Description: this.description,
-                    Range: this.range
+                    Range: this.range,
                 }
+
+                console.log(item);
 
                 fetch('/api/Items', {
                         method: 'POST',
@@ -82,7 +88,16 @@ app.component('edit-form', {
                         },
                         body: JSON.stringify(item)
                     })
-                    .then(response => console.log(response.statusText));
+                    .then(response => console.log("items response: " + response.statusText));
+
+                fetch('/api/Toppings/'+this.itemid, {
+                    method: 'POST',
+                    headers: {
+                            'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: JSON.stringify(this.ConvertToArray(this.selectedToppings))
+                })
+                .then(response => console.log("Toppings response: " + response.statusText));
             } else {
                 console.log("Adding topping to database!");
                 let topping = {
@@ -112,7 +127,8 @@ app.component('edit-form', {
             selectedToppings: []
         }
     },
-    created() {
+    created()
+    {
         this.availableToppings = new Map();
         this.selectedToppings = new Map();
         //Do API Call here initially
@@ -122,16 +138,20 @@ app.component('edit-form', {
             this.price = this.itemData.price;
             this.range = this.itemData.range;
             this.description = this.itemData.description;
+            this.itemData.toppingsList.forEach(topping => {
+                this.selectedToppings.set(topping.id, topping);
+            });
+
+        }).then(() => {
+            fetch('/api/Toppings')
+                .then(Response => Response.json())
+                .then(data => {
+                    data.forEach(topping => {
+                        if (!this.selectedToppings.has(topping.id)) {
+                            this.availableToppings.set(topping.id, topping);
+                        }
+                    });
+                })
         })
-
-        fetch('/api/Toppings')
-            .then(Response => Response.json())
-            .then(data => {
-                console.log(data);
-                data.forEach(topping => {
-                    this.availableToppings.set(topping.id, topping);
-                });
-            })
-
     }
 })

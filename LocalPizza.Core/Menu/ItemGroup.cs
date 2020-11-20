@@ -1,11 +1,11 @@
-﻿using LocalPizza.Core.Interfaces;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace LocalPizza.Core.Menu
 {
-    public class ItemGroup : IItemGroup
+    public class ItemGroup
     {
         [Key]
         public int Id { get; set; }

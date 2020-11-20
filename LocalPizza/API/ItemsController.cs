@@ -33,13 +33,16 @@ namespace LocalPizza.API
         public async Task<ActionResult<Item>> GetItem(int id)
         {
             var item = await _context.Items.FindAsync(id);
-
+            var toppings = await _context.Toppings.Where(t => t.Items.Any(i => i.Id == id)).ToListAsync();
             if (item == null)
             {
                 return NotFound();
             }
-
-            return item;
+            else
+            {
+                item.ToppingsList = toppings;
+                return item;
+            }
         }
 
         // PUT: api/Items/5
@@ -81,16 +84,6 @@ namespace LocalPizza.API
         public async Task<ActionResult<Item>> PostItem(Item item)
         {
             var exists = await _context.Items.FindAsync(item.Id);
-
-            if (exists is null)
-            {
-                _context.Items.Add(item);
-            }
-            else
-            {
-                _context.Entry(item).State = EntityState.Modified;
-            }
-            await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetItem", new { id = item.Id }, item);
         }

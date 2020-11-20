@@ -24,7 +24,7 @@ namespace LocalPizza
 
             services.AddDbContextPool<LocalPizzaContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("ProdDb"));
+                options.UseSqlServer(Configuration.GetConnectionString("DevDb"));
             });
             
             services.AddScoped<IDataAccess, DataBaseAccess>();

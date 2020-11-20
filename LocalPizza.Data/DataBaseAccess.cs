@@ -1,5 +1,4 @@
-﻿using LocalPizza.Core.Interfaces;
-using LocalPizza.Core.Menu;
+﻿using LocalPizza.Core.Menu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,7 +44,7 @@ namespace LocalPizza.Data
             return db.Items.SingleOrDefault(i => i.Id == id);
         }
 
-        public IEnumerable<IMenuCategory> GetMenus()
+        public IEnumerable<MenuCategory> GetMenus()
         {
             throw new NotImplementedException();
         }

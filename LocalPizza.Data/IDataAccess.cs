@@ -1,5 +1,4 @@
-﻿using LocalPizza.Core.Interfaces;
-using LocalPizza.Core.Menu;
+﻿using LocalPizza.Core.Menu;
 using System.Collections.Generic;
 
 namespace LocalPizza.Data
@@ -16,6 +15,6 @@ namespace LocalPizza.Data
 
         IEnumerable<Item> GetAllItems();
 
-        IEnumerable<IMenuCategory> GetMenus();
+        IEnumerable<MenuCategory> GetMenus();
     }
 }

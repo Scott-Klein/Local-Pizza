@@ -6,6 +6,10 @@ namespace LocalPizza.Core.Menu
 {
     public class Topping
     {
+        public Topping()
+        {
+            this.Items = new List<Item>();
+        }
         public int Id { get; set; }
 
         public string Name { get; set; }

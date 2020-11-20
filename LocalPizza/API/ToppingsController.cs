@@ -1,12 +1,10 @@
-﻿using System;
+﻿using LocalPizza.Core.Menu;
+using LocalPizza.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using LocalPizza.Core.Menu;
-using LocalPizza.Data;
 
 namespace LocalPizza.API
 {
@@ -25,7 +23,6 @@ namespace LocalPizza.API
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Topping>>> GetToppings()
         {
-            var toppings = _context.Toppings;
             return await _context.Toppings.ToListAsync();
         }
 
@@ -44,8 +41,7 @@ namespace LocalPizza.API
         }
 
         // PUT: api/Toppings/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTopping(int id, Topping topping)
         {
@@ -76,30 +72,38 @@ namespace LocalPizza.API
         }
 
         // POST: api/Toppings
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Topping>> PostTopping(Topping topping)
+        [Route("~/api/Toppings/{id}")]
+        public async Task<ActionResult<Topping>> PostTopping(int? id, int[] Toppings)
         {
-            var searchTopping = _context.Toppings.Find(topping.Id); // find if it already exists.
-            
-            if (searchTopping != null)
+            var item =  _context.Items.Where(x => x.Id == id)
+                .Include(x => x.ToppingsList).First();
+
+            foreach (int toppingId in Toppings)
             {
-                _context.Update(topping);
-            }
-            else
-            {
-                _context.Toppings.Add(topping);
+                if (item.ToppingsList.Where(t => t.Id == toppingId).ToList().Count == 0) // if the topping is wanted but not there.
+                {
+                    item.ToppingsList.Add(_context.Toppings.Where(t => t.Id == toppingId).First());
+                }
             }
 
-            _context.SaveChanges();
+            for (int i = item.ToppingsList.Count -1; i >= 0; i--)
+            {
+                if (Toppings.Where(t => t == item.ToppingsList[i].Id).Count() == 0)
+                {
+                    item.ToppingsList.RemoveAt(i);
+                }
+            }
 
-            return CreatedAtAction("GetTopping", new { id = topping.Id }, topping);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
 
         // DELETE: api/Toppings/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Topping>> DeleteTopping(int id)
+        public async Task<IActionResult> DeleteTopping(int id)
         {
             var topping = await _context.Toppings.FindAsync(id);
             if (topping == null)
@@ -110,7 +114,7 @@ namespace LocalPizza.API
             _context.Toppings.Remove(topping);
             await _context.SaveChangesAsync();
 
-            return topping;
+            return NoContent();
         }
 
         private bool ToppingExists(int id)

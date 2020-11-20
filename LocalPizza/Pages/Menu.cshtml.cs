@@ -1,4 +1,4 @@
-﻿using LocalPizza.Core.Interfaces;
+﻿using LocalPizza.Core.Menu;
 using LocalPizza.Data;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace LocalPizza.Pages
             this.dataAccess = dataAccess;
         }
 
-        public IEnumerable<IMenuCategory> Menus { get; set; }
+        public IEnumerable<MenuCategory> Menus { get; set; }
 
         public void OnGet()
         {
