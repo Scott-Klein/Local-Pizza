@@ -223,3 +223,23 @@ tr.tableContent>td:nth-child(7)>a
     height: 1000px;
     margin-left: 60px;
 }
+
+
+.display {
+    display: block;
+    color: white;
+    font-family: Poppins;
+    opacity: 0;
+
+}
+
+.showBriefly {
+    animation-name: showbriefly;
+    animation-duration: 3s;
+}
+
+@keyframes showbriefly {
+    0% { opacity: 1;}
+    50% {opacity: 1;}
+    100% {opacity: 0;}
+}

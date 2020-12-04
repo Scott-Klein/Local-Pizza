@@ -3,19 +3,16 @@
 @{
     Layout = "~/Pages/Shared/_AdminLayout.cshtml";
 }
-<form method="post">
-    <input type="hidden" asp-for="Item.Id" />
+<div>
+    <div id="editPage">
+        <edit-form ></edit-form>
+    </div>
 
-    <label asp-for="Item.Name"></label>
-    <input asp-for="Item.Name" />
+    <!--Vue.js main and components-->
+    <script src="~/js/editProduct/main.js"></script>
+    <script src="~/js/editProduct/EditForm.js"></script>
 
-    <label asp-for="Item.Description"></label>
-    <input asp-for="Item.Description" />
-
-    <label asp-for="Item.Range"></label>
-    <select asp-for="Item.Range" asp-items="Model.Range"></select>
-
-    <label asp-for="Item.Price"></label>
-    <input asp-for="Item.Price" />
-    <button type="submit">Save</button>
-</form>
+    <script>
+        const mountedApp = app.mount('#editPage');
+    </script>
+</div>

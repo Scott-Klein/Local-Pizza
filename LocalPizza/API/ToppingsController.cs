@@ -100,7 +100,14 @@ namespace LocalPizza.API
 
             return NoContent();
         }
-
+        [HttpPost]
+        [Route("~/api/Toppings/")]
+        public async Task<ActionResult<Topping>> PostTopping(Topping topping)
+        {
+            await _context.AddAsync(topping);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
         // DELETE: api/Toppings/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTopping(int id)

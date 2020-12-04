@@ -84,7 +84,19 @@ namespace LocalPizza.API
         public async Task<ActionResult<Item>> PostItem(Item item)
         {
             var exists = await _context.Items.FindAsync(item.Id);
-
+            if (exists is not null)
+            {
+                exists.Name = item.Name;
+                exists.Price = item.Price;
+                exists.Range = item.Range;
+                exists.Description = item.Description;
+            }
+            else
+            {
+                //Create the item
+                _context.Add(item);
+            }
+            await _context.SaveChangesAsync();
             return CreatedAtAction("GetItem", new { id = item.Id }, item);
         }
 
