@@ -1,4 +1,5 @@
-﻿using LocalPizza.Core.Menu;
+﻿using LocalPizza.Core;
+using LocalPizza.Core.Menu;
 using System.Collections.Generic;
 
 namespace LocalPizza.Data
@@ -8,13 +9,14 @@ namespace LocalPizza.Data
         Item InsertItem(Item item);
 
         Item UpdateItem(Item item);
-
-        Item GetItem(int id);
-
+        IProduct UpdateProduct(IProduct product);
+        public Item GetItem(int id);
+        public IProduct GetProduct(int id, ProductRange range);
         bool DeleteItem(int id);
 
         IEnumerable<Item> GetAllItems();
 
-        IEnumerable<MenuCategory> GetMenus();
+        IEnumerable<IProduct> GetAllProducts();
+
     }
 }

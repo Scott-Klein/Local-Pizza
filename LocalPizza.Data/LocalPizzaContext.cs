@@ -8,8 +8,6 @@ namespace LocalPizza.Data
 {
     public class LocalPizzaContext : DbContext
     {
-        public DbSet<MenuCategory> Menus { get; set; }
-        public DbSet<ItemGroup> Groups { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Topping> Toppings { get; set; }
 

@@ -17,11 +17,10 @@ namespace LocalPizza.Pages.Admin
     public class EditProductModel : PageModel
     {
         [BindProperty]
-        public Item Item { get; set; }
+        public IProduct Item { get; set; }
 
         [BindProperty]
         public IFormFile Image { get; set; }
-
 
         public int MyProperty { get; set; }
         private readonly IDataAccess data;
@@ -37,10 +36,10 @@ namespace LocalPizza.Pages.Admin
             this.webHost = webHostEnvironment;
         }
 
-        public IActionResult OnGet(int id)
+        public IActionResult OnGet(int id, ProductRange range)
         {
             this.Range = helper.GetEnumSelectList<ProductRange>();
-            this.Item = this.data.GetItem(id);
+            this.Item = this.data.GetProduct(id, range);
             if (this.Item == null)
             {
                 return RedirectToPage("./NotFound");
@@ -69,7 +68,7 @@ namespace LocalPizza.Pages.Admin
                 Item.ProductPicture = fileName;
             }
 
-            Item = data.UpdateItem(Item);
+            Item = data.UpdateProduct(Item);
 
             return RedirectToPage("ProductList");
         }

@@ -81,7 +81,7 @@ namespace LocalPizza.API
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Item>> PostItem(Item item)
+        public async Task<ActionResult<IProduct>> PostItem(IProduct item)
         {
             var exists = await _context.Items.FindAsync(item.Id);
             if (exists is not null)
@@ -89,7 +89,10 @@ namespace LocalPizza.API
                 exists.Name = item.Name;
                 exists.Price = item.Price;
                 exists.Range = item.Range;
-                exists.Description = item.Description;
+                if (exists is Item product)
+                {
+                    exists.Description = product.Description;
+                }
             }
             else
             {

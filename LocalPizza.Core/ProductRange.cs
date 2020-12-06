@@ -10,6 +10,7 @@ namespace LocalPizza.Core
         Traditional,
         Drink,
         Dessert,
-        Side
+        Side, 
+        Topping
     }
 }

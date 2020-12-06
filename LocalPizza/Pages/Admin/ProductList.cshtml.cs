@@ -11,7 +11,7 @@ namespace LocalPizza.Pages.Admin
 {
     public class ProductListModel : PageModel
     {
-        public List<Item> Products;
+        public List<IProduct> Products;
         private readonly IDataAccess data;
 
         public ProductListModel(IDataAccess data)
@@ -20,7 +20,7 @@ namespace LocalPizza.Pages.Admin
         }
         public void OnGet()
         {
-            Products = data.GetAllItems().ToList();
+            Products = data.GetAllProducts().ToList();
         }
     }
 }

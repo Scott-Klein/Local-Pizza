@@ -2,6 +2,9 @@ app.component('edit-form', {
     props: {
         itemid: {
             type: Number,
+        },
+        propRange: {
+            type: Number,
         }
     },
     template:
@@ -90,6 +93,40 @@ app.component('edit-form', {
                 })
                 .then(response => console.log("Toppings response: " + response.statusText));
         },
+        FetchItem(id)
+        {
+            fetch('/api/items/' + id).then(Response => Response.json()).then((data) => {
+                this.itemData = data;
+                this.name = this.itemData.name;
+                this.price = this.itemData.price;
+                this.range = this.itemData.range;
+                if (this.range < 2)
+                {
+                    this.showToppings = true;
+                }
+                else
+                {
+                    this.showToppings = false;
+                }
+                this.description = this.itemData.description;
+                this.itemData.toppingsList.forEach(topping => {
+                    this.selectedToppings.set(topping.id, topping);
+                });
+
+            }).then(() => {
+                fetch('/api/Toppings')
+                    .then(Response => Response.json())
+                    .then(data => {
+                        data.forEach(topping =>
+                        {
+                            if (!this.selectedToppings.has(topping.id))
+                            {
+                                this.availableToppings.set(topping.id, topping);
+                            }
+                        });
+                    })
+            })
+        },
         SubmitForm() {
             //If it isn't a topping, we will handle adding a regular item to the database.
             if (this.range != 5) // 5 is the enum assigned to toppings
@@ -146,8 +183,15 @@ app.component('edit-form', {
                     .then(response => console.log(response.statusText))
             }
         },
-        PopulateForm() {
-
+        FetchTopping(id)
+        {
+            fetch('/api/Toppings/' + id).then(Response => Response.json()).then((data) => {
+                this.itemData = data;
+                this.name = this.itemData.name;
+                this.price = this.itemData.price;
+                this.range = this.itemData.range;
+                this.showToppings = false;
+            })
         }
     },
     data() {
@@ -163,40 +207,20 @@ app.component('edit-form', {
         }
     },
     created() {
+        console.log("FUCK ME SALLY " + this.itemid + " " + this.propRange)
         this.availableToppings = new Map();
         this.selectedToppings = new Map();
         if (this.itemid != undefined) {
             //Do API Call here initially
-            fetch('/api/items/' + this.itemid).then(Response => Response.json()).then((data) => {
-                this.itemData = data;
-                this.name = this.itemData.name;
-                this.price = this.itemData.price;
-                this.range = this.itemData.range;
-                if (this.range < 2)
-                {
-                    this.showToppings = true;
-                }
-                else
-                {
-                    this.showToppings = false;
-                }
-                this.description = this.itemData.description;
-                this.itemData.toppingsList.forEach(topping => {
-                    this.selectedToppings.set(topping.id, topping);
-                });
-
-            }).then(() => {
-                fetch('/api/Toppings')
-                    .then(Response => Response.json())
-                    .then(data => {
-                        data.forEach(topping => {
-                            if (!this.selectedToppings.has(topping.id)) {
-                                this.availableToppings.set(topping.id, topping);
-                            }
-                        });
-                    })
-            })
-        } else
+            if (this.propRange != 5)
+            {
+                FetchItem(this.itemid);
+            }
+            else
+            {
+                FetchTopping(this.itemid);
+            }
+        } else // else this is a new item that we will add.
         {
             fetch('/api/Toppings')
                 .then(Response => Response.json())

@@ -3,6 +3,8 @@
 @{
     Layout = "~/Pages/Shared/_AdminLayout.cshtml";
 }
+@using LocalPizza.Core;
+@using LocalPizza.Core.Menu;
 <h1>Product Editor</h1>
 <div class="table">
     <h2>Products</h2>
@@ -18,15 +20,19 @@
         </tr>
         @foreach (var item in Model.Products)
         {
-            <tr class="tableContent">
-                <td><img class="Product-Image" src="~/images/@item.ProductPicture"/></td>
-                <td>@item.Name</td>
-                <td>@item.Range</td>
-                <td>$@item.Price</td>
-                <td>324</td>
-                <td><a asp-page="./EditProduct" asp-route-id="@item.Id"><i class="fas fa-edit"></i></a></td>
-                <td><a asp-page="./Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a></td>
-            </tr>
+    <tr class="tableContent">
+        <td><img class="Product-Image" src="~/images/@item.ProductPicture" /></td>
+        <td>@item.Name</td>
+        @if (item is Topping)
+        {
+            item.Range = ProductRange.Topping;
+        }
+        <td>@item.Range</td>
+        <td>$@item.Price</td>
+        <td>324</td>
+        <td><a asp-page="./EditProduct" asp-route-id="@item.Id" asp-route-range="@item.Range"><i class="fas fa-edit"></i></a></td>
+        <td><a asp-page="./Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a></td>
+    </tr>
         }
     </table>
 </div>

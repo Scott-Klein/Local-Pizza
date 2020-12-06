@@ -2,7 +2,7 @@
 
 namespace LocalPizza.Core.Menu
 {
-    public class Item
+    public class Item : IProduct
     {
         public Item()
         {

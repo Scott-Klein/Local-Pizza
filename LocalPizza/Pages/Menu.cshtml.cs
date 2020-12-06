@@ -14,12 +14,9 @@ namespace LocalPizza.Pages
             this.dataAccess = dataAccess;
         }
 
-        public IEnumerable<MenuCategory> Menus { get; set; }
-
         public void OnGet()
         {
             //request from dataAccess to get data.
-            Menus = dataAccess.GetMenus();
         }
     }
 }

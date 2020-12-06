@@ -1,4 +1,5 @@
-﻿using LocalPizza.Core.Menu;
+﻿using LocalPizza.Core;
+using LocalPizza.Core.Menu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +9,6 @@ namespace LocalPizza.Data
     public class DataBaseAccess : IDataAccess
     {
         public List<Item> Items { get; set; }
-        public List<ItemGroup> ItemGroups { get; set; }
-        public List<MenuCategory> MenuCategories { get; set; }
 
         private readonly LocalPizzaContext db;
 
@@ -32,21 +31,43 @@ namespace LocalPizza.Data
             }
         }
 
+        public IEnumerable<IProduct> GetAllProducts()
+        {
+            List<IProduct> products = new List<IProduct>();
+            products.AddRange(this.GetAllItems());
+            products.AddRange(this.GetAllToppings());
+            return products;
+        }
+
         public IEnumerable<Item> GetAllItems()
         {
             return from i in db.Items
                    orderby i.Name
                    select i;
         }
-
+        public IEnumerable<Topping> GetAllToppings()
+        {
+            return from i in db.Toppings
+                   orderby i.Name
+                   select i;
+        }
         public Item GetItem(int id)
         {
             return db.Items.SingleOrDefault(i => i.Id == id);
         }
 
-        public IEnumerable<MenuCategory> GetMenus()
+        public IProduct GetProduct(int id, ProductRange range)
         {
-            throw new NotImplementedException();
+            if (range == ProductRange.Topping)
+            {
+                var topping = db.Toppings.SingleOrDefault(i => i.Id == id);
+                topping.Range = ProductRange.Topping;
+                return topping;
+            }
+            else
+            {
+                return GetItem(id);
+            }
         }
 
         public Item InsertItem(Item item)
@@ -61,6 +82,13 @@ namespace LocalPizza.Data
             db.Update(item);
             db.SaveChanges();
             return item;
+        }
+
+        public IProduct UpdateProduct(IProduct product)
+        {
+            db.Update(product);
+            db.SaveChanges();
+            return product;
         }
     }
 }

@@ -5,9 +5,9 @@
 }
 <div>
     <div id="editPage">
-        <edit-form :itemid="@Model.Item.Id"></edit-form>
+        <edit-form :itemid="@Model.Item.Id" :propRange="@Model.Item.Range"></edit-form>
     </div>
-
+    <h1>@Model.Item.Range</h1>
     <!--Vue.js main and components-->
     <script src="~/js/editProduct/main.js"></script>
     <script src="~/js/editProduct/EditForm.js"></script>
