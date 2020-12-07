@@ -27,7 +27,6 @@ namespace LocalPizza.Pages.Admin
                 return (int)this.Item.Range;
             } 
         }
-
         public int MyProperty { get; set; }
         private readonly IDataAccess data;
         private readonly IHtmlHelper helper;

@@ -190,7 +190,7 @@ app.component('edit-form', {
                 this.itemData = data;
                 this.name = this.itemData.name;
                 this.price = this.itemData.price;
-                this.range = this.itemData.range;
+                this.range = this.proprange;
                 this.showToppings = false;
             })
         }
