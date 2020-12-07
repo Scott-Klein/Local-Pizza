@@ -3,7 +3,7 @@ app.component('edit-form', {
         itemid: {
             type: Number,
         },
-        propRange: {
+        proprange: {
             type: Number,
         }
     },
@@ -147,6 +147,7 @@ app.component('edit-form', {
                         body: JSON.stringify(item)
                     })
                     .then(response => {
+                        console.log(item);
                         if (this.itemid = 0 || this.itemid == undefined)
                         {
                             console.log("Item id is!")
@@ -207,18 +208,18 @@ app.component('edit-form', {
         }
     },
     created() {
-        console.log("FUCK ME SALLY " + this.itemid + " " + this.propRange)
+        console.log("FUCK ME SALLY " + this.itemid + " " + this.proprange)
         this.availableToppings = new Map();
         this.selectedToppings = new Map();
         if (this.itemid != undefined) {
             //Do API Call here initially
-            if (this.propRange != 5)
+            if (this.proprange != 5)
             {
-                FetchItem(this.itemid);
+                this.FetchItem(this.itemid);
             }
             else
             {
-                FetchTopping(this.itemid);
+                this.FetchTopping(this.itemid);
             }
         } else // else this is a new item that we will add.
         {

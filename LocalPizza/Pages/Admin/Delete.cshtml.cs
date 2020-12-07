@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LocalPizza.Core;
 using LocalPizza.Core.Menu;
 using LocalPizza.Data;
 using Microsoft.AspNetCore.Mvc;
@@ -13,16 +14,17 @@ namespace LocalPizza.Pages.Admin
     {
         private readonly IDataAccess dataAccess;
 
-        public Item item { get; set; }
+        public IProduct item { get; set; }
 
         public DeleteModel(IDataAccess data)
         {
             this.dataAccess = data;
         }
 
-        public IActionResult OnGet(int Id)
+        public IActionResult OnGet(int id, ProductRange range)
         {
-            item = dataAccess.GetItem(Id);
+
+            item = dataAccess.GetProduct(id, range);
             if (item == null)
             {
                 return RedirectToPage("./NotFound");
@@ -33,9 +35,9 @@ namespace LocalPizza.Pages.Admin
             }
         }
 
-        public IActionResult OnPost(int id)
+        public IActionResult OnPost(int id, ProductRange range)
         {
-            if (dataAccess.DeleteItem(id))
+            if (dataAccess.Delete(id, range))
             {
                 return RedirectToPage("./ProductList");
             }

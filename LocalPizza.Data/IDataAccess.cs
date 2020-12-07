@@ -18,5 +18,6 @@ namespace LocalPizza.Data
 
         IEnumerable<IProduct> GetAllProducts();
 
+        bool Delete(int id, ProductRange range);
     }
 }

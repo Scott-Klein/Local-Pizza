@@ -4,8 +4,9 @@
     Layout = "~/Pages/Shared/_AdminLayout.cshtml";
 }
 <div>
+    <h1>@Model.RangeInt</h1>
     <div id="editPage">
-        <edit-form :itemid="@Model.Item.Id" :propRange="@Model.Item.Range"></edit-form>
+        <edit-form :itemid="@Model.Item.Id" :proprange="@Model.RangeInt"></edit-form>
     </div>
     <h1>@Model.Item.Range</h1>
     <!--Vue.js main and components-->

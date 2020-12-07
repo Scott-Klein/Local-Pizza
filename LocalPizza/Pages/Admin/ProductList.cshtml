@@ -31,7 +31,7 @@
         <td>$@item.Price</td>
         <td>324</td>
         <td><a asp-page="./EditProduct" asp-route-id="@item.Id" asp-route-range="@item.Range"><i class="fas fa-edit"></i></a></td>
-        <td><a asp-page="./Delete" asp-route-id="@item.Id"><i class="fas fa-trash-alt"></i></a></td>
+        <td><a asp-page="./Delete" asp-route-id="@item.Id" asp-route-range="@item.Range"><i class="fas fa-trash-alt"></i></a></td>
     </tr>
         }
     </table>

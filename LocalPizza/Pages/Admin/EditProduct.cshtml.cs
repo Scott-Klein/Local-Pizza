@@ -22,6 +22,12 @@ namespace LocalPizza.Pages.Admin
         [BindProperty]
         public IFormFile Image { get; set; }
 
+        public int RangeInt { get 
+            {
+                return (int)this.Item.Range;
+            } 
+        }
+
         public int MyProperty { get; set; }
         private readonly IDataAccess data;
         private readonly IHtmlHelper helper;

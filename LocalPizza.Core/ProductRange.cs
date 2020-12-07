@@ -6,8 +6,8 @@ namespace LocalPizza.Core
 {
     public enum ProductRange
     {
-        Premium,
         Traditional,
+        Premium,
         Drink,
         Dessert,
         Side, 

@@ -17,20 +17,6 @@ namespace LocalPizza.Data
             this.db = db;
         }
 
-        public bool DeleteItem(int id)
-        {
-            var toDelete = db.Items.SingleOrDefault(i => i.Id == id);
-            db.Items.Remove(toDelete);
-            if (db.SaveChanges() > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         public IEnumerable<IProduct> GetAllProducts()
         {
             List<IProduct> products = new List<IProduct>();
@@ -70,6 +56,41 @@ namespace LocalPizza.Data
             }
         }
 
+        public bool Delete(int id, ProductRange range)
+        {
+            if (range != ProductRange.Topping)
+            {
+                return this.DeleteItem(id);
+            }
+            else
+            {
+                var toDelete = db.Toppings.SingleOrDefault(i => i.Id == id);
+                db.Toppings.Remove(toDelete);
+                if (db.SaveChanges() > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public bool DeleteItem(int id)
+        {
+            var toDelete = db.Items.SingleOrDefault(i => i.Id == id);
+            db.Items.Remove(toDelete);
+            if (db.SaveChanges() > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public Item InsertItem(Item item)
         {
             db.Add(item);
@@ -90,5 +111,7 @@ namespace LocalPizza.Data
             db.SaveChanges();
             return product;
         }
+
+
     }
 }

@@ -2,7 +2,7 @@
 
 namespace LocalPizza.Data.Migrations
 {
-    public partial class Products : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
