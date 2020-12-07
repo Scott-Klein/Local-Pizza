@@ -82,6 +82,13 @@ app.component('edit-form', {
 
             return array;
         },
+        DisplayUpdatedMessage()
+        {
+            document.getElementById('message').classList.add('showBriefly');
+            setTimeout(function () {
+                document.getElementById('message').classList.remove('showBriefly');
+            }, 6000);
+        },
         PostToppings(id)
         {
             fetch('/api/Toppings/' + id, {
@@ -162,10 +169,7 @@ app.component('edit-form', {
                         {
                             this.PostToppings(this.itemid);
                         }
-                        document.getElementById('message').classList.add('showBriefly');
-                        setTimeout(function () {
-                            document.getElementById('message').classList.remove('showBriefly');
-                        }, 6000);
+
                     });
             } else {
                 console.log("Adding topping to database!");
@@ -183,6 +187,7 @@ app.component('edit-form', {
                     })
                     .then(response => console.log(response.statusText))
             }
+            this.DisplayUpdatedMessage();
         },
         FetchTopping(id)
         {
