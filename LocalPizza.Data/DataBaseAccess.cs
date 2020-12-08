@@ -112,6 +112,12 @@ namespace LocalPizza.Data
             return product;
         }
 
-
+        //Links the filename of the uploaded image to the record of the product in the database.
+        public IProduct ProductImage(int id, ProductRange range, string filename)
+        {
+            var product = GetProduct(id, range);
+            product.ProductPicture = filename;
+            return UpdateProduct(product);
+        }
     }
 }

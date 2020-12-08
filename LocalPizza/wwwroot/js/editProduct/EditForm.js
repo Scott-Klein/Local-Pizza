@@ -11,7 +11,7 @@ app.component('edit-form', {
         /*html*/
         `
     <div>
-        <form id="editForm" @submit.prevent="SubmitForm" >
+        <form id="editForm" @submit.prevent="SubmitForm" enctype="multipart/form-data">
             <label for="name">Product Name</label>
             <input id="name" v-model="name" >
             <label for="price">Price ($)</label>
@@ -134,8 +134,23 @@ app.component('edit-form', {
                     })
             })
         },
+        UploadImage()
+        {
+            if (document.getElementById('imageFile').files.length == 1)
+            {
+                const selectedFile = document.getElementById('imageFile').files[0];
+                fetch('/api/ProductImage?id=' + this.itemid + '&range=' + this.range, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'image/jpeg'
+                    },
+                    body: selectedFile
+                }).then(response => console.log(response.status));
+            }
+        },
         SubmitForm() {
             //If it isn't a topping, we will handle adding a regular item to the database.
+            this.UploadImage();
             if (this.range != 5) // 5 is the enum assigned to toppings
             {
                 let item = {

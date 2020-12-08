@@ -1,4 +1,5 @@
-﻿using LocalPizza.Core.Menu;
+﻿using LocalPizza.Core;
+using LocalPizza.Core.Menu;
 using LocalPizza.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,25 +25,30 @@ namespace LocalPizza.API
             this.webHost = webHost;
             this.dataAccess = dataAccess;
         }
-
+        [HttpGet]
+        public async Task<ActionResult> GetNothing()
+        {
+            return NoContent();
+        }
         // POST: api/ProductImage
         [HttpPost]
-        public async Task<ActionResult> PostImage(IFormFile image, IProduct product)
+        public async Task<ActionResult> PostImage([FromBody]IFormFile image,[FromQuery]int id, [FromQuery]ProductRange range)
         {
-            if (image != null)
+            //if (image != null)
             {
                 string folder = Path.Combine(webHost.WebRootPath, "images");
-                string fileName = Guid.NewGuid().ToString() + "_" + image.FileName;
-                string filePath = Path.Combine(folder, fileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    image.CopyTo(fileStream);
-                }
-                product.ProductPicture = fileName;
+                //string fileName = Guid.NewGuid().ToString() + "_" + image.FileName;
+                //string filePath = Path.Combine(folder, fileName);
+                //using (var fileStream = new FileStream(filePath, FileMode.Create))
+                //{
+                //    image.CopyTo(fileStream);
+                //}
+                //var product = dataAccess.ProductImage(id, range, fileName);
+                //return CreatedAtAction("PostImage", fileName);
             }
 
-            product = dataAccess.UpdateProduct(product);
-            return CreatedAtAction("PostImage", "FileName");
+            
+            return NoContent();
         }
     }
 }
