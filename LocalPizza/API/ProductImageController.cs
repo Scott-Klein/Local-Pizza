@@ -32,19 +32,19 @@ namespace LocalPizza.API
         }
         // POST: api/ProductImage
         [HttpPost]
-        public async Task<ActionResult> PostImage([FromBody]IFormFile image,[FromQuery]int id, [FromQuery]ProductRange range)
+        public async Task<ActionResult> PostImage(IFormFile image,[FromQuery]int id, [FromQuery]ProductRange range)
         {
-            //if (image != null)
+            if (image != null)
             {
                 string folder = Path.Combine(webHost.WebRootPath, "images");
-                //string fileName = Guid.NewGuid().ToString() + "_" + image.FileName;
-                //string filePath = Path.Combine(folder, fileName);
-                //using (var fileStream = new FileStream(filePath, FileMode.Create))
-                //{
-                //    image.CopyTo(fileStream);
-                //}
-                //var product = dataAccess.ProductImage(id, range, fileName);
-                //return CreatedAtAction("PostImage", fileName);
+                string fileName = Guid.NewGuid().ToString() + "_" + image.FileName;
+                string filePath = Path.Combine(folder, fileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    image.CopyTo(fileStream);
+                }
+                var product = dataAccess.ProductImage(id, range, fileName);
+                return CreatedAtAction("PostImage", fileName);
             }
 
             

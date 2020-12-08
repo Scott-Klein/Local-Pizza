@@ -139,12 +139,11 @@ app.component('edit-form', {
             if (document.getElementById('imageFile').files.length == 1)
             {
                 const selectedFile = document.getElementById('imageFile').files[0];
+                const formData = new FormData();
+                formData.append('image', selectedFile);
                 fetch('/api/ProductImage?id=' + this.itemid + '&range=' + this.range, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'image/jpeg'
-                    },
-                    body: selectedFile
+                    body: formData
                 }).then(response => console.log(response.status));
             }
         },
