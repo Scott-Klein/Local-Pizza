@@ -187,11 +187,12 @@ app.component('edit-form', {
                     });
             } else {
                 console.log("Adding topping to database!");
+
                 let topping = {
+                    Id: this.itemid,
                     Name: this.name,
                     Price: this.price
                 }
-                console.log(JSON.stringify(topping));
                 fetch('/api/Toppings', {
                         method: 'POST',
                         headers: {

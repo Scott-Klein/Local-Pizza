@@ -104,7 +104,21 @@ namespace LocalPizza.API
         [Route("~/api/Toppings/")]
         public async Task<ActionResult<Topping>> PostTopping(Topping topping)
         {
-            await _context.AddAsync(topping);
+            if (topping.Id != 0)
+            {
+                var exists = await _context.Toppings.FindAsync(topping.Id);
+                if (exists is not null)
+                {
+                    exists.Name = topping.Name;
+                    exists.Price = topping.Price;
+                    exists.Range = topping.Range;
+                }
+            }
+            else
+            {
+                await _context.AddAsync(topping);
+            }
+            
             await _context.SaveChangesAsync();
             return NoContent();
         }
