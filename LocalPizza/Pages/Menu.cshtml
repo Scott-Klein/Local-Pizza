@@ -3,20 +3,42 @@
 @{
     ViewData["Title"] = "Menu";
 }
+@using LocalPizza.Core
+<h2>Menu</h2>
 
-<h1>Menu</h1>
-
-@*@foreach (var Menu in Model.Menus)
+<h3>Traditional</h3>
+@foreach (var item in Model.GetRange(ProductRange.Traditional))
 {
-    <h1>@Menu.Name</h1>
-    @foreach (var Group in Menu.ItemGroups)
-    {
-        <h2>@Group.GroupName</h2>
-        @foreach (var item in Group.Items)
-        {
-            <h3>@item.Name</h3>
-            <p>@item.Description</p>
-            <h4>@item.Price.ToString()</h4>
-        }
-    }
-}*@
+    <div>
+        <p>@item.Name</p>
+    </div>
+}
+<h3>Premium</h3>
+@foreach (var item in Model.GetRange(ProductRange.Premium))
+{
+    <div>
+        <p>@item.Name</p>
+    </div>
+}
+<h3>Sides</h3>
+@foreach (var item in Model.GetRange(ProductRange.Side))
+{
+    <div>
+        <p>@item.Name</p>
+    </div>
+}
+<h3>Drink</h3>
+@foreach (var item in Model.GetRange(ProductRange.Drink))
+{
+    <div>
+        <p>@item.Name</p>
+    </div>
+}
+
+<h3>Dessert</h3>
+@foreach (var item in Model.GetRange(ProductRange.Dessert))
+{
+    <div>
+        <p>@item.Name</p>
+    </div>
+}
