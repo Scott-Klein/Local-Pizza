@@ -1,0 +1,19 @@
+﻿@page "{id:int}"
+@model LocalPizza.Pages.Admin.EditProductModel
+@{
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+<div>
+    <h1>@Model.RangeInt</h1>
+    <div id="editPage">
+        <edit-form :itemid="@Model.Item.Id" :proprange="@Model.RangeInt"></edit-form>
+    </div>
+    <h1>@Model.Item.Range</h1>
+    <!--Vue.js main and components-->
+    <script src="~/js/editProduct/main.js"></script>
+    <script src="~/js/editProduct/EditForm.js"></script>
+
+    <script>
+        const mountedApp = app.mount('#editPage');
+    </script>
+</div>

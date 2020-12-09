@@ -1,16 +1,17 @@
-﻿using LocalPizza.Core.Menu;
+﻿
+using LocalPizza.Core.Menu;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace LocalPizza.Data
 {
-    public class LocalPizzaContext : IdentityDbContext
+    public class LocalPizzaContext : DbContext
     {
-        public DbSet<MenuCategory> Menus { get; set; }
-        public DbSet<ItemGroup> Groups { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<Topping> Toppings { get; set; }
 
-        public LocalPizzaContext(DbContextOptions options) : base(options)
+        public LocalPizzaContext(DbContextOptions<LocalPizzaContext> options) : base(options)
         {
         }
     }

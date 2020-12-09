@@ -1,0 +1,18 @@
+﻿@page
+@model LocalPizza.Pages.Admin.AddProductModel
+@{
+    Layout = "~/Pages/Shared/_AdminLayout.cshtml";
+}
+<div>
+    <div id="editPage">
+        <edit-form ></edit-form>
+    </div>
+
+    <!--Vue.js main and components-->
+    <script src="~/js/editProduct/main.js"></script>
+    <script src="~/js/editProduct/EditForm.js"></script>
+
+    <script>
+        const mountedApp = app.mount('#editPage');
+    </script>
+</div>

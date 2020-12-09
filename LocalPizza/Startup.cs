@@ -21,16 +21,18 @@ namespace LocalPizza
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<DataAccess, DataBaseAccess>();
 
             services.AddDbContextPool<LocalPizzaContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("ProdDb"));
+                options.UseSqlServer(Configuration.GetConnectionString("DevDb"));
             });
-
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<LocalPizzaContext>();
+            
+            services.AddScoped<IDataAccess, DataBaseAccess>();
+            //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<LocalPizzaContext>();
 
             services.AddRazorPages();
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +51,6 @@ namespace LocalPizza
             }
 
             app.UseHttpsRedirection();
-            app.UseBlazorFrameworkFiles();
             app.UseStaticFiles();
 
             app.UseRouting();
