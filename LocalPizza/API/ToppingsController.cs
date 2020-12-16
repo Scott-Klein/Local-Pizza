@@ -104,9 +104,9 @@ namespace LocalPizza.API
         [Route("~/api/Toppings/")]
         public async Task<ActionResult<Topping>> PostTopping(Topping topping)
         {
+            var exists = await _context.Toppings.FindAsync(topping.Id);
             if (topping.Id != 0)
             {
-                var exists = await _context.Toppings.FindAsync(topping.Id);
                 if (exists is not null)
                 {
                     exists.Name = topping.Name;
@@ -116,11 +116,12 @@ namespace LocalPizza.API
             }
             else
             {
-                await _context.AddAsync(topping);
+                var tracked = await _context.AddAsync(topping);
+                
             }
             
             await _context.SaveChangesAsync();
-            return NoContent();
+            return CreatedAtAction("GetItem", new { id = exists.Id }, exists); // this can be null and destroy everything.
         }
         // DELETE: api/Toppings/5
         [HttpDelete("{id}")]

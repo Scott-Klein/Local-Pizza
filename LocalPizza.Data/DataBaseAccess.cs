@@ -1,5 +1,6 @@
 ﻿using LocalPizza.Core;
 using LocalPizza.Core.Menu;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +28,7 @@ namespace LocalPizza.Data
 
         public IEnumerable<Item> GetAllItems()
         {
-            return from i in db.Items
-                   orderby i.Name
-                   select i;
+            return db.Items.Include(x => x.ToppingsList).OrderBy(x => x.Name);
         }
         public IEnumerable<Topping> GetAllToppings()
         {

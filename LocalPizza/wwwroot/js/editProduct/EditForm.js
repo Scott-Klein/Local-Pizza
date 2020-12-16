@@ -134,14 +134,14 @@ app.component('edit-form', {
                     })
             })
         },
-        UploadImage()
+        UploadImage(id)
         {
             if (document.getElementById('imageFile').files.length == 1)
             {
                 const selectedFile = document.getElementById('imageFile').files[0];
                 const formData = new FormData();
                 formData.append('image', selectedFile);
-                fetch('/api/ProductImage?id=' + this.itemid + '&range=' + this.range, {
+                fetch('/api/ProductImage?id=' + id + '&range=' + this.range, {
                     method: 'POST',
                     body: formData
                 }).then(response => console.log(response.status));
@@ -149,7 +149,7 @@ app.component('edit-form', {
         },
         SubmitForm() {
             //If it isn't a topping, we will handle adding a regular item to the database.
-            this.UploadImage();
+            let id;
             if (this.range != 5) // 5 is the enum assigned to toppings
             {
                 let item = {
@@ -174,14 +174,15 @@ app.component('edit-form', {
                             console.log("Item id is!")
                             console.log(this.itemid);
                             response.json().then(data => {
-                                this.itemid = data.id;
-                                console.log(data.id);
+                                returnedId = data.id;
+                                this.UploadImage(returnedId);
                                 this.PostToppings(data.id);
                             })
                         }
                         else
                         {
                             this.PostToppings(this.itemid);
+                            this.UploadImage(this.itemid);
                         }
 
                     });
@@ -200,7 +201,9 @@ app.component('edit-form', {
                         },
                         body: JSON.stringify(topping)
                     })
-                    .then(response => console.log(response.statusText))
+                    .then(response => response.json().then(data => {
+                        this.UploadImage(data.id);
+                    }))
             }
             this.DisplayUpdatedMessage();
         },
@@ -224,11 +227,12 @@ app.component('edit-form', {
             range: 0,
             description: null,
             availableToppings: [],
-            selectedToppings: []
+            selectedToppings: [],
+            returnedId: 0
         }
     },
     created() {
-        console.log("FUCK ME SALLY " + this.itemid + " " + this.proprange)
+        console.log("dammit" + this.itemid + " " + this.proprange)
         this.availableToppings = new Map();
         this.selectedToppings = new Map();
         if (this.itemid != undefined) {

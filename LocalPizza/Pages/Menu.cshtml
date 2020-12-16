@@ -6,6 +6,11 @@
 @using LocalPizza.Core
 <h2>Menu</h2>
 
+<h2>VUE Menu</h2>
+<div id="menu">
+
+</div>
+<h2>CSHTML MENU</h2>
 <h3>Traditional</h3>
 @foreach (var item in Model.GetRange(ProductRange.Traditional))
 {
@@ -42,3 +47,5 @@
         <p>@item.Name</p>
     </div>
 }
+
+<script src="~/js/menu/menu.js"></script>

@@ -73,6 +73,9 @@ div.flex-container:nth-child(2) {
     margin-top: 0px;
 }
 
+.productImg {
+    max-width: 100px;
+}
 .large-button {
     font-family: Poppins;
     font-weight: 700;
@@ -80,6 +83,18 @@ div.flex-container:nth-child(2) {
     background-color: #6565F6;
 }
 
+#customiseForm {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    background-color: #666;
+}
+
+.menuItem {
+    max-width: 500px;
+    color: white;
+    background-color: slategray;
+}
 .menu-btn {
     background-color: #6565F6;
     font-family: Poppins;
