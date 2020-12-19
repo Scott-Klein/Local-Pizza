@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LocalPizza.Core.Menu;
+using LocalPizza.Core.Menu.ViewModels;
 using LocalPizza.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,9 +25,10 @@ namespace LocalPizza.API
 
         // GET: api/menu
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Item>>> GetSaleProducts()
+        public IEnumerable<ItemViewModel> GetSaleProducts()
         {
-            return await _context.Items.ToListAsync();
+            var data = dataAccess.GetItemViews();
+            return data;
         }
     }
 }

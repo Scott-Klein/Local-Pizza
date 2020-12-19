@@ -1,5 +1,6 @@
 ﻿using LocalPizza.Core;
 using LocalPizza.Core.Menu;
+using LocalPizza.Core.Menu.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -117,6 +118,17 @@ namespace LocalPizza.Data
             var product = GetProduct(id, range);
             product.ProductPicture = filename;
             return UpdateProduct(product);
+        }
+
+        public IEnumerable<ItemViewModel> GetItemViews()
+        {
+            var everything = this.GetAllItems().ToList();
+            List<ItemViewModel> items = new List<ItemViewModel>();
+            for (int i = 0; i < everything.Count; i++)
+            {
+                items.Add(new ItemViewModel(everything[i]));
+            }
+            return items;
         }
     }
 }

@@ -86,7 +86,7 @@ div.flex-container:nth-child(2) {
 #customiseForm {
     position: fixed;
     width: 200px;
-    height: 200px;
+    min-height: 200px;
     background-color: #666;
 }
 

@@ -12,6 +12,12 @@ const menu = {
     data() {
         return {
             products: [],
+            traditional: [],
+            premium: [],
+            drink: [],
+            dessert: [],
+            side: [],
+            topping: [],
             randomNum: 5,
             showCustomMenu: false,
             selectedPizza: {name: "noPizza"}
@@ -94,7 +100,10 @@ app.component('customise-form', {
                 <input type="radio" id="frenchCreme" name="sauce" value="frenchCreme">
                 <br/>
                 <h4>3.Toppings</h4>
-                <p v-for="topping in item.toppingsList">{{topping}}</p>
+                <div v-for="topping in item.toppings">
+                    <input type="checkbox" :id="topping.id" :name="topping.id" :value="topping.id">
+                    <label :for="topping.id">{{topping.name}}</label><br>
+                </div>
             </form>
         </div>
         `
