@@ -27,8 +27,7 @@ namespace LocalPizza.API
         [HttpGet]
         public IEnumerable<ItemViewModel> GetSaleProducts()
         {
-            var data = dataAccess.GetItemViews();
-            return data;
+            return dataAccess.GetItemViews();
         }
     }
 }

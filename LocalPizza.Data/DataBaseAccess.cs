@@ -130,5 +130,16 @@ namespace LocalPizza.Data
             }
             return items;
         }
+
+        public IEnumerable<ToppingViewModel> GetToppingViewModels()
+        {
+            List<ToppingViewModel> tvm = new List<ToppingViewModel>();
+            var toppings = this.GetAllToppings().ToList();
+            for (int i = 0; i < toppings.Count(); i++)
+            {
+                tvm.Add(new ToppingViewModel(toppings[i]));
+            }
+            return tvm;
+        }
     }
 }

@@ -126,11 +126,89 @@ app.component('customise-form', {
             console.log("Pizza added... NOT");
         }
     },
+    computed: {
+        isPizza() {
+            return this.item.range < 2 ? true : false;
+        }
+    },
     template:
         /*html*/
         `
         <div>
-        <h2>{{this.item.name}}</h2>
+            <customise-pizza v-show="isPizza" :item="this.item"/>
+            <customise-item v-show="!isPizza" :item="this.item"/>
+        </div>
+        `
+})
+
+app.component('customise-item', {
+    props: {
+        item: Object
+    },
+    methods: {
+        AddItemToCart() {
+            console.log(" WARNING: Item adding to cart not implemented");
+        }
+    },
+    template:
+        /*html*/
+        `
+            <div>
+                <h2>{{this.item.name}}</h2>
+                <p>{{this.item.description}}</p>
+                <button @click.prevent="AddItemToCart">Add To Cart!</button>
+            </div>
+        `
+})
+
+app.component('customise-pizza', {
+    props: {
+        item: Object
+    },
+    methods: {
+        AddPizzaToCart() {
+            console.log(" WARNING: Pizza adding to cart not implemented");
+        },
+        ResetCheckBoxes() {
+            //uncheck all the boxes
+            this.toppings.forEach(element => {
+                document.getElementById(element.id).checked = false;
+            })
+        }
+    },
+    data() {
+        return {
+            toppings: [],
+        }
+    },
+    created() {
+        fetch('/api/toppingview')
+            .then(response => response.json())
+            .then(data => this.toppings = data);
+    },
+    updated() {
+        if (this.item.toppings != undefined)
+        {
+            ResetCheckBoxes();
+
+            //check every box of each default topping.
+            this.item.toppings.forEach(element => {
+                document.getElementById(element.id).checked = true;
+            });
+
+            let front = this.toppings.filter(el => document.getElementById(el.id).checked);
+            let back = this.toppings.filter(el => !document.getElementById(el.id).checked);
+
+            let joined = front.concat(back);
+
+            this.toppings = joined;
+        }
+    },
+    template:
+        /*html*/
+        `
+        <div>
+            <h2>{{this.item.name}}</h2>
             <form class="customiseForm" @submit.prevent="AddPizzaToCart">
                 <h4>Crust</h4>
                 <label for="regular">Regular</label>
@@ -149,7 +227,7 @@ app.component('customise-form', {
                 <input type="radio" id="frenchCreme" name="sauce" value="frenchCreme">
                 <br/>
                 <h4>3.Toppings</h4>
-                <div v-for="topping in item.toppings">
+                <div v-for="topping in toppings">
                     <input type="checkbox" :id="topping.id" :name="topping.id" :value="topping.id">
                     <label :for="topping.id">{{topping.name}}</label><br>
                 </div>
@@ -157,7 +235,6 @@ app.component('customise-form', {
         </div>
         `
 })
-
 
 
 app.mount('#menu');

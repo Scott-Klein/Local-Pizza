@@ -16,7 +16,7 @@ namespace LocalPizza.Data
         bool DeleteItem(int id);
 
         IEnumerable<Item> GetAllItems();
-
+        IEnumerable<ToppingViewModel> GetToppingViewModels();
         IEnumerable<IProduct> GetAllProducts();
         IEnumerable<ItemViewModel> GetItemViews();
         IProduct ProductImage(int id, ProductRange range, string filename);
