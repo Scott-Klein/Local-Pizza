@@ -65,7 +65,6 @@ const menu = {
             //console.log("Traditionals: " + traditional.length)
         },
         showCustomisePage(item) {
-            console.log("Customising pizza named " + item.name);
             this.selectedPizza = item;
             this.showCustomMenu = !this.showCustomMenu;
             //setTimeout(() => { this.showCustomMenu = false; }, 2000);
@@ -118,8 +117,7 @@ app.component('customise-form', {
         item: Object
     },
     updated() {
-        console.log("item was updated");
-        console.log(this.item.name)
+
     },
     methods: {
         AddPizzaToCart() {
@@ -171,14 +169,29 @@ app.component('customise-pizza', {
         },
         ResetCheckBoxes() {
             //uncheck all the boxes
+
             this.toppings.forEach(element => {
-                document.getElementById(element.id).checked = false;
+                let check = document.getElementById(element.id);
+                if (check != undefined) {
+                    document.getElementById(element.id).checked = false;
+                }
+
             })
+        },
+        ToppingChecked(index) {
+            let el = this.toppings[index];
+            if (document.getElementById(el.id).checked) {
+                return true;
+            } else {
+                return false;
+            }
         }
     },
     data() {
         return {
             toppings: [],
+            initialised: false,
+            itemId: 5000
         }
     },
     created() {
@@ -189,20 +202,25 @@ app.component('customise-pizza', {
     updated() {
         if (this.item.toppings != undefined)
         {
-            ResetCheckBoxes();
+            this.ResetCheckBoxes();
 
             //check every box of each default topping.
             this.item.toppings.forEach(element => {
                 document.getElementById(element.id).checked = true;
             });
+            if (this.itemId != this.item.id) {
+                let front = this.toppings.filter(el => document.getElementById(el.id).checked);
+                front.forEach(element => {
+                    console.log(element.name)
+                });
+                let back = this.toppings.filter(el => !document.getElementById(el.id).checked);
+                this.toppings = front.concat(back);
+                this.itemId = this.item.id;
+            }
 
-            let front = this.toppings.filter(el => document.getElementById(el.id).checked);
-            let back = this.toppings.filter(el => !document.getElementById(el.id).checked);
-
-            let joined = front.concat(back);
-
-            this.toppings = joined;
         }
+    },
+    computed: {
     },
     template:
         /*html*/
