@@ -29,7 +29,9 @@ const menu = {
             topping: [],
             randomNum: 5,
             showCustomMenu: false,
-            selectedPizza: {name: "noPizza"}
+            selectedPizza: { name: "noPizza" },
+            cartItems: [],
+            cartPizzas: []
         }
     },
     methods: {
@@ -68,6 +70,9 @@ const menu = {
             this.selectedPizza = item;
             this.showCustomMenu = !this.showCustomMenu;
             //setTimeout(() => { this.showCustomMenu = false; }, 2000);
+        },
+        AddToCart(item) {
+
         }
     },
     created() {
@@ -145,7 +150,24 @@ app.component('customise-item', {
     },
     methods: {
         AddItemToCart() {
-            console.log(" WARNING: Item adding to cart not implemented");
+            let item = {
+                id: this.item.id,
+                qty: this.quantity
+            }
+            this.$emit('cart-item', item);
+        },
+        Reduce() {
+            if (this.quantity > 1) {
+                this.quantity--;
+            }
+        },
+        Increase() {
+            this.quantity++;
+        }
+    },
+    data() {
+        return {
+            quantity: 1,
         }
     },
     template:
@@ -154,6 +176,9 @@ app.component('customise-item', {
             <div>
                 <h2>{{this.item.name}}</h2>
                 <p>{{this.item.description}}</p>
+                <button @click.prevent="Reduce"> - </button>
+                <input type="text" id="quantitySelector" :value="quantity">
+                <button @click.prevent="Increase"> + </button>
                 <button @click.prevent="AddItemToCart">Add To Cart!</button>
             </div>
         `
@@ -165,7 +190,12 @@ app.component('customise-pizza', {
     },
     methods: {
         AddPizzaToCart() {
-            console.log(" WARNING: Pizza adding to cart not implemented");
+            let toppingIds = [];
+            let checkedToppings = this.toppings.filter(el => document.getElementById(el.id).checked);
+            this.GetCheckedToppings.forEach(topping => {
+                toppingIds.push(topping.id);
+            });
+
         },
         ResetCheckBoxes() {
             //uncheck all the boxes
@@ -175,7 +205,6 @@ app.component('customise-pizza', {
                 if (check != undefined) {
                     document.getElementById(element.id).checked = false;
                 }
-
             })
         },
         ToppingChecked(index) {
@@ -185,6 +214,11 @@ app.component('customise-pizza', {
             } else {
                 return false;
             }
+        },
+        logToppings(toppings) {
+            toppings.forEach(element => {
+                console.log(element.name);
+            });
         }
     },
     data() {
@@ -209,11 +243,10 @@ app.component('customise-pizza', {
                 document.getElementById(element.id).checked = true;
             });
             if (this.itemId != this.item.id) {
-                let front = this.toppings.filter(el => document.getElementById(el.id).checked);
-                front.forEach(element => {
-                    console.log(element.name)
-                });
+                let front = this.GetCheckedToppings;
+
                 let back = this.toppings.filter(el => !document.getElementById(el.id).checked);
+
                 this.toppings = front.concat(back);
                 this.itemId = this.item.id;
             }
@@ -221,6 +254,11 @@ app.component('customise-pizza', {
         }
     },
     computed: {
+        GetCheckedToppings() { //this computed property seems to mutate 'this.items' somehow. Even though reading it seems like it's impossible I have proven that it can.
+            //Absolutely bizarre!
+            console.log("Get Checked TOppings")
+            return this.toppings.filter(el => document.getElementById(el.id).checked);
+        }
     },
     template:
         /*html*/
@@ -249,6 +287,7 @@ app.component('customise-pizza', {
                     <input type="checkbox" :id="topping.id" :name="topping.id" :value="topping.id">
                     <label :for="topping.id">{{topping.name}}</label><br>
                 </div>
+                <input type="submit">
             </form>
         </div>
         `
