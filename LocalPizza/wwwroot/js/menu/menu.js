@@ -86,6 +86,10 @@ const menu = {
             console.log(item);
         }
     },
+    updated() {
+        let cart = JSON.stringify(this.cart);
+        localStorage.setItem('cart', cart);
+    },
     created() {
         //Need to pull all of the menu items out.
         fetch('api/menu')
@@ -96,6 +100,8 @@ const menu = {
             .then(() => {
                 this.sortMenu();
             })
+        console.log(JSON.parse(localStorage.getItem('cart')))
+        this.cart = JSON.parse(localStorage.getItem('cart'));
     },
 }
 
@@ -166,7 +172,12 @@ app.component('order', {
         },
         ToppingText(id) {
             let topping = this.toppings.find(el => el.id == id);
-            return topping.name;
+            if (topping != undefined) {
+                return topping.name;
+            } else {
+                return 'loading...'
+            }
+
         }
     },
     template:
@@ -187,7 +198,7 @@ app.component('order', {
                 <h5>qty: {{item.qty}}</h5>
                 <button @click="removeItem(index)">X</button>
             </div>
-            <button>Place order</button>
+            <button >Place order</button>
         </div>
         `
 })
