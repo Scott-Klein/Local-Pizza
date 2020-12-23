@@ -5,47 +5,7 @@
 }
 @using LocalPizza.Core
 <h2>Menu</h2>
-
-<h2>VUE Menu</h2>
 <div id="menu">
 
 </div>
-<h2>CSHTML MENU</h2>
-<h3>Traditional</h3>
-@foreach (var item in Model.GetRange(ProductRange.Traditional))
-{
-    <div>
-        <p>@item.Name</p>
-    </div>
-}
-<h3>Premium</h3>
-@foreach (var item in Model.GetRange(ProductRange.Premium))
-{
-    <div>
-        <p>@item.Name</p>
-    </div>
-}
-<h3>Sides</h3>
-@foreach (var item in Model.GetRange(ProductRange.Side))
-{
-    <div>
-        <p>@item.Name</p>
-    </div>
-}
-<h3>Drink</h3>
-@foreach (var item in Model.GetRange(ProductRange.Drink))
-{
-    <div>
-        <p>@item.Name</p>
-    </div>
-}
-
-<h3>Dessert</h3>
-@foreach (var item in Model.GetRange(ProductRange.Dessert))
-{
-    <div>
-        <p>@item.Name</p>
-    </div>
-}
-
 <script src="~/js/menu/menu.js"></script>

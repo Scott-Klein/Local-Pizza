@@ -4,8 +4,8 @@ const menu = {
     /*html*/
         `
         <div>
-            <customise-form id="customiseForm" v-show="showCustomMenu" :item="selectedPizza"/>
-            <p v-for="item in products">{{item}}</p>
+            <customise-form id="customiseForm" v-show="showCustomMenu" :item="selectedPizza" @pizza-push="PizzaPush" @item-push="ItemPush"/>
+            <order id="order" :cart="cart"/>
             <h2>Traditional Menu</h2>
             <menu-item v-for="item in traditional" :item="item" @customise="showCustomisePage"/>
             <h2>Premium Menu</h2>
@@ -30,11 +30,21 @@ const menu = {
             randomNum: 5,
             showCustomMenu: false,
             selectedPizza: { name: "noPizza" },
-            cartItems: [],
-            cartPizzas: []
+            cart: {
+                cartItems: [],
+                cartPizzas: []
+            }
         }
     },
     methods: {
+        PizzaPush(pizza) {
+            this.showCustomMenu = false;
+            this.cart.cartPizzas.push(pizza);
+        },
+        ItemPush(item) {
+            this.showCustomMenu = false;
+            this.cart.cartItems.push(item);
+        },
         sortMenu() {
             if (this.products.length > 0) {
                 console.log("Running Menu Sorter")
@@ -71,8 +81,9 @@ const menu = {
             this.showCustomMenu = !this.showCustomMenu;
             //setTimeout(() => { this.showCustomMenu = false; }, 2000);
         },
-        AddToCart(item) {
-
+        pizzaAdded(item) {
+            console.log("Menu has recieved this pizza");
+            console.log(item);
         }
     },
     created() {
@@ -102,8 +113,10 @@ app.component('menu-item', {
         customiseItem() {
             //this should spawn a new customiser in front of everything else.
             this.$emit('customise', this.item);
+
         }
     },
+
     template:
         /*html*/
         `
@@ -117,16 +130,83 @@ app.component('menu-item', {
         `
 })
 
+app.component('order', {
+    props: {
+        cart: {
+            cartItems: [],
+            cartPizzas: []
+        }
+    },
+    data() {
+        return {
+            toppings: [],
+            Bases: [ // This needs to be made dynamic at some point soon, okay Scotty boy?
+                "Tomato",
+                "Barbeque",
+                "French Creme"
+            ],
+            Crusts: [
+                "Regular",
+                "Thin",
+                "Deep"
+            ],
+      }
+    },
+    created() {
+        fetch('/api/toppingview')
+            .then(response => response.json())
+            .then(data => this.toppings = data);
+    },
+    methods: {
+        removeItem(i) {
+            this.cart.cartItems.splice(i, 1);
+        },
+        removePizza(i) {
+            this.cart.cartPizzas.splice(i, 1);
+        },
+        ToppingText(id) {
+            let topping = this.toppings.find(el => el.id == id);
+            return topping.name;
+        }
+    },
+    template:
+        /*html*/
+        `
+        <div>
+            <p>Pizza Orders:</p>
+            <div v-for="(pizza, index) in cart.cartPizzas" >
+                <h4>{{pizza.name}}</h4>
+                <p>Base: {{this.Bases[pizza.base]}}</p>
+                <p>Crust: {{this.Crusts[pizza.base]}}</p>
+                <p v-for="topping in pizza.toppings">{{ToppingText(topping)}}</p>
+                <button @click="removePizza(index)">X</button>
+            </div>
+            <p>Item Orders:</p>
+            <div v-for="(item, index) in cart.cartItems" >
+                <h4>{{item.name}}</h4>
+                <h5>qty: {{item.qty}}</h5>
+                <button @click="removeItem(index)">X</button>
+            </div>
+            <button>Place order</button>
+        </div>
+        `
+})
+
 app.component('customise-form', {
     props: {
         item: Object
     },
-    updated() {
-
-    },
     methods: {
-        AddPizzaToCart() {
-            console.log("Pizza added... NOT");
+        pizzaAdded(pizza) {
+            //tell parent to hide the configurator.
+            this.$emit('pizza-push', pizza);
+        },
+        itemAdded(item) {
+            this.$emit('item-push',item)
+        }
+    },
+    data() {
+        return {
         }
     },
     computed: {
@@ -138,11 +218,13 @@ app.component('customise-form', {
         /*html*/
         `
         <div>
-            <customise-pizza v-show="isPizza" :item="this.item"/>
-            <customise-item v-show="!isPizza" :item="this.item"/>
+            <customise-pizza v-show="isPizza" :item="this.item" @pizza-to-cart="pizzaAdded"/>
+            <customise-item v-show="!isPizza" :item="this.item" @cart-item="itemAdded"/>
         </div>
         `
 })
+
+
 
 app.component('customise-item', {
     props: {
@@ -151,6 +233,7 @@ app.component('customise-item', {
     methods: {
         AddItemToCart() {
             let item = {
+                name: this.item.name,
                 id: this.item.id,
                 qty: this.quantity
             }
@@ -190,12 +273,14 @@ app.component('customise-pizza', {
     },
     methods: {
         AddPizzaToCart() {
-            let toppingIds = [];
+            this.pizza.itemId = this.item.id;
+            this.pizza.name = this.item.name;
             let checkedToppings = this.toppings.filter(el => document.getElementById(el.id).checked);
-            this.GetCheckedToppings.forEach(topping => {
-                toppingIds.push(topping.id);
+            checkedToppings.forEach(topping => {
+                this.pizza.toppings.push(topping.id);
             });
-
+            this.$emit('pizza-to-cart', Object.assign({}, this.pizza));
+            this.pizza.toppings = [];
         },
         ResetCheckBoxes() {
             //uncheck all the boxes
@@ -215,15 +300,24 @@ app.component('customise-pizza', {
                 return false;
             }
         },
-        logToppings(toppings) {
-            toppings.forEach(element => {
-                console.log(element.name);
-            });
-        }
+        baseSelect(base) {
+            this.pizza.base = base;
+        },
+        crustSelect(crust) {
+            this.pizza.crust = crust;
+        },
     },
     data() {
         return {
             toppings: [],
+            selectedToppings: [],
+            pizza: {
+                name: "",
+                itemId: 5000,
+                toppings: [],
+                base: 0,
+                crust: 0,
+            },
             initialised: false,
             itemId: 5000
         }
@@ -243,7 +337,7 @@ app.component('customise-pizza', {
                 document.getElementById(element.id).checked = true;
             });
             if (this.itemId != this.item.id) {
-                let front = this.GetCheckedToppings;
+                let front = this.toppings.filter(el => document.getElementById(el.id).checked);
 
                 let back = this.toppings.filter(el => !document.getElementById(el.id).checked);
 
@@ -254,11 +348,11 @@ app.component('customise-pizza', {
         }
     },
     computed: {
-        GetCheckedToppings() { //this computed property seems to mutate 'this.items' somehow. Even though reading it seems like it's impossible I have proven that it can.
-            //Absolutely bizarre!
-            console.log("Get Checked TOppings")
-            return this.toppings.filter(el => document.getElementById(el.id).checked);
-        }
+        //GetCheckedToppings() { //this computed property seems to mutate 'this.items' somehow. Even though reading it seems like it's impossible I have proven that it can.
+        //    //Absolutely bizarre!
+        //    console.log("Get Checked TOppings")
+        //    return this.toppings.filter(el => document.getElementById(el.id).checked);
+        //}
     },
     template:
         /*html*/
@@ -268,26 +362,26 @@ app.component('customise-pizza', {
             <form class="customiseForm" @submit.prevent="AddPizzaToCart">
                 <h4>Crust</h4>
                 <label for="regular">Regular</label>
-                <input type="radio" id="regular" name="crust" value="regular">
+                <input type="radio" @click="crustSelect(0)" id="regular" name="crust" value="regular">
                 <label for="thin">Thin</label>
-                <input type="radio" id="thin" name="crust" value="thin">
+                <input type="radio" @click="crustSelect(1)" id="thin" name="crust" value="thin">
                 <label for="deep">Deep Pan</label>
-                <input type="radio" id="deep" name="crust" value="deep">
+                <input type="radio" @click="crustSelect(2)" id="deep" name="crust" value="deep">
                 <br/>
                 <h4>2.Choose Your Sauce</h4>
                 <label for="tomato">Tomato</label>
-                <input type="radio" id="tomato" name="sauce" value="tomato">
+                <input type="radio" @click="baseSelect(0)" id="tomato" name="sauce" value="tomato">
                 <label for="bbq">BBQ</label>
-                <input type="radio" id="bbq" name="sauce" value="bbq">
+                <input type="radio" @click="baseSelect(1)" id="bbq" name="sauce" value="bbq">
                 <label for="frenchCreme">French Creme</label>
-                <input type="radio" id="frenchCreme" name="sauce" value="frenchCreme">
+                <input type="radio" @click="baseSelect(2)" id="frenchCreme" name="sauce" value="frenchCreme">
                 <br/>
                 <h4>3.Toppings</h4>
                 <div v-for="topping in toppings">
                     <input type="checkbox" :id="topping.id" :name="topping.id" :value="topping.id">
                     <label :for="topping.id">{{topping.name}}</label><br>
                 </div>
-                <input type="submit">
+                <input type="submit" value="Add to cat">
             </form>
         </div>
         `
