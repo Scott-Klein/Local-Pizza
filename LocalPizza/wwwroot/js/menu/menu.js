@@ -100,7 +100,6 @@ const menu = {
             .then(() => {
                 this.sortMenu();
             })
-        console.log(JSON.parse(localStorage.getItem('cart')))
         this.cart = JSON.parse(localStorage.getItem('cart'));
     },
 }
@@ -198,7 +197,6 @@ app.component('order', {
                 <h5>qty: {{item.qty}}</h5>
                 <button @click="removeItem(index)">X</button>
             </div>
-            <button >Place order</button>
         </div>
         `
 })
