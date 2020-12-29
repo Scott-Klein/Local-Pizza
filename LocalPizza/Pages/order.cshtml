@@ -5,23 +5,27 @@
 <form method="post">
     <label asp-for="CurrentOrder.DeliveryAddress.Unit"></label>
     <input asp-for="CurrentOrder.DeliveryAddress.Unit" />
-
-    <label asp-for="CurrentOrder.DeliveryAddress.StreetNumber" ></label>
+    <br />
+    <label asp-for="CurrentOrder.DeliveryAddress.StreetNumber"></label>
     <input asp-for="CurrentOrder.DeliveryAddress.StreetNumber" />
-
-    <label asp-for="CurrentOrder.DeliveryAddress.StreetName" ></label>
+    <br />
+    <label asp-for="CurrentOrder.DeliveryAddress.StreetName"></label>
     <input asp-for="CurrentOrder.DeliveryAddress.StreetName" />
-
-    <label asp-for="CurrentOrder.DeliveryAddress.Suburb" ></label>
+    <br />
+    <label asp-for="CurrentOrder.DeliveryAddress.Suburb"></label>
     <input asp-for="CurrentOrder.DeliveryAddress.Suburb" />
-
-    <label asp-for="CurrentOrder.DeliveryAddress.PostCode" ></label>
+    <br />
+    <label asp-for="CurrentOrder.DeliveryAddress.PostCode"></label>
     <input asp-for="CurrentOrder.DeliveryAddress.PostCode" />
 
-    <label asp-for="CurrentOrder.Name" ></label>
+    <label asp-for="CurrentOrder.DeliveryInstructions"></label>
+    <input asp-for="CurrentOrder.DeliveryInstructions" />
+    <br />
+    <label asp-for="CurrentOrder.Name"></label>
     <input asp-for="CurrentOrder.Name" />
-
-    <label asp-for="CurrentOrder.RequestDelivery" ></label>
-    <select asp-for="CurrentOrder.RequestDelivery"
+    <br />
+    <label asp-for="CurrentOrder.RequestDelivery"></label>
+    <select asp-for="CurrentOrder.RequestDelivery" asp-items="Model.TimesSelect"></select>
+    <br />
     <button type="submit">Submit</button>
 </form>
