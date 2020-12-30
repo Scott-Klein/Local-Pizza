@@ -21,7 +21,7 @@ namespace LocalPizza.Core.Orders
         public LocalTime RequestDelivery { get; set; }
         
         [Required]
-        public List<ItemOrder> OrderItems { get; set; }
+        public ShoppingCart OrderItems { get; set; }
         
         public OrderStatus Status { get; set; }
         public LocalDateTime Created { get; set; }

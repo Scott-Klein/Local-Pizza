@@ -10,16 +10,17 @@ using System.Globalization;
 using NodaTime;
 
 namespace LocalPizza.Pages
-{   
-    [BindProperties]
+{
+
     public class OrderModel : PageModel
     {
         private readonly IHtmlHelper htmlHelper;
 
         public Order CurrentOrder { get; set; }
 
-        public string TestMessage { get; set; }
         public List<SelectListItem> TimesSelect { get; set; }
+        public ShoppingCart OrderItems { get; set; }
+        
         public OrderModel(IHtmlHelper htmlHelper)
         {
             this.htmlHelper = htmlHelper;
@@ -35,6 +36,7 @@ namespace LocalPizza.Pages
         }
         public void OnPost()
         {
+            this.CurrentOrder = new Order();
             this.CurrentOrder.Created = LocalDateTime.FromDateTime(DateTime.Now);
         }
         private void PopulateSelectListItems()

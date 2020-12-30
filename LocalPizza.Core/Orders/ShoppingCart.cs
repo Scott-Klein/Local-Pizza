@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace LocalPizza.Core.Orders
 {
-    class ShoppingCart
+    public class ShoppingCart
     {
-        public List<CartItem> CartItems { get; set; }
-        public List<CartPizza> CartPizzas { get; set; }
+        public CartItem[] CartItems { get; set; }
+        public CartPizza[] CartPizzas { get; set; }
     }
+
 }

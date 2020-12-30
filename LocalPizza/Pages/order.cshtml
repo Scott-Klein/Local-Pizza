@@ -27,22 +27,15 @@
     <label asp-for="CurrentOrder.Name"></label>
     <select asp-for="CurrentOrder.RequestDelivery" asp-items="Model.TimesSelect"></select>
     <br />
-    <button type="button" onclick="appendCart()">Submit</button>
+    <button type="button" onclick="appendCart()" >Submit</button>
 </form>
 
 <script>
     function appendCart() {
-        let fe = document.getElementById('OrderForm')
-        let form = new FormData(fe);
-        form.append("OrderItems", JSON.parse(localStorage.getItem('cart')));
-        form.append("TestMessage", "Hello there!");
-        console.log(JSON.parse(localStorage.getItem('cart')));
-        fetch('/order', {
-            method: 'POST',
-            body: form
-        }).
-            then(response => {
-                console.log(response.status);
-            })
+        fetch("/api/Order", {
+            method: "POST",
+            body: localStorage.getItem('cart')
+        })
+
     }
 </script>
