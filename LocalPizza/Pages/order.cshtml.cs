@@ -12,14 +12,15 @@ using NodaTime;
 namespace LocalPizza.Pages
 {   
     [BindProperties]
-    public class orderModel : PageModel
+    public class OrderModel : PageModel
     {
         private readonly IHtmlHelper htmlHelper;
 
         public Order CurrentOrder { get; set; }
 
+        public string TestMessage { get; set; }
         public List<SelectListItem> TimesSelect { get; set; }
-        public orderModel(IHtmlHelper htmlHelper)
+        public OrderModel(IHtmlHelper htmlHelper)
         {
             this.htmlHelper = htmlHelper;
             this.TimesSelect = new List<SelectListItem>();

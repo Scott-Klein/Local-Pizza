@@ -27,7 +27,7 @@ namespace LocalPizza.Core.Orders
         public LocalDateTime Created { get; set; }
         public LocalDateTime DeliveredTime { get; set; }
         public string DeliveryInstructions { get; set; }
-        
+
         [Required]
         [StringLength(12, MinimumLength = 8)]
         public string PhoneNumber { get; set; }
