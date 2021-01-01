@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NodaTime;
 
 namespace LocalPizza.API
 {
@@ -12,9 +13,11 @@ namespace LocalPizza.API
     public class OrderController : ControllerBase
     {
         [HttpPost]
-        public IActionResult CreateOrder(ShoppingCart cart)
+        public IActionResult CreateOrder(InMemoryOrder order)
         {
+            order.Created = LocalDateTime.FromDateTime(DateTime.Now);
 
+            //Lets store this in the database.
             return NoContent();
         }
     }

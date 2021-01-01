@@ -16,7 +16,7 @@ namespace LocalPizza.Pages
     {
         private readonly IHtmlHelper htmlHelper;
 
-        public Order CurrentOrder { get; set; }
+        public InMemoryOrder CurrentOrder { get; set; }
 
         public List<SelectListItem> TimesSelect { get; set; }
         public ShoppingCart OrderItems { get; set; }
@@ -31,12 +31,12 @@ namespace LocalPizza.Pages
         public void OnGet()
         {
             TimesSelect = new List<SelectListItem>();
-            this.CurrentOrder = new Order();
+            this.CurrentOrder = new InMemoryOrder();
             PopulateSelectListItems();
         }
         public void OnPost()
         {
-            this.CurrentOrder = new Order();
+            this.CurrentOrder = new InMemoryOrder();
             this.CurrentOrder.Created = LocalDateTime.FromDateTime(DateTime.Now);
         }
         private void PopulateSelectListItems()

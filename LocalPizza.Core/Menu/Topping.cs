@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LocalPizza.Core.Orders;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -19,7 +20,7 @@ namespace LocalPizza.Core.Menu
         public ProductRange Range { get; set; }
 
         public List<Item> Items { get; set; }
-
+        public List<OrderItem> OrderItems { get; set; }
         public string ProductPicture { get; set; }
     }
 }
