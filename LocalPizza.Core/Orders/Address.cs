@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace LocalPizza.Core.Orders
@@ -14,6 +15,8 @@ namespace LocalPizza.Core.Orders
         public string StreetName { get; set; }
         public string Suburb { get; set; }
         public string PostCode { get; set; }
+
+        [JsonIgnore]
         public List<Order> Orders { get; set; }
     }
 }

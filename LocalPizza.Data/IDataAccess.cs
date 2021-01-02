@@ -1,6 +1,7 @@
 ﻿using LocalPizza.Core;
 using LocalPizza.Core.Menu;
 using LocalPizza.Core.Menu.ViewModels;
+using LocalPizza.Core.Orders;
 using System.Collections.Generic;
 
 namespace LocalPizza.Data
@@ -14,9 +15,10 @@ namespace LocalPizza.Data
         public Item GetItem(int id);
         public IProduct GetProduct(int id, ProductRange range);
         bool DeleteItem(int id);
-
+        Order InsertOrder(Order order);
         IEnumerable<Item> GetAllItems();
         IEnumerable<ToppingViewModel> GetToppingViewModels();
+        public Topping GetTopping(int id);
         IEnumerable<IProduct> GetAllProducts();
         IEnumerable<ItemViewModel> GetItemViews();
         IProduct ProductImage(int id, ProductRange range, string filename);

@@ -23,4 +23,8 @@
 		<ProjectReference Include="..\LocalPizza.Data\LocalPizza.Data.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="wwwroot\js\Order\" />
+	</ItemGroup>
+
 </Project>

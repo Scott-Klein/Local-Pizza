@@ -12,9 +12,11 @@ namespace LocalPizza.Core.Orders
         public string Created { get; set; }
         public Address DeliveryAddress { get; set; }
         public string DeliveredTime { get; set; }
+        public string RequestDeliveryTime { get; set; }
         public string DeliveryInstructions { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
         public OrderStatus Status { get; set; }
     }
 }
+

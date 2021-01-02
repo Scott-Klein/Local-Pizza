@@ -1,6 +1,7 @@
 ﻿using LocalPizza.Core;
 using LocalPizza.Core.Menu;
 using LocalPizza.Core.Menu.ViewModels;
+using LocalPizza.Core.Orders;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -140,6 +141,18 @@ namespace LocalPizza.Data
                 tvm.Add(new ToppingViewModel(toppings[i]));
             }
             return tvm;
+        }
+
+        public Order InsertOrder(Order order)
+        {
+            this.db.Orders.Add(order);
+            this.db.SaveChanges();
+            return order;
+        }
+
+        public Topping GetTopping(int id)
+        {
+            return this.db.Toppings.Find(id);
         }
     }
 }
