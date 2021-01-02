@@ -23,12 +23,15 @@ function appendCart() {
         body: JSON.stringify(order)
     }).
         then(response => {
-            const order = JSON.parse(response.body);
-            SaveOrderToStorage(order);
-        });
+            return response.json();
+        })
+        .then(data => {
+            SaveOrderToStorage(data);
+        })
 }
 
 function SaveOrderToStorage(order) {
     localStorage.setItem('order', JSON.stringify(order));
     localStorage.removeItem('cart');
+    window.location.href = "/Complete";
 }
