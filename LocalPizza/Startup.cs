@@ -1,4 +1,5 @@
 using LocalPizza.Data;
+using LocalPizza.Hubs;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -32,7 +33,7 @@ namespace LocalPizza
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<LocalPizzaContext>();
 
             services.AddRazorPages();
-
+            services.AddSignalR();
             services.AddControllers();
         }
 
@@ -63,6 +64,7 @@ namespace LocalPizza
             {
                 endpoints.MapRazorPages();
                 endpoints.MapControllers();
+                endpoints.MapHub<OrderHub>("/ordershub");
             });
         }
     }

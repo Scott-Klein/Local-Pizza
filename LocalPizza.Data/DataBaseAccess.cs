@@ -154,5 +154,11 @@ namespace LocalPizza.Data
         {
             return this.db.Toppings.Find(id);
         }
+
+        public OrderStatus GetOrderStatus(int id)
+        {
+            var order = this.db.Orders.Find(id);
+            return order.Status;
+        }
     }
 }

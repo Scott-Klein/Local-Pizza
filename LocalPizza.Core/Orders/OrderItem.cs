@@ -23,7 +23,7 @@ namespace LocalPizza.Core.Orders
         [JsonIgnore]
         public List<Topping> Toppings { get; set; }
 
-        [JsonIgnore]
+
         public Item Item { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using LocalPizza.Core.Orders;
 using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace LocalPizza.Core.Menu
 {
@@ -29,6 +30,8 @@ namespace LocalPizza.Core.Menu
         public string ProductPicture { get; set; }
 
         public List<Topping> ToppingsList { get; set; }
+
+        [JsonIgnore]
         public List<OrderItem> OrderItems { get; set; }
     }
 }

@@ -100,7 +100,11 @@ const menu = {
             .then(() => {
                 this.sortMenu();
             })
-        this.cart = JSON.parse(localStorage.getItem('cart'));
+        //see if we have a cart in local store
+        let c = JSON.parse(localStorage.getItem('cart'));
+        if (c) {
+            this.cart = JSON.parse(localStorage.getItem('cart'));
+        }
     },
 }
 

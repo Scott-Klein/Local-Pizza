@@ -17,6 +17,7 @@ namespace LocalPizza.Data
         bool DeleteItem(int id);
         Order InsertOrder(Order order);
         IEnumerable<Item> GetAllItems();
+        OrderStatus GetOrderStatus(int id);
         IEnumerable<ToppingViewModel> GetToppingViewModels();
         public Topping GetTopping(int id);
         IEnumerable<IProduct> GetAllProducts();
