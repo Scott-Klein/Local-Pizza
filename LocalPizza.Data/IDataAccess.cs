@@ -10,7 +10,7 @@ namespace LocalPizza.Data
     public interface IDataAccess
     {
         Item InsertItem(Item item);
-
+        Task<Order> IncrementStatus(int id);
         Item UpdateItem(Item item);
         IProduct UpdateProduct(IProduct product);
         public Item GetItem(int id);

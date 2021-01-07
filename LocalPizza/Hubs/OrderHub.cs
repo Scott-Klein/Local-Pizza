@@ -36,17 +36,20 @@ namespace LocalPizza.Hubs
             await Clients.Caller.SendAsync("Finished");
         }
 
+        public async Task UpdateStatus(int id)
+        {
+            var updated = await data.IncrementStatus(id);
+            await Clients.Caller.SendAsync("UpdateOrder", updated);
+        }
+
+        public async Task Test()
+        {
+            await Clients.Caller.SendAsync("TestBack");
+        }
         //Admin web app calls this to ask for new orders to start pouring to it
         public async Task StartUpdates()
         {
             DataBaseAccess.OrderInsertEvent += Data_OrderInsertEvent;
-            //Keep alive for 10 hours.
-            await Task.Delay(TimeSpan.FromHours(10));
-        }
-
-        public async Task AbortConnection()
-        {
-            await this.AbortConnection();
         }
 
         private async Task Data_OrderInsertEvent(object sender, OrderInsertedEventArgs e)
@@ -54,10 +57,5 @@ namespace LocalPizza.Hubs
             await Clients.Caller.SendAsync("AddNewOrder", e.Order);
         }
 
-        public override async Task OnDisconnectedAsync(Exception exception)
-        {
-            DataBaseAccess.OrderInsertEvent -= Data_OrderInsertEvent;
-            await base.OnDisconnectedAsync(exception);
-        }
     }
 }

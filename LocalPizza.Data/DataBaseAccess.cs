@@ -179,5 +179,17 @@ namespace LocalPizza.Data
         {
             return this.db.Orders.ToList();
         }
+
+        public async Task<Order> IncrementStatus(int id)
+        {
+            var order = await this.db.Orders.FindAsync(id);
+            if (order.Status != OrderStatus.Completed)
+            {
+                order.Status++;
+            }
+            //this.db.Orders.Update(order);
+            await this.db.SaveChangesAsync();
+            return order;
+        }
     }
 }

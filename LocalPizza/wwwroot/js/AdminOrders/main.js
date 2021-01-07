@@ -18,7 +18,12 @@ app.component('order-table', {
         <div>
             <table>
                 <tr v-for="order in orders">
-                    {{order}}
+                    <td>{{order.id}}</td>
+                    <td>  {{order.name}}</td>
+                    <td>  {{order.phone}}</td>
+                    <td>  {{order.name}}</td>
+                    <td>  {{this.StatusEnum[order.status]}}</td>
+                    <td><button type="button" @click="ProgressOrder(order.id)">Progress Order</button></td>
                 </tr>
             </table>
         </div>
@@ -30,23 +35,33 @@ app.component('order-table', {
 
         })
         this.connection = new signalR.HubConnectionBuilder().withUrl('/ordershub').build();
-        this.connection.on("RefreshOrder", this.RefreshOrder);
+        this.connection.on("UpdateOrder", this.UpdateOrder);
         this.connection.on("AddNewOrder", this.AddNewOrder);
+        this.connection.on("TestBack", this.TestBack);
         this.connection.start().then(() => {
             this.connection.invoke("StartUpdates");
-            window.addEventListener("beforeunload", (e) => {
-                this.connection.invoke("AbortConnection");
-                alert("Hello! I am an alert box!");
-            });
         });
     },
     data() {
         return {
             orders: [],
-            connection: {}
+            connection: {},
+            StatusEnum: {
+                0: "Created",
+                1: "Preparing",
+                2: "Out for Delivery",
+                3: "Delivered"
+            },
         }
     },
     methods: {
+        TestBack() {
+            console.log("tested hub okay");
+        },
+        ProgressOrder(id) {
+            console.log("Invoking update order status");
+            this.connection.invoke("UpdateStatus", id);
+        },
         OnTabClose(e) {
             this.connection.invoke("AbortConnection");
         },
@@ -65,10 +80,13 @@ app.component('order-table', {
                 }
             }
         },
-        RefreshOrder(order) {
-            for (let i = 0; i < order.length; i++) {
-                if (orders[i].id == order.id) {
-                    orders[i] = order;
+        UpdateOrder(order) {
+            console.log("Updating order");
+            console.log("order status " + this.StatusEnum[order.status]);
+            for (let i = 0; i < this.orders.length; i++) {
+                if (this.orders[i].id == order.id) {
+                    this.orders[i] = order;
+                    console.log("Changed an order in the array (or tried to)")
                 }
             }
         },
