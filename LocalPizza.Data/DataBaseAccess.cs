@@ -6,14 +6,33 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using static LocalPizza.Data.IDataAccess;
 
 namespace LocalPizza.Data
 {
+    public delegate Task OrderInsertHandler<OrderInsertedEventArgs>(object sender, OrderInsertedEventArgs e);
+
     public class DataBaseAccess : IDataAccess
     {
         public List<Item> Items { get; set; }
 
         private readonly LocalPizzaContext db;
+
+        public static event OrderInsertHandler<OrderInsertedEventArgs> OrderInsertEvent;
+
+        public Order InsertOrder(Order order)
+        {
+            this.db.Orders.Add(order);
+            if (this.db.SaveChanges() > 0)
+            {
+                if(DataBaseAccess.OrderInsertEvent != null)
+                {
+                    DataBaseAccess.OrderInsertEvent(this, new OrderInsertedEventArgs(order));
+                }
+            }
+            return order;
+        }
 
         public DataBaseAccess(LocalPizzaContext db)
         {
@@ -143,12 +162,7 @@ namespace LocalPizza.Data
             return tvm;
         }
 
-        public Order InsertOrder(Order order)
-        {
-            this.db.Orders.Add(order);
-            this.db.SaveChanges();
-            return order;
-        }
+
 
         public Topping GetTopping(int id)
         {
@@ -159,6 +173,11 @@ namespace LocalPizza.Data
         {
             var order = this.db.Orders.Find(id);
             return order.Status;
+        }
+
+        public IEnumerable<Order> GetAllOrders()
+        {
+            return this.db.Orders.ToList();
         }
     }
 }

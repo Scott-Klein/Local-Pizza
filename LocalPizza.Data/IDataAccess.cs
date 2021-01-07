@@ -3,6 +3,7 @@ using LocalPizza.Core.Menu;
 using LocalPizza.Core.Menu.ViewModels;
 using LocalPizza.Core.Orders;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace LocalPizza.Data
 {
@@ -21,6 +22,7 @@ namespace LocalPizza.Data
         IEnumerable<ToppingViewModel> GetToppingViewModels();
         public Topping GetTopping(int id);
         IEnumerable<IProduct> GetAllProducts();
+        IEnumerable<Order> GetAllOrders();
         IEnumerable<ItemViewModel> GetItemViews();
         IProduct ProductImage(int id, ProductRange range, string filename);
         bool Delete(int id, ProductRange range);

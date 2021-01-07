@@ -28,10 +28,9 @@ namespace LocalPizza
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DevDb"));
             });
-            
             services.AddScoped<IDataAccess, DataBaseAccess>();
             //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<LocalPizzaContext>();
-
+            
             services.AddRazorPages();
             services.AddSignalR();
             services.AddControllers();

@@ -29,5 +29,11 @@ namespace LocalPizza.API
 
             return actionresult;
         }
+
+        [HttpGet]
+        public IEnumerable<Order> GetOrders()
+        {
+            return dataAccess.GetAllOrders();
+        }
     }
 }
