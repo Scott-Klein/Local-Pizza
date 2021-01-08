@@ -26,6 +26,7 @@ namespace LocalPizza.Core.Orders
         [RegularExpression(@"^[a-zA-Z]{2,80}$", ErrorMessage = "Suburbs are from 2 to 80 characters, using any upper or lower chase characters.")]
         public string Suburb { get; set; }
 
+        [RegularExpression(@"^[2-8]{1}[0-9]{3}$", ErrorMessage = "POST codes are 4 digits long with a valid range of 2000-8999 in Australia.")]
         public string PostCode { get; set; }
 
         [JsonIgnore]
