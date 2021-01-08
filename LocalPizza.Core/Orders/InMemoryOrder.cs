@@ -30,7 +30,7 @@ namespace LocalPizza.Core.Orders
         public string DeliveryInstructions { get; set; }
 
         [Required]
-        [StringLength(12, MinimumLength = 8)]
+        [Phone]
         public string PhoneNumber { get; set; }
         
         public List<LocalTime> ListTimes()

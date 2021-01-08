@@ -19,10 +19,10 @@ app.component('order-table', {
             <table>
                 <tr v-for="order in orders">
                     <td>{{order.id}}</td>
-                    <td>  {{order.name}}</td>
-                    <td>  {{order.phone}}</td>
-                    <td>  {{order.name}}</td>
-                    <td>  {{this.StatusEnum[order.status]}}</td>
+                    <td>{{order.name}}</td>
+                    <td>{{order.phone}}</td>
+                    <td>{{order.name}}</td>
+                    <td>{{this.StatusEnum[order.status]}}</td>
                     <td><button type="button" @click="ProgressOrder(order.id)">Progress Order</button></td>
                 </tr>
             </table>
