@@ -13,13 +13,22 @@ const menu = {
                 <menu-item v-for="item in traditional" :item="item" @customise="showCustomisePage"/>
             </div>
             <h2>Premium Menu</h2>
-            <menu-item v-for="item in premium" :item="item" @customise="showCustomisePage"/>
+            <div class="flexContainer">
+                <menu-item v-for="item in premium" :item="item" @customise="showCustomisePage"/>
+            </div>
+
             <h2>Drink Menu</h2>
-            <menu-item v-for="item in drink" :item="item" @customise="showCustomisePage"/>
+            <div class="flexContainer">
+                <menu-item v-for="item in drink" :item="item" @customise="showCustomisePage"/>
+            </div>
             <h2>Side Menu</h2>
-            <menu-item v-for="item in side" :item="item" @customise="showCustomisePage"/>
+            <div class="flexContainer">
+                <menu-item v-for="item in side" :item="item" @customise="showCustomisePage"/>
+            </div>
             <h2>Dessert Menu</h2>
-            <menu-item v-for="item in dessert" :item="item" @customise="showCustomisePage"/>
+            <div class="flexContainer">
+                <menu-item v-for="item in dessert" :item="item" @customise="showCustomisePage"/>
+            </div>
         </div>
         `,
     data() {

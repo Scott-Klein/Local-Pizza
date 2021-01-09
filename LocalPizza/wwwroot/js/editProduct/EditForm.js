@@ -57,9 +57,7 @@ app.component('edit-form', {
                 console.log("Hide the toppings")
                 this.showToppings = false;
             }
-            else
-            {
-                console.log("Show the toppings")
+            else {
                 this.showToppings = true;
             }
         },
