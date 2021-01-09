@@ -90,11 +90,7 @@ div.flex-container:nth-child(2) {
     background-color: #666;
 }
 
-.menuItem {
-    max-width: 500px;
-    color: white;
-    background-color: slategray;
-}
+
 .menu-btn {
     background-color: #6565F6;
     font-family: Poppins;

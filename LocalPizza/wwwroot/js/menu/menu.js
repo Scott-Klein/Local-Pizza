@@ -6,8 +6,12 @@ const menu = {
         <div>
             <customise-form id="customiseForm" v-show="showCustomMenu" :item="selectedPizza" @pizza-push="PizzaPush" @item-push="ItemPush"/>
             <order id="order" :cart="cart"/>
-            <h2>Traditional Menu</h2>
-            <menu-item v-for="item in traditional" :item="item" @customise="showCustomisePage"/>
+
+            <img id="PizzaHeading" src="./images/pizzaHeading.jpg"/>
+            <h2 class="MenuHeading">Traditional Range</h2>
+            <div class="flexContainer">
+                <menu-item v-for="item in traditional" :item="item" @customise="showCustomisePage"/>
+            </div>
             <h2>Premium Menu</h2>
             <menu-item v-for="item in premium" :item="item" @customise="showCustomisePage"/>
             <h2>Drink Menu</h2>

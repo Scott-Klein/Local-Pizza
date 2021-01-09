@@ -162,8 +162,6 @@ namespace LocalPizza.Data
             return tvm;
         }
 
-
-
         public Topping GetTopping(int id)
         {
             return this.db.Toppings.Find(id);
@@ -190,6 +188,18 @@ namespace LocalPizza.Data
             //this.db.Orders.Update(order);
             await this.db.SaveChangesAsync();
             return order;
+        }
+
+        public int CountOrderItems(int productId)
+        {
+            //return this.db.OrderItems.Count(o => o.Item.Id == productId);
+            var orders = this.db.OrderItems.Where(o => o.Item.Id == productId).ToList();
+            int result = 0;
+            foreach (var order in orders)
+            {
+                result += order.Quantity;
+            }
+            return result;
         }
     }
 }

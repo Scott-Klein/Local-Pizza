@@ -22,5 +22,10 @@ namespace LocalPizza.Pages.Admin
         {
             Products = data.GetAllProducts().ToList();
         }
+
+        public int GetSaleCount(int id)
+        {
+            return data.CountOrderItems(id);
+        }
     }
 }

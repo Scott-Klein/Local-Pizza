@@ -117,11 +117,11 @@ namespace LocalPizza.API
             else
             {
                 var tracked = await _context.AddAsync(topping);
-                
+                exists = tracked.Entity;
             }
             
             await _context.SaveChangesAsync();
-            return CreatedAtAction("GetItem", new { id = exists.Id }, exists); // this can be null and destroy everything.
+            return CreatedAtAction("GetTopping", new { id = exists.Id }, exists); // this can be null and destroy everything.
         }
         // DELETE: api/Toppings/5
         [HttpDelete("{id}")]

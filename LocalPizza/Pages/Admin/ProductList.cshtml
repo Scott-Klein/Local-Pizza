@@ -6,6 +6,9 @@
 @using LocalPizza.Core;
 @using LocalPizza.Core.Menu;
 <h1>Product Editor</h1>
+<div class="large-button">
+    <a asp-page="AddProduct">Add Product</a>
+</div>
 <div class="table">
     <h2>Products</h2>
     <table>
@@ -29,13 +32,11 @@
         }
         <td>@item.Range</td>
         <td>$@item.Price</td>
-        <td>324</td>
+        <td>@Model.GetSaleCount(item.Id)</td>
         <td><a asp-page="./EditProduct" asp-route-id="@item.Id" asp-route-range="@item.Range"><i class="fas fa-edit"></i></a></td>
         <td><a asp-page="./Delete" asp-route-id="@item.Id" asp-route-range="@item.Range"><i class="fas fa-trash-alt"></i></a></td>
     </tr>
         }
     </table>
 </div>
-<div class="large-button">
-    <a asp-page="AddProduct">Add Product</a>
-</div>
+

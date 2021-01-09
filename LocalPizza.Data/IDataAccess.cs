@@ -9,6 +9,7 @@ namespace LocalPizza.Data
 {
     public interface IDataAccess
     {
+        int CountOrderItems(int productId);
         Item InsertItem(Item item);
         Task<Order> IncrementStatus(int id);
         Item UpdateItem(Item item);
