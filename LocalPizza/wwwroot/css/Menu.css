@@ -1,3 +1,24 @@
+@keyframes product-anim {
+    from {
+        bottom: -1.302125vw;
+        left: 1.406295vw;
+    }
+
+    to {
+        bottom: 9.89615vw;
+        left: 0.677105vw;
+    }
+}
+
+@keyframes description-anim {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 #PizzaHeading {
     width: 100%;
     height: 14.5vw;
@@ -18,23 +39,277 @@ div.flexContainer {
     flex-wrap: wrap;
 }
 
-.menuItem {
-    width: 300px;
-    height: 206px;
+.productImg {
+    width: 100%;
+    border-radius: 1.302125vw
+}
+#pizzaImg {
+    background-image: url(../images/pizzaHeading.jpg);
+    background-position-x: -6.3vw;
+    background-position-y: -19.261385vw;
+    background-size: 112%;
+}
+#drinkImg {
+    background-image: url(../images/drink.jpg);
+    background-position-x: -17.344305vw;
+    background-position-y: -30.261385vw;
+    background-size: 147%;
+}
+
+#sideImg {
+    background-image: url(../images/side.jpg);
+    background-position-y: -591px;
+    background-size: 160%;
+}
+#dessertImg {
+    background-image: url(../images/dessert.jpg);
+    background-position-y: 27vw;
+    background-size: 100%;
+}
+.menuImgHeading>h2 {
+    position: relative;
+    left: 1.302125vw;
     color: white;
-    margin-right: 50px;
-    margin-bottom: 120px;
-    background-color: slategray;
+    font-size: 3.1251vw;
+    margin: 0px;
+}
+#pizzaImg>h2 {
+   top: 9.635725vw;
+}
+
+#sideImg>h2 {
+    top: 8.635725vw;
+}
+
+#drinkImg>h2 {
+    top: 1.635725vw;
+}
+#dessertImg>h2 {
+    top: 2.635725vw;
+}
+
+.menuImgHeading {
+    font-family: 'Fredoka One';
+    color: white;
+    width: 100%;
+    height: 14.68797vw;
+    border-radius: 0.52085vw;
+    margin-bottom: 3.1251vw;
+}
+.menuItem {
+    border-radius: 1.302125vw;
+    position: relative;
+    text-align: center;
+    width: 15.6255vw;
+    height: 10.72951vw;
+    color: white;
+    margin-left: 1.66672vw;
+    margin-right: 1.66672vw;
+    margin-bottom: 3.64595vw;
+    background-color: #212126;
+    cursor: pointer;
+}
+#customiseForm {
+    position: fixed;
+    width: 1480px;
+    min-height: 200px;
+    z-index: 5;
+}
+
+#form {
+    display:grid;
+    grid-template-columns: 8fr 11fr;
+}
+
+#left-form {
+    background-color: #77A88D;
+    padding: 50px;
+}
+#right-form {
+    background-color: white;
+}
+.lightHeading {
+    color:white;
+    font-family: Poppins;
+    display: inline-block;
+    font-size: 32px;
+}
+h2.lightHeading:nth-child(2) {
+    text-align: right;
+    margin-left: 180px;
+}
+.product-name {
+    background-color: #bc4e4e;
+    position: absolute;
+    bottom: -1.302125vw;
+    left: 1.406295vw;
+    width: 13.02125vw;
+    font-family: Poppins;
+    height: 1.718805vw;
+    border-radius: 0.20834vw;
+}
+#left-form>p {
+    font-family: Poppins;
+    color: white;
+    line-height: 50px;
+    font-size: 20px;
+}
+
+.product-description {
+    opacity: 0;
+    position:absolute;
+    background-color: #000a;
+    width: 80%;
+    height: 60%;
+    top: 1.510465vw;
+    left: 1.510465vw;
+    border-radius: 0.260425vw;
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 0.677105vw;
+    line-height: 1.9em;
+}
+
+.product-name > h4 {
+    margin: 0;
+    margin-top: 0.20834vw;
+}
+
+.menuItem > button {
+    background-color: #444480;
+    position: absolute;
+    bottom: 0.52085vw;
+    left: 4.531395vw;
+    width: 6.2502vw;
+    color: white;
+    font-family: Poppins;
+    border: none;
+    height: 1.56255vw;
+    font-size: 0.572935vw;
+    border-radius: 0.156255vw;
+    opacity: 0;
+}
+
+.menuItem:hover .product-description {
+    animation-name: description-anim;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.1s;
+}
+
+.menuItem:hover button {
+    animation-name: description-anim;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+    animation-delay: 0.1s;
+}
+.menuItem:hover .product-name {
+    animation: product-anim 0.2s;
+    animation-fill-mode: forwards;
+}
+
+.menuItem:hover .productImg {
+    opacity: 0.8;
 }
 
 @media only screen and (min-width: 1920px) {
+    @keyframes product-anim {
+        from {
+            bottom: -25px;
+            left: 27px;
+        }
+
+        to {
+            bottom: 190px;
+            left: 13px;
+        }
+    }
+
+    #drinkImg {
+        background-image: url(../images/drink.jpg);
+        background-position-x: -333px;
+        background-position-y: -581px;
+    }
+
+    #pizzaImg {
+        background-image: url(../images/pizzaHeading.jpg);
+        background-position-x: -121px;
+        background-position-y: -370px;
+        background-size: 112%;
+    }
+
+     #pizzaImg>h2 {
+        top: 185px;
+        left: 25px;
+        font-size: 60px;
+     }
+
+    .menuImgHeading {
+        width: 1480px;
+        height: 282px;
+        border-radius: 10px;
+        margin-bottom: 60px;
+    }
+
     #PizzaHeading {
         height: 282px;
         border-radius: 15px;
 
     }
+
     h2.MenuHeading {
         font-size: 24px;
         margin-left: 20px;
+    }
+
+    .productImg {
+        width: 100%;
+        border-radius:25px;
+    }
+
+    .menuItem {
+        border-radius: 25px;
+        width: 300px;
+        height: 206px;
+        margin-left: 34px;
+        margin-right: 34px;
+        margin-bottom: 70px;
+    }
+
+    .menuItem>button {
+        bottom: 10px;
+        left: 87px;
+        width: 120px;
+        height: 30px;
+        font-size: 11px;
+        border-radius: 3px;
+    }
+
+    .product-name {
+        bottom: -25px;
+        left: 27px;
+        width: 250px;
+        height: 33px;
+        border-radius: 4px;
+    }
+
+    .product-description {
+        top: 29px;
+        left: 29px;
+        border-radius: 5px;
+        font-size: 13px;
+        line-height: 1.9em;
+    }
+    .product-name>h4 {
+        margin-top: 5px;
+    }
+
+    .menuItem>button {
+        bottom: 10px;
+        left: 87px;
+        width: 120px;
+        height: 30px;
+        font-size: 11px;
+        border-radius: 3px;
     }
 }

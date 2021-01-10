@@ -7,25 +7,24 @@ const menu = {
             <customise-form id="customiseForm" v-show="showCustomMenu" :item="selectedPizza" @pizza-push="PizzaPush" @item-push="ItemPush"/>
             <order id="order" :cart="cart"/>
 
-            <img id="PizzaHeading" src="./images/pizzaHeading.jpg"/>
+            <div id="pizzaImg" class="menuImgHeading"><h2>Pizza</h2></div>
             <h2 class="MenuHeading">Traditional Range</h2>
             <div class="flexContainer">
                 <menu-item v-for="item in traditional" :item="item" @customise="showCustomisePage"/>
             </div>
-            <h2>Premium Menu</h2>
+            <h2 class="MenuHeading">Premium Range</h2>
             <div class="flexContainer">
                 <menu-item v-for="item in premium" :item="item" @customise="showCustomisePage"/>
             </div>
-
-            <h2>Drink Menu</h2>
+            <div id="drinkImg" class="menuImgHeading"><h2>Drinks</h2></div>
             <div class="flexContainer">
                 <menu-item v-for="item in drink" :item="item" @customise="showCustomisePage"/>
             </div>
-            <h2>Side Menu</h2>
+            <div id="sideImg" class="menuImgHeading"><h2>Sides</h2></div>
             <div class="flexContainer">
                 <menu-item v-for="item in side" :item="item" @customise="showCustomisePage"/>
             </div>
-            <h2>Dessert Menu</h2>
+            <div id="dessertImg" class="menuImgHeading"><h2>Dessert</h2></div>
             <div class="flexContainer">
                 <menu-item v-for="item in dessert" :item="item" @customise="showCustomisePage"/>
             </div>
@@ -142,16 +141,21 @@ app.component('menu-item', {
     template:
         /*html*/
         `
-        <div class="menuItem">
-            <h4>{{this.item.name}}</h4>
-            <p>{{this.item.description}}</p>
-            <p><strong>$</strong> {{this.item.price}}</p>
+        <div class="menuItem" @click="customiseItem">
             <img class="productImg" :src="'/images/' + this.item.productPicture" />
-            <button @click="customiseItem">Add to Cart</button>
+            <div class="product-name"><h4>{{this.item.name}}</h4></div>
+            <div class="product-description"><p>{{this.item.description}}</p></div>
+                <button>$ {{this.item.price}} Customise</button>
         </div>
         `
 })
-
+//<div class="menuItem">
+//    <img class="productImg" :src="'/images/' + this.item.productPicture" />
+ //
+//    <p>{{this.item.description}}</p>
+//    <p><strong>$</strong> {{this.item.price}}</p>
+//    <button @click="customiseItem">Add to Cart</button>
+//</div>
 app.component('order', {
     props: {
         cart: {
@@ -384,31 +388,40 @@ app.component('customise-pizza', {
         /*html*/
         `
         <div>
-            <h2>{{this.item.name}}</h2>
-            <form class="customiseForm" @submit.prevent="AddPizzaToCart">
-                <h4>Crust</h4>
-                <label for="regular">Regular</label>
-                <input type="radio" @click="crustSelect(0)" id="regular" name="crust" value="regular">
-                <label for="thin">Thin</label>
-                <input type="radio" @click="crustSelect(1)" id="thin" name="crust" value="thin">
-                <label for="deep">Deep Pan</label>
-                <input type="radio" @click="crustSelect(2)" id="deep" name="crust" value="deep">
-                <br/>
-                <h4>2.Choose Your Sauce</h4>
-                <label for="tomato">Tomato</label>
-                <input type="radio" @click="baseSelect(0)" id="tomato" name="sauce" value="tomato">
-                <label for="bbq">BBQ</label>
-                <input type="radio" @click="baseSelect(1)" id="bbq" name="sauce" value="bbq">
-                <label for="frenchCreme">French Creme</label>
-                <input type="radio" @click="baseSelect(2)" id="frenchCreme" name="sauce" value="frenchCreme">
-                <br/>
-                <h4>3.Toppings</h4>
-                <div v-for="topping in toppings">
-                    <input type="checkbox" :id="topping.id" :name="topping.id" :value="topping.id">
-                    <label :for="topping.id">{{topping.name}}</label><br>
+            <div id="form">
+                <div id="left-form">
+                    <h2 class="lightHeading">{{this.item.name}}</h2>
+                    <h2 class="lightHeading">$ {{this.item.price}}</h2>
+                    <p>{{this.item.description}}</p>
                 </div>
-                <input type="submit" value="Add to cat">
-            </form>
+                <div id="right-form">
+                    <form class="customiseForm" @submit.prevent="AddPizzaToCart">
+                        <h4>Crust</h4>
+                        <label for="regular">Regular</label>
+                        <input type="radio" @click="crustSelect(0)" id="regular" name="crust" value="regular">
+                        <label for="thin">Thin</label>
+                        <input type="radio" @click="crustSelect(1)" id="thin" name="crust" value="thin">
+                        <label for="deep">Deep Pan</label>
+                        <input type="radio" @click="crustSelect(2)" id="deep" name="crust" value="deep">
+                        <br/>
+                        <h4>2.Choose Your Sauce</h4>
+                        <label for="tomato">Tomato</label>
+                        <input type="radio" @click="baseSelect(0)" id="tomato" name="sauce" value="tomato">
+                        <label for="bbq">BBQ</label>
+                        <input type="radio" @click="baseSelect(1)" id="bbq" name="sauce" value="bbq">
+                        <label for="frenchCreme">French Creme</label>
+                        <input type="radio" @click="baseSelect(2)" id="frenchCreme" name="sauce" value="frenchCreme">
+                        <br/>
+                        <h4>3.Toppings</h4>
+                        <div v-for="topping in toppings">
+                            <input type="checkbox" :id="topping.id" :name="topping.id" :value="topping.id">
+                            <label :for="topping.id">{{topping.name}}</label><br>
+                        </div>
+                        <input type="submit" value="Add to cat">
+                    </form>
+                </div>
+            </div>
+
         </div>
         `
 })
