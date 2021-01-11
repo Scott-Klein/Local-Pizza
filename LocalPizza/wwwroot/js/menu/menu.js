@@ -416,12 +416,18 @@ app.component('customise-pizza', {
                     <h3>Customisations</h3>
                     <form class="customiseForm" @submit.prevent="AddPizzaToCart">
                         <h4>Crust</h4>
-                        <label for="regular">Regular</label>
-                        <input type="radio" @click="crustSelect(0)" id="regular" name="crust" value="regular">
-                        <label for="thin">Thin</label>
-                        <input type="radio" @click="crustSelect(1)" id="thin" name="crust" value="thin">
-                        <label for="deep">Deep Pan</label>
-                        <input type="radio" @click="crustSelect(2)" id="deep" name="crust" value="deep">
+                        <div id="crust">
+                            <crust-option crust="0"></crust-option>
+                            <crust-option crust="1"></crust-option>
+                            <crust-option crust="2"></crust-option>
+                            <label for="regular">Regular</label>
+                            <input type="radio" @click="crustSelect(0)" id="regular" name="crust" value="regular">
+                            <label for="thin">Thin</label>
+                            <input type="radio" @click="crustSelect(1)" id="thin" name="crust" value="thin">
+                            <label for="deep">Deep Pan</label>
+                            <input type="radio" @click="crustSelect(2)" id="deep" name="crust" value="deep">
+                        </div>
+
                         <br/>
                         <h4>2.Choose Your Sauce</h4>
                         <label for="tomato">Tomato</label>
@@ -444,6 +450,35 @@ app.component('customise-pizza', {
         </div>
         `
 })
+app.component('crust-option', {
+    props: {
+        crust: String
+    },
+    template:
+        /*html */
+        `
+        <div>
+            <img :src="'/images/crust' + this.crustNum + '.webp'" />
+            <p>{{this.Crusts[crust]}}</p>
+        </div>
+        `,
+    methods: {
 
+    },
+    computed: {
+        crustNum() {
+            return Number(this.crust)
+        }
+    },
+    data() {
+        return {
+            Crusts: [
+                "Regular",
+                "Thin",
+                "Deep"
+            ],
+        }
+    }
+})
 
 app.mount('#menu');
