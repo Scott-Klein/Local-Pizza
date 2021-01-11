@@ -393,8 +393,27 @@ app.component('customise-pizza', {
                     <h2 class="lightHeading">{{this.item.name}}</h2>
                     <h2 class="lightHeading">$ {{this.item.price}}</h2>
                     <p>{{this.item.description}}</p>
+                    <div class="flex">
+                        <div id="itemOrderDetail">
+                            <h5>Crust</h5>
+                            <p>{{this.pizza.crust}}</p>
+                            <h5>Base</h5>
+                            <p>{{this.pizza.base}}</p>
+                            <h5>Toppings</h5>
+                            <p v-for="topping in this.pizza.toppings">{{topping}}</p>
+                        </div>
+                        <div id="itemOrderImage">
+                            <img class="detailImg" :src="'/images/' + this.item.productPicture" />
+                        </div>
+                    </div>
+
+                    <div id="bottom-form">
+                        <h2 id="OrderTotal">Price here</h2>
+                        <div id="CartButton"><h3>Add To Cart</h3></div>
+                    </div>
                 </div>
                 <div id="right-form">
+                    <h3>Customisations</h3>
                     <form class="customiseForm" @submit.prevent="AddPizzaToCart">
                         <h4>Crust</h4>
                         <label for="regular">Regular</label>
