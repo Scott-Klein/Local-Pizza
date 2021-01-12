@@ -415,32 +415,23 @@ app.component('customise-pizza', {
                 <div id="right-form">
                     <h3>Customisations</h3>
                     <form class="customiseForm" @submit.prevent="AddPizzaToCart">
-                        <h4>Crust</h4>
-                        <div id="crust">
+                        <h4><span>1.</span>  Choose Your Crust</h4>
+                        <div class="crust">
                             <crust-option crust="0"></crust-option>
                             <crust-option crust="1"></crust-option>
                             <crust-option crust="2"></crust-option>
-                            <label for="regular">Regular</label>
-                            <input type="radio" @click="crustSelect(0)" id="regular" name="crust" value="regular">
-                            <label for="thin">Thin</label>
-                            <input type="radio" @click="crustSelect(1)" id="thin" name="crust" value="thin">
-                            <label for="deep">Deep Pan</label>
-                            <input type="radio" @click="crustSelect(2)" id="deep" name="crust" value="deep">
                         </div>
 
                         <br/>
-                        <h4>2.Choose Your Sauce</h4>
-                        <label for="tomato">Tomato</label>
-                        <input type="radio" @click="baseSelect(0)" id="tomato" name="sauce" value="tomato">
-                        <label for="bbq">BBQ</label>
-                        <input type="radio" @click="baseSelect(1)" id="bbq" name="sauce" value="bbq">
-                        <label for="frenchCreme">French Creme</label>
-                        <input type="radio" @click="baseSelect(2)" id="frenchCreme" name="sauce" value="frenchCreme">
-                        <br/>
+                        <h4><span>2.</span>  Choose Your Sauce</h4>
+                        <div class="crust">
+                            <crust-option crust="3"></crust-option>
+                            <crust-option crust="4"></crust-option>
+                            <crust-option crust="5"></crust-option>
+                        </div>
                         <h4>3.Toppings</h4>
                         <div v-for="topping in toppings">
-                            <input type="checkbox" :id="topping.id" :name="topping.id" :value="topping.id">
-                            <label :for="topping.id">{{topping.name}}</label><br>
+                            <topping-check :topping="topping"></topping-check>
                         </div>
                         <input type="submit" value="Add to cat">
                     </form>
@@ -452,7 +443,8 @@ app.component('customise-pizza', {
 })
 app.component('crust-option', {
     props: {
-        crust: String
+        crust: String,
+        base: String,
     },
     template:
         /*html */
@@ -470,15 +462,33 @@ app.component('crust-option', {
             return Number(this.crust)
         }
     },
+
     data() {
         return {
             Crusts: [
                 "Regular",
                 "Thin",
-                "Deep"
+                "Deep",
+                "Tomato",
+                "BBQ",
+                "French Creme"
             ],
         }
     }
+})
+
+app.component('topping-check', {
+    props: {
+        topping: Object
+    },
+    template:
+        /*html*/
+        `
+        <div>
+            
+            <p>{{topping.name}}</p>
+        </div>
+        `
 })
 
 app.mount('#menu');

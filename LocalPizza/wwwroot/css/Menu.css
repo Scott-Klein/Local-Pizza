@@ -160,7 +160,7 @@ h2.lightHeading:nth-child(2) {
 #itemOrderDetail {
     width: 200px;
     background-color: white;
-    height: 300px;
+
     margin-right: 44px;
     border-radius: 15px;
     padding: 13px;
@@ -184,10 +184,10 @@ h2.lightHeading:nth-child(2) {
 }
 #itemOrderImage {
     z-index: 6;
-    height: 300px;
+    height: 270px;
 }
 #itemOrderImage>img {
-    height: 320px;
+    height: 270px;
     border-radius: 15px;
 }
 #left-form>p {
@@ -196,6 +196,8 @@ h2.lightHeading:nth-child(2) {
     line-height: 50px;
     font-size: 20px;
 }
+
+
 #right-form {
     padding-left: 150px;
     padding-top: 50px;
@@ -206,24 +208,48 @@ h2.lightHeading:nth-child(2) {
     padding-left: 40px;
     font-size: 30px;
 }
-#crust {
-    width: 700px;
-    height: 150px;
+.crust {
+    display: inline-flex;
     background-color: #E3E3E3;
+    border-radius: 25px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.322);
+    padding:25px;
+    justify-content: space-between;
+    width: 400px;
+}
+.crust>div {
+    display: inline-block;
+    background-color: white;
+    padding: 7px;
+    margin: 0px;
     border-radius: 15px;
 }
-.customiseForm>h4:nth-child(1){
-    font-size: 17px;
+
+.crust>div>p {
+    text-align: center;
+    margin: 5px 0px 5px 0px;
+    font-family: Poppins;
+    font-weight: 500;
 }
-#left-form>div:nth-child(4)>div>h5, .customiseForm>h4:nth-child(1) {
+.crust>div>img {
+    border-radius: 8px;
+}
+.customiseForm>h4:nth-child(4)
+#left-form>div:nth-child(4)>div>h5, .customiseForm>h4 {
     color:#212126;
     font-family: Poppins;
     font-weight: 700;
 }
-.detailImg {
-
+.customiseForm>h4:nth-child(1) {
+    font-size: 17px;
+}
+.customiseForm>h4:nth-child(4)>span:nth-child(1) {
+    color: #BC4E4E;
 }
 
+.customiseForm>h4:nth-child(1)>span:nth-child(1) {
+    color: #6565F6;
+}
 .product-description {
     opacity: 0;
     position:absolute;
