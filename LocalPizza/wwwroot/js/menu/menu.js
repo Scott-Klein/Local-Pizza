@@ -322,20 +322,36 @@ app.component('customise-pizza', {
                 }
             })
         },
-        ToppingChecked(index) {
-            let el = this.toppings[index];
-            if (document.getElementById(el.id).checked) {
-                return true;
+        toppingChange(note) {
+            if (note.Add) {
+                this.pizza.toppings.push(note.topping.id);
             } else {
-                return false;
+                this.pizza.toppings.splice(this.pizza.toppings.indexOf(note.topping.id), 1);
             }
         },
         baseSelect(base) {
-            this.pizza.base = base;
+            this.pizza.base = base -3;
         },
         crustSelect(crust) {
             this.pizza.crust = crust;
         },
+        GetCheckedStatus(crust) {
+            if (crust < 3) {
+                if (this.pizza.crust == crust) {
+                    console.log("selected crust: " + crust)
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                if (this.pizza.base == crust -3) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        }
     },
     data() {
         return {
@@ -361,28 +377,7 @@ app.component('customise-pizza', {
         if (this.item.toppings != undefined)
         {
             this.ResetCheckBoxes();
-
-            //check every box of each default topping.
-            this.item.toppings.forEach(element => {
-                document.getElementById(element.id).checked = true;
-            });
-            if (this.itemId != this.item.id) {
-                let front = this.toppings.filter(el => document.getElementById(el.id).checked);
-
-                let back = this.toppings.filter(el => !document.getElementById(el.id).checked);
-
-                this.toppings = front.concat(back);
-                this.itemId = this.item.id;
-            }
-
         }
-    },
-    computed: {
-        //GetCheckedToppings() { //this computed property seems to mutate 'this.items' somehow. Even though reading it seems like it's impossible I have proven that it can.
-        //    //Absolutely bizarre!
-        //    console.log("Get Checked TOppings")
-        //    return this.toppings.filter(el => document.getElementById(el.id).checked);
-        //}
     },
     template:
         /*html*/
@@ -417,21 +412,21 @@ app.component('customise-pizza', {
                     <form class="customiseForm" @submit.prevent="AddPizzaToCart">
                         <h4><span>1.</span>  Choose Your Crust</h4>
                         <div class="crust">
-                            <crust-option crust="0"></crust-option>
-                            <crust-option crust="1"></crust-option>
-                            <crust-option crust="2"></crust-option>
+                            <crust-option @click="crustSelect(0)" :checked="GetCheckedStatus(0)" crust="0"></crust-option>
+                            <crust-option @click="crustSelect(1)" :checked="GetCheckedStatus(1)" crust="1"></crust-option>
+                            <crust-option @click="crustSelect(2)" :checked="GetCheckedStatus(2)" crust="2"></crust-option>
                         </div>
 
                         <br/>
                         <h4><span>2.</span>  Choose Your Sauce</h4>
                         <div class="crust">
-                            <crust-option crust="3"></crust-option>
-                            <crust-option crust="4"></crust-option>
-                            <crust-option crust="5"></crust-option>
+                            <crust-option @click="baseSelect(3)" :checked="GetCheckedStatus(3)" crust="3"></crust-option>
+                            <crust-option @click="baseSelect(4)" :checked="GetCheckedStatus(4)" crust="4"></crust-option>
+                            <crust-option @click="baseSelect(5)" :checked="GetCheckedStatus(5)" crust="5"></crust-option>
                         </div>
                         <h4>3.Toppings</h4>
-                        <div v-for="topping in toppings">
-                            <topping-check :topping="topping"></topping-check>
+                        <div id="toppings">
+                            <topping-check v-for="(topping, index) in toppings" :topping="topping" @change-topping="toppingChange"></topping-check>
                         </div>
                         <input type="submit" value="Add to cat">
                     </form>
@@ -444,25 +439,28 @@ app.component('customise-pizza', {
 app.component('crust-option', {
     props: {
         crust: String,
-        base: String,
+        checked: Boolean
     },
     template:
         /*html */
         `
-        <div>
+        <div :class="this.cssClasses">
             <img :src="'/images/crust' + this.crustNum + '.webp'" />
             <p>{{this.Crusts[crust]}}</p>
         </div>
         `,
-    methods: {
-
-    },
     computed: {
         crustNum() {
             return Number(this.crust)
         }
     },
-
+    updated() {
+        if (this.checked) {
+            this.cssClasses = "small-shadow checked";
+        } else {
+            this.cssClasses = "small-shadow";
+        }
+    },
     data() {
         return {
             Crusts: [
@@ -473,6 +471,7 @@ app.component('crust-option', {
                 "BBQ",
                 "French Creme"
             ],
+            cssClasses: "small-shadow",
         }
     }
 })
@@ -481,11 +480,37 @@ app.component('topping-check', {
     props: {
         topping: Object
     },
+    data() {
+        return {
+            checked: false,
+            cssClasses: "topping small-shadow"
+        }
+    },
+    methods: {
+        toggleSelectClass() {
+            let toppingNotify = {
+                Add: false,
+                topping: this.topping
+            }
+            this.checked = !this.checked;
+            console.log("clicked me!")
+            if (this.checked) {
+                this.cssClasses = "topping small-shadow checked";
+                toppingNotify.Add = true;
+                this.$emit('change-topping', toppingNotify);
+            } else {
+                this.cssClasses = "topping small-shadow";
+                toppingNotify.Add = false;
+                this.$emit('change-topping', toppingNotify);
+
+            }
+        }
+    },
     template:
         /*html*/
         `
-        <div>
-            
+        <div :class="this.cssClasses" @click="toggleSelectClass">
+            <img :src="'/images/' + topping.productPicture" />
             <p>{{topping.name}}</p>
         </div>
         `
