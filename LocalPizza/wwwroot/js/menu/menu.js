@@ -99,11 +99,13 @@ const menu = {
         }
     },
     updated() {
+
         let cart = JSON.stringify(this.cart);
         localStorage.setItem('cart', cart);
     },
     created() {
         //Need to pull all of the menu items out.
+
         fetch('api/menu')
             .then(Response => Response.json())
             .then(data => {
@@ -329,6 +331,14 @@ app.component('customise-pizza', {
                 this.pizza.toppings.splice(this.pizza.toppings.indexOf(note.topping.id), 1);
             }
         },
+
+        select(index) {
+            console.log("selected: " + index)
+            this.pizza.toppings.push(this.unSelectedToppings[index].id)
+        },
+        unSelect(index) {
+            this.pizza.toppings.splice(this.pizza.toppings.indexOf(this.selectedToppings[index].id), 1);
+        },
         baseSelect(base) {
             this.pizza.base = base -3;
         },
@@ -338,7 +348,6 @@ app.component('customise-pizza', {
         GetCheckedStatus(crust) {
             if (crust < 3) {
                 if (this.pizza.crust == crust) {
-                    console.log("selected crust: " + crust)
                     return true;
                 } else {
                     return false;
@@ -356,7 +365,6 @@ app.component('customise-pizza', {
     data() {
         return {
             toppings: [],
-            selectedToppings: [],
             pizza: {
                 name: "",
                 itemId: 5000,
@@ -369,15 +377,37 @@ app.component('customise-pizza', {
         }
     },
     created() {
+        console.log("cusotmise pizza created()")
         fetch('/api/toppingview')
             .then(response => response.json())
             .then(data => this.toppings = data);
     },
-    updated() {
-        if (this.item.toppings != undefined)
-        {
-            this.ResetCheckBoxes();
+    computed: {
+        selectedToppings() {
+            return this.toppings.filter(x => this.pizza.toppings.includes(x.id));
+        },
+        unSelectedToppings() {
+            return this.toppings.filter(x => !this.pizza.toppings.includes(x.id));
         }
+    },
+    updated() {
+        console.log("customise pizza updated()")
+        console.log(this.item)
+        if (this.item.toppings != undefined && this.pizza.itemId != this.item.id && this.item.id != undefined)
+        {
+            this.pizza.itemId = this.item.id
+            this.item.toppings.forEach(element => {
+                this.pizza.toppings.push(element.id);
+            });
+
+            this.selectedToppings.forEach(element => {
+                console.log("computed: " + element.name)
+            });
+            this.item.toppings.forEach(element => {
+                console.log("item: " + element.name);
+            });
+        }
+
     },
     template:
         /*html*/
@@ -426,7 +456,9 @@ app.component('customise-pizza', {
                         </div>
                         <h4>3.Toppings</h4>
                         <div id="toppings">
-                            <topping-check v-for="(topping, index) in toppings" :topping="topping" @change-topping="toppingChange"></topping-check>
+                            <topping-check v-for="(topping, index) in selectedToppings" :check="true" :topping="topping" @click="unSelect(index)" ></topping-check>
+                            <topping-check v-for="(topping, index) in unSelectedToppings" :topping="topping" @click="select(index)"></topping-check>
+
                         </div>
                         <input type="submit" value="Add to cat">
                     </form>
@@ -478,7 +510,11 @@ app.component('crust-option', {
 
 app.component('topping-check', {
     props: {
-        topping: Object
+        topping: Object,
+        check: {
+            type: Boolean,
+            required: false
+        }
     },
     data() {
         return {
@@ -486,30 +522,19 @@ app.component('topping-check', {
             cssClasses: "topping small-shadow"
         }
     },
-    methods: {
-        toggleSelectClass() {
-            let toppingNotify = {
-                Add: false,
-                topping: this.topping
-            }
-            this.checked = !this.checked;
-            console.log("clicked me!")
-            if (this.checked) {
-                this.cssClasses = "topping small-shadow checked";
-                toppingNotify.Add = true;
-                this.$emit('change-topping', toppingNotify);
-            } else {
-                this.cssClasses = "topping small-shadow";
-                toppingNotify.Add = false;
-                this.$emit('change-topping', toppingNotify);
-
-            }
+    created() {
+        if (this.check) {
+            this.cssClasses = "topping small-shadow checked";
+        } else {
+            this.cssClasses = "topping small-shadow";
         }
+    },
+    methods: {
     },
     template:
         /*html*/
         `
-        <div :class="this.cssClasses" @click="toggleSelectClass">
+        <div :class="this.cssClasses">
             <img :src="'/images/' + topping.productPicture" />
             <p>{{topping.name}}</p>
         </div>
