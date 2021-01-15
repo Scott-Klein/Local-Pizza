@@ -23,7 +23,14 @@ namespace LocalPizza
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "allowFontAwesome",
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("https://ka-f.fontawesome.com");
+                                  });
+            });
             services.AddDbContextPool<LocalPizzaContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DevDb"));
@@ -55,7 +62,7 @@ namespace LocalPizza
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseCors("allowFontAwesome");
             app.UseAuthentication();
             app.UseAuthorization();
 

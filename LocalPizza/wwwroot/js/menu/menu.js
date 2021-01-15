@@ -4,7 +4,7 @@ const menu = {
     /*html*/
         `
         <div>
-            <customise-form id="customiseForm" v-show="showCustomMenu" :item="selectedPizza" @pizza-push="PizzaPush" @item-push="ItemPush"/>
+            <customise-form id="customiseForm" v-show="showCustomMenu" :item="selectedPizza" @pizza-push="PizzaPush" @item-push="ItemPush" @close="Close"/>
             <order id="order" :cart="cart"/>
 
             <div id="pizzaImg" class="menuImgHeading"><h2>Pizza</h2></div>
@@ -49,6 +49,9 @@ const menu = {
         }
     },
     methods: {
+        Close() {
+            this.showCustomMenu = false;
+        },
         PizzaPush(pizza) {
             this.showCustomMenu = false;
             this.cart.cartPizzas.push(pizza);
@@ -235,6 +238,9 @@ app.component('customise-form', {
         },
         itemAdded(item) {
             this.$emit('item-push',item)
+        },
+        close() {
+            this.$emit('close');
         }
     },
     data() {
@@ -252,6 +258,9 @@ app.component('customise-form', {
         <div>
             <customise-pizza v-show="isPizza" :item="this.item" @pizza-to-cart="pizzaAdded"/>
             <customise-item v-show="!isPizza" :item="this.item" @cart-item="itemAdded"/>
+            <div id="background">
+            </div>
+            <div id="close" @click="close"><i class="fas fa-times"></i></div>
         </div>
         `
 })
@@ -307,10 +316,7 @@ app.component('customise-pizza', {
         AddPizzaToCart() {
             this.pizza.itemId = this.item.id;
             this.pizza.name = this.item.name;
-            let checkedToppings = this.toppings.filter(el => document.getElementById(el.id).checked);
-            checkedToppings.forEach(topping => {
-                this.pizza.toppings.push(topping.id);
-            });
+
             this.$emit('pizza-to-cart', Object.assign({}, this.pizza));
             this.pizza.toppings = [];
         },
@@ -373,7 +379,15 @@ app.component('customise-pizza', {
                 crust: 0,
             },
             initialised: false,
-            itemId: 5000
+            itemId: 5000,
+            Crusts: [
+                "Regular",
+                "Thin",
+                "Deep",
+                "Tomato",
+                "BBQ",
+                "French Creme"
+            ],
         }
     },
     created() {
@@ -388,23 +402,24 @@ app.component('customise-pizza', {
         },
         unSelectedToppings() {
             return this.toppings.filter(x => !this.pizza.toppings.includes(x.id));
+        },
+        priceTotal() {
+            let total = Number(this.item.price);
+            this.selectedToppings.forEach(element => {
+                if (!this.item.toppings.some(x => x.id == element.id)) {
+                    total += Number(element.price)
+                }
+            });
+            return total.toFixed(2);
         }
     },
     updated() {
-        console.log("customise pizza updated()")
-        console.log(this.item)
         if (this.item.toppings != undefined && this.pizza.itemId != this.item.id && this.item.id != undefined)
         {
             this.pizza.itemId = this.item.id
+            this.pizza.toppings = [];
             this.item.toppings.forEach(element => {
                 this.pizza.toppings.push(element.id);
-            });
-
-            this.selectedToppings.forEach(element => {
-                console.log("computed: " + element.name)
-            });
-            this.item.toppings.forEach(element => {
-                console.log("item: " + element.name);
             });
         }
 
@@ -421,11 +436,14 @@ app.component('customise-pizza', {
                     <div class="flex">
                         <div id="itemOrderDetail">
                             <h5>Crust</h5>
-                            <p>{{this.pizza.crust}}</p>
+                            <p>{{this.Crusts[this.pizza.crust]}}</p>
                             <h5>Base</h5>
-                            <p>{{this.pizza.base}}</p>
+                            <p>{{this.Crusts[this.pizza.base + 3]}}</p>
                             <h5>Toppings</h5>
-                            <p v-for="topping in this.pizza.toppings">{{topping}}</p>
+                            <div>
+                                <p v-for="topping in selectedToppings">{{topping.name}} <span class="topping-price">+ $ {{topping.price}}</span></p>
+                            </div>
+
                         </div>
                         <div id="itemOrderImage">
                             <img class="detailImg" :src="'/images/' + this.item.productPicture" />
@@ -433,13 +451,13 @@ app.component('customise-pizza', {
                     </div>
 
                     <div id="bottom-form">
-                        <h2 id="OrderTotal">Price here</h2>
-                        <div id="CartButton"><h3>Add To Cart</h3></div>
+                        <h2 id="OrderTotal">{{this.priceTotal}}</h2>
+                        <div id="CartButton" @click="AddPizzaToCart"><h3>Add To Cart</h3></div>
                     </div>
                 </div>
                 <div id="right-form">
                     <h3>Customisations</h3>
-                    <form class="customiseForm" @submit.prevent="AddPizzaToCart">
+                    <form class="customiseForm">
                         <h4><span>1.</span>  Choose Your Crust</h4>
                         <div class="crust">
                             <crust-option @click="crustSelect(0)" :checked="GetCheckedStatus(0)" crust="0"></crust-option>
@@ -460,7 +478,6 @@ app.component('customise-pizza', {
                             <topping-check v-for="(topping, index) in unSelectedToppings" :topping="topping" @click="select(index)"></topping-check>
 
                         </div>
-                        <input type="submit" value="Add to cat">
                     </form>
                 </div>
             </div>
