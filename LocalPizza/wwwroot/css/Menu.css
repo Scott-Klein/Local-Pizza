@@ -137,17 +137,20 @@ div.flexContainer {
     min-height: 200px;
     z-index: 5;
 }
-
-#form {
+#itemPicture {
+    z-index: 6;
+    height: 270px;
+}
+.form {
     display:grid;
     grid-template-columns: 8fr 11fr;
 }
 
-#left-form {
+.left-form {
     background-color: #77A88D;
     padding: 50px;
 }
-#right-form {
+.right-form {
     background-color: white;
 }
 .lightHeading {
@@ -193,13 +196,17 @@ h2.lightHeading:nth-child(2) {
     border-radius: 15px;
     padding: 13px;
 }
-#bottom-form {
+.bottom-form {
     margin-top: 500px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: white;
     font-family: Poppins;
+}
+
+div.bottom-form:nth-child(4){
+    margin-top: 171px;
 }
 #close {
     font-size: 51px;
@@ -220,12 +227,12 @@ h2.lightHeading:nth-child(2) {
     z-index: -1;
     background-color: #537969;
 }
-#CartButton>h3:nth-child(1) {
+.CartButton>h3:nth-child(1) {
     margin: auto;
     text-align: center;
     font-size: 23px;
 }
-#CartButton {
+.CartButton {
     cursor: pointer;
     padding: 10px;
     background-color: #6565F6;
@@ -241,7 +248,63 @@ h2.lightHeading:nth-child(2) {
     height: 270px;
     border-radius: 15px;
 }
-#left-form>p {
+#itemProductImg {
+    z-index: 6;
+    height: 270px;
+}
+#itemProductImg>img {
+    height: 385px;
+    border-radius: 15px;
+    position: absolute;
+    left: 185px;
+    top: 163px;
+}
+#item-form {
+    background-color: #F2ECEB;
+    margin-left: 118px;
+    max-height: 245px;
+    margin-top: 119px;
+    width: 421px;
+    padding: 43px;
+}
+.darkHeading {
+    color: rgb(46, 45, 45);
+    font-family: Poppins;
+    display: inline-block;
+    font-size: 32px;
+}
+
+div.bottom-form:nth-child(2) {
+    margin-top: 282px;
+}
+#item-form>p:nth-child(3) {
+    font-family: Poppins;
+    color: #403838;
+    margin-top: 15px;
+    margin-bottom: 43px;
+}
+#buttonGroup>span:nth-child(2)
+{
+    margin-left: 101px;
+    width: 40px;
+    display: inline-block;
+    text-align: center;
+}
+#buttonGroup>button:nth-child(1),
+#buttonGroup>button:nth-child(3),
+#buttonGroup>span:nth-child(2) {
+    border: none;
+    background: #E1E1DE;
+    font-size: 36px;
+    font-weight: 400;
+    font-family: Poppins;
+    color: #403838;
+    width: 75px;
+}
+h2.darkHeading:nth-child(2) {
+    float: right;
+}
+.left-form>p {
     font-family: Poppins;
     color: white;
     line-height: 50px;
@@ -249,12 +312,12 @@ h2.lightHeading:nth-child(2) {
 }
 
 
-#right-form {
+.right-form {
     padding-left: 110px;
     padding-top: 50px;
     padding-bottom: 50px;
 }
-#right-form>h3:nth-child(1){
+.right-form>h3:nth-child(1){
     font-family: Poppins;
     font-weight: 700;
     padding-left: 40px;
@@ -294,7 +357,7 @@ div.topping>p {
     border-radius: 8px;
 }
 .customiseForm>h4:nth-child(4)
-#left-form>div:nth-child(4)>div>h5, .customiseForm>h4 {
+.left-form>div:nth-child(4)>div>h5, .customiseForm>h4 {
     color:#212126;
     font-family: Poppins;
     font-weight: 700;
@@ -302,7 +365,7 @@ div.topping>p {
 #customiseForm {
     scrollbar-width: thin;
     scrollbar-color: #77a88d #77a88d82;
-    position: absolute;
+    position: fixed;
     top: 60px;
 }
 .customiseForm>h4:nth-child(1) {

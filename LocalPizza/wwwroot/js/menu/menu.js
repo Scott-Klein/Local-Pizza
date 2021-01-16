@@ -294,16 +294,39 @@ app.component('customise-item', {
             quantity: 1,
         }
     },
+    computed: {
+        priceTotal() {
+            return (this.quantity * Number(this.item.price)).toFixed(2);
+        }
+    },
     template:
         /*html*/
         `
-            <div>
-                <h2>{{this.item.name}}</h2>
-                <p>{{this.item.description}}</p>
-                <button @click.prevent="Reduce"> - </button>
-                <input type="text" id="quantitySelector" :value="quantity">
-                <button @click.prevent="Increase"> + </button>
-                <button @click.prevent="AddItemToCart">Add To Cart!</button>
+            <div class="form">
+                <div class="left-form">
+
+
+                    <div id="itemProductImg">
+                            <img class="detailImg" :src="'/images/' + this.item.productPicture" />
+                    </div>
+
+                    <div class="bottom-form">
+                        <h2 id="OrderTotal">{{this.priceTotal}}</h2>
+                        <div class="CartButton" @click="AddPizzaToCart"><h3>Add To Cart</h3></div>
+                    </div>
+                </div>
+                <div class="right-form">
+                    <div id="item-form">
+                        <h2 class="darkHeading">{{this.item.name}}</h2>
+                        <h2 class="darkHeading">$ {{this.item.price}}</h2>
+                        <p>{{this.item.description}}</p>
+                        <div id="buttonGroup">
+                            <button @click.prevent="Reduce"> - </button>
+                            <span>{{this.quantity}}</span>
+                            <button @click.prevent="Increase" style="float: right"> + </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         `
 })
@@ -428,8 +451,8 @@ app.component('customise-pizza', {
         /*html*/
         `
         <div>
-            <div id="form">
-                <div id="left-form">
+            <div class="form">
+                <div class="left-form">
                     <h2 class="lightHeading">{{this.item.name}}</h2>
                     <h2 class="lightHeading">$ {{this.item.price}}</h2>
                     <p>{{this.item.description}}</p>
@@ -450,12 +473,12 @@ app.component('customise-pizza', {
                         </div>
                     </div>
 
-                    <div id="bottom-form">
+                    <div class="bottom-form">
                         <h2 id="OrderTotal">{{this.priceTotal}}</h2>
-                        <div id="CartButton" @click="AddPizzaToCart"><h3>Add To Cart</h3></div>
+                        <div class="CartButton" @click="AddPizzaToCart"><h3>Add To Cart</h3></div>
                     </div>
                 </div>
-                <div id="right-form">
+                <div class="right-form">
                     <h3>Customisations</h3>
                     <form class="customiseForm">
                         <h4><span>1.</span>  Choose Your Crust</h4>
