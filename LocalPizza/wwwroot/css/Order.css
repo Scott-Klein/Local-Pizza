@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+form#OrderForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+}
+
+#OrderForm>div>label {
+    display: block;
+    font-family: Poppins;
+    color: #4D4D51;
+    font-size: 25px;
+    font-weight: 600;
+}
+#OrderForm>div {
+    margin-bottom: 20px;
+}
+#OrderForm>button:nth-child(10),
+#OrderForm>div>input {
+    width: 90%;
+    height: 40px;
+    background-color: #6565F6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+#OrderForm>button:nth-child(10){
+    cursor: pointer;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height:unset;
+    background-color: #BC4E4E;
+}

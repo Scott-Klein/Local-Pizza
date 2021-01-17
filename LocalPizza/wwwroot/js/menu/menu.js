@@ -5,7 +5,9 @@ const menu = {
         `
         <div>
             <customise-form id="customiseForm" v-show="showCustomMenu" :item="selectedPizza" @pizza-push="PizzaPush" @item-push="ItemPush" @close="Close"/>
-            <order id="order" :cart="cart"/>
+            <order id="order" :cart="cart" :large="showOrder" @mouseover="maxCart" @mouseout="minCart"/>
+            <menu-nav id="menu-nav"></menu-nav>
+
 
             <div id="pizzaImg" class="menuImgHeading"><h2>Pizza</h2></div>
             <h2 class="MenuHeading">Traditional Range</h2>
@@ -45,10 +47,20 @@ const menu = {
             cart: {
                 cartItems: [],
                 cartPizzas: []
-            }
+            },
+            showOrder: false
         }
     },
     methods: {
+        maxCart() {
+            this.showOrder = true;
+        },
+        minCart() {
+            this.showOrder = false;
+        },
+        hovered() {
+            console.log("hovered!");
+        },
         Close() {
             this.showCustomMenu = false;
         },
@@ -125,10 +137,9 @@ const menu = {
     },
 }
 
-
-
-
 const app = Vue.createApp(menu)
+
+
 
 //I will register all of my components here.
 app.component('menu-item', {
@@ -154,18 +165,16 @@ app.component('menu-item', {
         </div>
         `
 })
-//<div class="menuItem">
-//    <img class="productImg" :src="'/images/' + this.item.productPicture" />
- //
-//    <p>{{this.item.description}}</p>
-//    <p><strong>$</strong> {{this.item.price}}</p>
-//    <button @click="customiseItem">Add to Cart</button>
-//</div>
+
 app.component('order', {
     props: {
         cart: {
             cartItems: [],
             cartPizzas: []
+        },
+        large: {
+            type: Boolean,
+            required: false
         }
     },
     data() {
@@ -205,26 +214,76 @@ app.component('order', {
 
         }
     },
+    computed: {
+        totalPrice() {
+            let total = 0;
+            this.cart.cartItems.forEach(element => {
+                total += Number(element.price);
+            });
+            this.cart.cartPizzas.forEach(element => {
+                total += Number(element.price);
+            });
+            return total;
+        }
+    },
     template:
         /*html*/
         `
         <div>
-            <p>Pizza Orders:</p>
-            <div v-for="(pizza, index) in cart.cartPizzas" >
-                <h4>{{pizza.name}}</h4>
-                <p>Base: {{this.Bases[pizza.base]}}</p>
-                <p>Crust: {{this.Crusts[pizza.base]}}</p>
-                <p v-for="topping in pizza.toppings">{{ToppingText(topping)}}</p>
-                <button @click="removePizza(index)">X</button>
+            <div id="largeOrder" v-show="large">
+                <h2>Order</h2>
+                <order-item v-for="(item, index) in cart.cartPizzas" :item="item" @delete-item="removePizza(index)"/>
+                <order-item v-for="(item, index) in cart.cartItems" :item="item" @delete-item="removeItem(index)"/>
+                <order-bottom :total="totalPrice" id="order-bottom"></order-bottom>
             </div>
-            <p>Item Orders:</p>
-            <div v-for="(item, index) in cart.cartItems" >
-                <h4>{{item.name}}</h4>
-                <h5>qty: {{item.qty}}</h5>
-                <button @click="removeItem(index)">X</button>
+            <div id="smallOrder" v-show="!large">
+                <i class="fas fa-shopping-cart"></i><p>Order</p>
             </div>
+
         </div>
         `
+})
+app.component('order-bottom', {
+    props: {
+        total: Number
+    },
+    methods: {
+        order() {
+            window.location.href = "/Order";
+        }
+    },
+    computed: {
+        totalFixed() {
+            return this.total.toFixed(2);
+        }
+    },
+    template:
+        /*html*/
+        `
+        <div>
+            <div id="totalContainer"><h5>Total</h5><h4>$ {{this.totalFixed}}</h4></div>
+            <div id="placeOrder" @click="order"><h5>Place Order ></h5></div>
+        </div>
+        `,
+
+})
+app.component('order-item', {
+    props: {
+        item: Object
+    },
+    methods: {
+        deleteItem() {
+            this.$emit("delete-item");
+        }
+    },
+    template:
+        /*html*/
+        `<div class="orderItem">
+            <img class="miniPicture" :src="'/images/' + this.item.productPicture"/>
+            <h4>{{this.item.name}}</h4>
+            <h4>$ {{this.item.price}}</h4>
+            <h4 @click="deleteItem" style="cursor: pointer">X</h4>
+        </div>`,
 })
 
 app.component('customise-form', {
@@ -276,7 +335,9 @@ app.component('customise-item', {
             let item = {
                 name: this.item.name,
                 id: this.item.id,
-                qty: this.quantity
+                qty: this.quantity,
+                productPicture: this.item.productPicture,
+                price: this.priceTotal
             }
             this.$emit('cart-item', item);
         },
@@ -312,7 +373,7 @@ app.component('customise-item', {
 
                     <div class="bottom-form">
                         <h2 id="OrderTotal">{{this.priceTotal}}</h2>
-                        <div class="CartButton" @click="AddPizzaToCart"><h3>Add To Cart</h3></div>
+                        <div class="CartButton" @click="AddItemToCart"><h3>Add To Cart</h3></div>
                     </div>
                 </div>
                 <div class="right-form">
@@ -339,7 +400,8 @@ app.component('customise-pizza', {
         AddPizzaToCart() {
             this.pizza.itemId = this.item.id;
             this.pizza.name = this.item.name;
-
+            this.pizza.productPicture = this.item.productPicture;
+            this.pizza.price = this.priceTotal;
             this.$emit('pizza-to-cart', Object.assign({}, this.pizza));
             this.pizza.toppings = [];
         },
@@ -400,6 +462,8 @@ app.component('customise-pizza', {
                 toppings: [],
                 base: 0,
                 crust: 0,
+                productPicture: "",
+                price: 0
             },
             initialised: false,
             itemId: 5000,
@@ -414,7 +478,7 @@ app.component('customise-pizza', {
         }
     },
     created() {
-        console.log("cusotmise pizza created()")
+        console.log("customise pizza created()")
         fetch('/api/toppingview')
             .then(response => response.json())
             .then(data => this.toppings = data);
@@ -579,6 +643,16 @@ app.component('topping-check', {
             <p>{{topping.name}}</p>
         </div>
         `
+})
+
+app.component('menu-nav', {
+    template:
+        /*html*/
+        `
+        <div>
+            <h3>Menu > Pizza > Drinks > Sides > Dessert</h3>
+        </div>
+        `,
 })
 
 app.mount('#menu');

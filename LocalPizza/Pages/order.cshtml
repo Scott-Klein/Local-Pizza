@@ -2,43 +2,62 @@
 @model LocalPizza.Pages.OrderModel
 @{
 }
+@section Style {
+    <link rel="stylesheet" href="~/css/Order.css" />
+}
+
 <form id="OrderForm" onsubmit="appendCart()" method="post">
-    <label asp-for="CurrentOrder.DeliveryAddress.Unit"></label>
-    <input asp-for="CurrentOrder.DeliveryAddress.Unit" />
-    <span id="unitSpan" asp-validation-for="CurrentOrder.DeliveryAddress.Unit"></span>
-    <br />
-    <label asp-for="CurrentOrder.DeliveryAddress.StreetNumber"></label>
-    <input asp-for="CurrentOrder.DeliveryAddress.StreetNumber" />
-    <span id="streetNoSpan" asp-validation-for="CurrentOrder.DeliveryAddress.StreetNumber"></span>
-    <br />
-    <label asp-for="CurrentOrder.DeliveryAddress.StreetName"></label>
-    <input asp-for="CurrentOrder.DeliveryAddress.StreetName" />
-    <span id="StreetNameSpan" asp-validation-for="CurrentOrder.DeliveryAddress.StreetName"></span>
-    <br />
-    <label asp-for="CurrentOrder.DeliveryAddress.Suburb"></label>
-    <input asp-for="CurrentOrder.DeliveryAddress.Suburb" />
-    <span id="SuburbSpan" asp-validation-for="CurrentOrder.DeliveryAddress.Suburb"></span>
-    <br />
-    <label asp-for="CurrentOrder.DeliveryAddress.PostCode"></label>
-    <input asp-for="CurrentOrder.DeliveryAddress.PostCode" />
-    <span id="PostCodeSpan" asp-validation-for="CurrentOrder.DeliveryAddress.PostCode"></span>
-    <br />
-    <label asp-for="CurrentOrder.DeliveryInstructions"></label>
-    <input asp-for="CurrentOrder.DeliveryInstructions" />
-    <span id="InstructionsSpan" asp-validation-for="CurrentOrder.DeliveryInstructions"></span>
-    <br />
-    <label asp-for="CurrentOrder.Name"></label>
-    <input asp-for="CurrentOrder.Name" />
-    <span id="NameSpan" asp-validation-for="CurrentOrder.Name"></span>
-    <br />
-    <label asp-for="CurrentOrder.PhoneNumber"></label>
-    <input asp-for="CurrentOrder.PhoneNumber" />
-    <span id="PhoneSpan" asp-validation-for="CurrentOrder.PhoneNumber"></span>
-    <br />
-    <label asp-for="CurrentOrder.RequestDelivery"></label>
-    <select asp-for="CurrentOrder.RequestDelivery" asp-items="Model.TimesSelect"></select>
-    <br />
-    <button type="button" onclick="appendCart()">Submit</button>
+    <div>
+        <label asp-for="CurrentOrder.DeliveryAddress.Unit"></label>
+        <input asp-for="CurrentOrder.DeliveryAddress.Unit" />
+        <span id="unitSpan" asp-validation-for="CurrentOrder.DeliveryAddress.Unit"></span>
+    </div>
+
+    <div>
+        <label asp-for="CurrentOrder.DeliveryAddress.StreetNumber"></label>
+        <input asp-for="CurrentOrder.DeliveryAddress.StreetNumber" />
+        <span id="streetNoSpan" asp-validation-for="CurrentOrder.DeliveryAddress.StreetNumber"></span>
+    </div>
+
+    <div>
+        <label asp-for="CurrentOrder.DeliveryAddress.StreetName"></label>
+        <input asp-for="CurrentOrder.DeliveryAddress.StreetName" />
+        <span id="StreetNameSpan" asp-validation-for="CurrentOrder.DeliveryAddress.StreetName"></span>
+    </div>
+    <div>
+        <label asp-for="CurrentOrder.DeliveryAddress.Suburb"></label>
+        <input asp-for="CurrentOrder.DeliveryAddress.Suburb" />
+        <span id="SuburbSpan" asp-validation-for="CurrentOrder.DeliveryAddress.Suburb"></span>
+    </div>
+    <div>
+        <label asp-for="CurrentOrder.DeliveryAddress.PostCode"></label>
+        <input asp-for="CurrentOrder.DeliveryAddress.PostCode" />
+        <span id="PostCodeSpan" asp-validation-for="CurrentOrder.DeliveryAddress.PostCode"></span>
+    </div>
+
+    <div>
+        <label asp-for="CurrentOrder.DeliveryInstructions"></label>
+        <input asp-for="CurrentOrder.DeliveryInstructions" />
+        <span id="InstructionsSpan" asp-validation-for="CurrentOrder.DeliveryInstructions"></span>
+    </div>
+
+    <div>
+        <label asp-for="CurrentOrder.Name"></label>
+        <input asp-for="CurrentOrder.Name" />
+        <span id="NameSpan" asp-validation-for="CurrentOrder.Name"></span>
+    </div>
+
+    <div>
+        <label asp-for="CurrentOrder.PhoneNumber"></label>
+        <input asp-for="CurrentOrder.PhoneNumber" />
+        <span id="PhoneSpan" asp-validation-for="CurrentOrder.PhoneNumber"></span>
+    </div>
+
+    <div>
+        <label asp-for="CurrentOrder.RequestDelivery"></label>
+        <select asp-for="CurrentOrder.RequestDelivery" asp-items="Model.TimesSelect"></select>
+    </div>
+    <button type="button" onclick="appendCart()">Order</button>
 </form>
 
 <script src="~/js/Order/fetch.js"></script>
