@@ -12,6 +12,7 @@ namespace LocalPizza.Data
         int CountOrderItems(int productId);
         Item InsertItem(Item item);
         Task<Order> IncrementStatus(int id);
+        Task<Order> RevertStatus(int id);
         Item UpdateItem(Item item);
         IProduct UpdateProduct(IProduct product);
         public Item GetItem(int id);
@@ -19,7 +20,7 @@ namespace LocalPizza.Data
         bool DeleteItem(int id);
         Order InsertOrder(Order order);
         IEnumerable<Item> GetAllItems();
-        OrderStatus GetOrderStatus(int id);
+        Task<OrderStatus> GetOrderStatus(int id);
         IEnumerable<ToppingViewModel> GetToppingViewModels();
         public Topping GetTopping(int id);
         IEnumerable<IProduct> GetAllProducts();
@@ -27,5 +28,6 @@ namespace LocalPizza.Data
         IEnumerable<ItemViewModel> GetItemViews();
         IProduct ProductImage(int id, ProductRange range, string filename);
         bool Delete(int id, ProductRange range);
+        
     }
 }

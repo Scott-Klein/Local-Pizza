@@ -1,0 +1,82 @@
+@keyframes prep {
+    from {stroke-dashoffset: 534px;}
+    to {stroke-dashoffset: 356px;}
+}
+@keyframes delivery {
+    from {stroke-dashoffset: 356x;}
+    to {stroke-dashoffset: 178px;}
+}
+@keyframes complete {
+    from {stroke-dashoffset: 178px;}
+    to {stroke-dashoffset: 0px;}
+}
+* {
+    font-family: Poppins;
+}
+#app {
+    background-color: #428C65;
+    border-radius: 10px;
+    padding: 50px;
+}
+
+#grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+div>h2 {
+    color: white;
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.circle-chart__circle {
+    transform: rotate(-90deg);
+    transform-origin: center;
+    stroke-dasharray: 534px;
+    stroke-dashoffset: 534px;
+}
+.large-svg-text {
+    font-size:50px;
+    font-weight: 100;
+}
+small-svg-text {
+    font-weight: 100;
+}
+#order-tracker {
+    padding: 20px;
+    margin-bottom: 75px;
+    margin-right: 75px;
+}
+#order-data {
+    margin-right: 75px;
+}
+.order-pane {
+    padding: 18px;
+    background-image: linear-gradient(to right, #7CD6A6, #7cd6a64f);
+}
+.created {
+    stroke-dashoffset: 534px;
+}
+
+.preparing {
+    stroke-dashoffset: 534px;
+    animation-name: prep;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.delivery {
+    stroke-dashoffset: 356x;
+    animation-name: delivery;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}
+
+.finished {
+    stroke-dashoffset: 178px;
+    animation-name: complete;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+}

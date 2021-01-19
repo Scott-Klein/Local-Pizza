@@ -24,6 +24,7 @@ app.component('order-table', {
                     <td>{{order.name}}</td>
                     <td>{{this.StatusEnum[order.status]}}</td>
                     <td><button type="button" @click="ProgressOrder(order.id)">Progress Order</button></td>
+                    <td><button type="button" @click="ReverseOrder(order.id)">Reverse Order</button></td>
                 </tr>
             </table>
         </div>
@@ -61,6 +62,9 @@ app.component('order-table', {
         ProgressOrder(id) {
             console.log("Invoking update order status");
             this.connection.invoke("UpdateStatus", id);
+        },
+        ReverseOrder(id) {
+            this.connection.invoke("RevertStatus", id);
         },
         OnTabClose(e) {
             this.connection.invoke("AbortConnection");

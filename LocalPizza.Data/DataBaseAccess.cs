@@ -167,9 +167,9 @@ namespace LocalPizza.Data
             return this.db.Toppings.Find(id);
         }
 
-        public OrderStatus GetOrderStatus(int id)
+        public async Task<OrderStatus> GetOrderStatus(int id)
         {
-            var order = this.db.Orders.Find(id);
+            var order = await this.db.Orders.FindAsync(id);
             return order.Status;
         }
 
@@ -190,6 +190,18 @@ namespace LocalPizza.Data
             return order;
         }
 
+        public async Task<Order> RevertStatus(int id)
+        {
+            var order = await this.db.Orders.FindAsync(id);
+            if (order.Status != OrderStatus.Completed)
+            {
+                order.Status--;
+            }
+            //this.db.Orders.Update(order);
+            await this.db.SaveChangesAsync();
+            return order;
+        }
+
         public int CountOrderItems(int productId)
         {
             //return this.db.OrderItems.Count(o => o.Item.Id == productId);
@@ -201,5 +213,7 @@ namespace LocalPizza.Data
             }
             return result;
         }
+
+
     }
 }

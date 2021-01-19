@@ -303,6 +303,7 @@ div.bottom-form:nth-child(4){
     margin:0px;
     margin-bottom: 10px;
 }
+
 .orderItem>h4:nth-child(3),
 .orderItem>h4:nth-child(4) {
     font-weight: 700;

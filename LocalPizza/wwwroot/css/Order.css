@@ -5,6 +5,10 @@ form#OrderForm {
 
 }
 
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #77a88d #77a88d82;
+}
 #OrderForm>div>label {
     display: block;
     font-family: Poppins;
@@ -15,6 +19,9 @@ form#OrderForm {
 #OrderForm>div {
     margin-bottom: 20px;
 }
+
+select,
+.pb-3>button:nth-child(2),
 #OrderForm>button:nth-child(10),
 #OrderForm>div>input {
     width: 90%;
@@ -27,6 +34,17 @@ form#OrderForm {
     font-size: 22px;
     font-weight: 700;
 }
+
+select {
+    height:50px;
+    width: 92%;
+}
+
+.pb-3>button:nth-child(2) {
+    background-color: #BC4E4E;
+    width: 46%;
+}
+
 
 #OrderForm>button:nth-child(10){
     cursor: pointer;
