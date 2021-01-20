@@ -30,9 +30,9 @@ navigate to /admin to begin populating the website with your products.
 ## Place an order
 
 ### See the menu
-![alt text](https://github.com/Scott-Klein/Local-Pizza/blob/master/readme/menu.png?raw=true)
+![alt text](https://github.com/Scott-Klein/Local-Pizza/blob/master/readme/menu.jpg?raw=true)
 
 ### Customise a pizza
-![alt text](https://github.com/Scott-Klein/Local-Pizza/blob/master/readme/detail.png?raw=true)
+![alt text](https://github.com/Scott-Klein/Local-Pizza/blob/master/readme/Detail.png?raw=true)
 ### Track an order
 ![alt text](https://github.com/Scott-Klein/Local-Pizza/blob/master/readme/Successful.png?raw=true)
