@@ -8,7 +8,8 @@ With it you can also get live updates on orders being made so the kitchen can re
 
 ## How to build
 If you have windows available feel free to use visual studio community to get started by cloning the repo and opening the .sln file.
-
+### Linux/mac
+If you are experienced with .Net core/ .Net 5.0 you can easily figure out how to get this running on either platform, if anyone is unsure I can create a guide if there are any requests for such documentation.
 ### Setup database
 
 To set up the database delete any migrations that you pulled down from the master repo by deleting the LocalPizza.Data/migrations folder first.
