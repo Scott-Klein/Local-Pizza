@@ -1,5 +1,5 @@
 # Free ASP.Net Core Pizza website template
-![alt text](https://github.com/Scott-Klein/Local-Pizza/blob/master/readme/Landing 1920.png?raw=true)
+![alt text](https://github.com/Scott-Klein/Local-Pizza/blob/master/readme/Landing.png?raw=true)
 ## Introduction
 
 ### What is this?
