@@ -25,3 +25,14 @@ Now the built in sql server that comes with visual studio should have the databa
 You may then run the debugger and view the website with the browser window that appears.
 
 navigate to /admin to begin populating the website with your products.
+![alt text](https://github.com/Scott-Klein/Local-Pizza/blob/master/readme/admin.png?raw=true)
+
+## Place an order
+
+### See the menu
+![alt text](https://github.com/Scott-Klein/Local-Pizza/blob/master/readme/menu.png?raw=true)
+
+### Customise a pizza
+![alt text](https://github.com/Scott-Klein/Local-Pizza/blob/master/readme/detail.png?raw=true)
+### Track an order
+![alt text](https://github.com/Scott-Klein/Local-Pizza/blob/master/readme/Successful.png?raw=true)
