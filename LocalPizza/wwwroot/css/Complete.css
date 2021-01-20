@@ -37,6 +37,9 @@ div>h2 {
     stroke-dasharray: 534px;
     stroke-dashoffset: 534px;
 }
+.circle-chart {
+    margin-left: 12px;
+}
 .large-svg-text {
     font-size:50px;
     font-weight: 100;
@@ -44,17 +47,41 @@ div>h2 {
 small-svg-text {
     font-weight: 100;
 }
+
+#order-items {
+    margin-left: 35px;
+}
 #order-tracker {
     padding: 20px;
-    margin-bottom: 75px;
-    margin-right: 75px;
+    margin-bottom: 35px;
+
+}
+#status-indicator {
+    text-align: center;
+    color:white;
+}
+#order-circle {
+    width: 205px;
+    margin: auto;
 }
 #order-data {
-    margin-right: 75px;
+
+}
+
+.order-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+}
+.order-grid>p {
+    margin-left: 30px;
+    display: inline;
+    font-weight: 600;
 }
 .order-pane {
-    padding: 18px;
-    background-image: linear-gradient(to right, #7CD6A6, #7cd6a64f);
+    color: white;
+    padding: 28px;
+    background-image: linear-gradient(to right, #7CD6A6, #7cd6a63b, #7cd6a600);
+    border-radius: 15px;
 }
 .created {
     stroke-dashoffset: 534px;
